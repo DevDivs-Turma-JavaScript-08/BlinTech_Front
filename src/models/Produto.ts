@@ -6,7 +6,7 @@ export default interface Produto {
 	nomeProduto: string;
 	descricao: string;
 	cobertura: string;
-  imei: string;
+  imei?: string;
   valorProduto: number;
   valorSeguro: number;
   premioMensal: number;

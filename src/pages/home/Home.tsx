@@ -1,7 +1,14 @@
+import CategoriaForm from "../../components/categorias/categoriaForm/CategoriaForm";
+import ProdutosForm from "../../components/produtos/produtosForm/ProdutosForm";
+
 function Home() {
-  return (
-    <div>Home</div>
-  )
+	return (
+		<div className="flex gap-6">
+			home
+			<CategoriaForm />
+			<ProdutosForm />
+		</div>
+	);
 }
 
-export default Home
+export default Home;
