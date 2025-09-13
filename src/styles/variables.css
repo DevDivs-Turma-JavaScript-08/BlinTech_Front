@@ -1,0 +1,36 @@
+:root {
+  /* ========================================
+   * Cores base extraídas da imagem BlinTech
+   * ========================================
+   */
+
+  --primary-ex-light: #b383ff;
+  --primary-light: #7b33c7;
+  --primary: #511889;
+  --primary-dark: #370a63;
+  --primary-ex-dark: #1c0034;
+
+  --secondary-ex-light: #ffc9a3;
+  --secondary-light: #ff9659;
+  --secondary: #f25c00;
+  --secondary-dark: #b84300;
+  --secondary-ex-dark: #5c2200;
+
+  --tertiary-ex-light: #e1ffc5;
+  --tertiary-light: #b3ff73;
+  --tertiary: #8ee000;
+  --tertiary-dark: #5fa300;
+  --tertiary-ex-dark: #324d00;
+
+  --auxiliary1: #ff461e; 
+  --white: #ffffff;
+  --black: #000000;
+
+  /* ========================================
+   * Alertas
+   * ========================================
+   */
+  --alert: #ff0000;
+
+  /* Mantive seus tokens de espaçamento, fontes e radius */
+}
