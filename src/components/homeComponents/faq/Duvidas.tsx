@@ -7,9 +7,9 @@ type FAQs = {
 function Duvidas({ faqs }: { faqs:FAQs}) {
 	return (
 		<div>
-			<details className="bg-(--primary) font-bold text-white p-2 rounded-2xl transition-all ease-in-out cursor-pointer hover:bg-(--primary-dark) hover:text-(--tertiary)">
+			<details className="bg-(--primary) font-bold text-white p-2 rounded-tl-xl rounded-br-xl rounded-tr-[24px] rounded-bl-[24px] transition-all ease-in-out cursor-pointer hover:bg-(--primary-dark) hover:text-(--tertiary)">
 				<summary className="mb-2"> {faqs.summary} </summary>
-				<p className="text-(--primary) bg-(--primary-ex-light) rounded-b-2xl rounded-t-md font-normal p-2">
+				<p className="text-(--primary) bg-(--primary-ex-light) rounded-tl-xl rounded-br-xl rounded-tr-[24px] rounded-bl-[24px] font-normal p-2">
 					{faqs.details}
 				</p>
 			</details>

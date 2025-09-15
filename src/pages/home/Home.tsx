@@ -74,8 +74,6 @@ function Home() {
 
 	return (
 		<main className="flex flex-col w-full bg-(--primary-ex-dark) text-white">
-			<div className=" h-[70px]"> Navbar </div>
-
 			{/* Hero */}
 			<section className="h-[600px] flex flex-col justify-center bg-[url(https://i.imgur.com/mU1UVb3.png)] bg-cover bg-center bg-no-repeat gap-30 pl-12">
 				<div>
