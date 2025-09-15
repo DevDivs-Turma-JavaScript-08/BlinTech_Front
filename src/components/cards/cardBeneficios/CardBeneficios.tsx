@@ -24,6 +24,7 @@ export default function BeneficiosSeguro() {
         'Adicione o seguro Quebra Acidental para cobrir quedas, líquidos e outros danos. Disponível apenas na loja.',
       imagem: 'https://i.imgur.com/SpbW7tb.jpeg',
     },
+    
   ];
 
   return (

@@ -7,6 +7,7 @@ import Cadastro from "./pages/cadastro/Cadastro";
 import CardBeneficios from "./components/cards/cardBeneficios/CardBeneficios";
 import BeneficiosSeguro from "./components/cards/cardBeneficios/CardBeneficios";
 import Sobre from "./pages/sobre/sobre";
+import Contatos from "./pages/Contato.tsx/Contato";
 
 
 
@@ -16,7 +17,7 @@ function App() {
 			<AuthProvider>
 				<BrowserRouter>
 					<Routes>
-						<Route path="/" element={<Sobre />} />
+						<Route path="/" element={<Contatos />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/home" element={<Home />} />
 						<Route path="/cadastro" element={<Cadastro />} />
