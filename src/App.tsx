@@ -4,6 +4,11 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Login from "./pages/login/Login";
 import Home from "./pages/home/Home";
 import Cadastro from "./pages/cadastro/Cadastro";
+import CardBeneficios from "./components/cards/cardBeneficios/CardBeneficios";
+import BeneficiosSeguro from "./components/cards/cardBeneficios/CardBeneficios";
+import Sobre from "./pages/sobre/sobre";
+
+
 
 function App() {
 	return (
@@ -11,7 +16,8 @@ function App() {
 			<AuthProvider>
 				<BrowserRouter>
 					<Routes>
-						<Route path="/" element={<Login />} />
+						<Route path="/" element={<Sobre />} />
+						<Route path="/login" element={<Login />} />
 						<Route path="/home" element={<Home />} />
 						<Route path="/cadastro" element={<Cadastro />} />
 					</Routes>
