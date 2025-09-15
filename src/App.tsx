@@ -8,6 +8,7 @@ import CardBeneficios from "./components/cards/cardBeneficios/CardBeneficios";
 import BeneficiosSeguro from "./components/cards/cardBeneficios/CardBeneficios";
 import Sobre from "./pages/sobre/sobre";
 import Contatos from "./pages/Contato.tsx/Contato";
+import SegurosForm from "./components/seguros/segurosForm/SegurosForm";
 
 
 
@@ -17,7 +18,7 @@ function App() {
 			<AuthProvider>
 				<BrowserRouter>
 					<Routes>
-						<Route path="/" element={<Contatos />} />
+						<Route path="/" element={<SegurosForm />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/home" element={<Home />} />
 						<Route path="/cadastro" element={<Cadastro />} />
