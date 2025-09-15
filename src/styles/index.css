@@ -1,2 +1,118 @@
 @import './variables.css';
 @import 'tailwindcss';
+
+/* From Uiverse.io by mobinkakei */ 
+.cta {
+  display: flex;
+  padding: 11px 33px;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  background: var(--secondary);
+  transition: 1s;
+  box-shadow: 6px 6px 0 #351300;
+  transform: skewX(-15deg);
+  border: none;
+  cursor: pointer;
+}
+
+.cta:focus {
+  outline: none;
+}
+
+.cta:hover {
+  transition: 0.5s;
+  color: var(--primary-ex-dark);
+  background: var(--tertiary);
+  box-shadow: 10px 10px 0 #e1ffc550;
+}
+
+.cta .second {
+  transition: 0.5s;
+  margin-right: 0px;
+}
+
+.cta:hover .second {
+  transition: 0.5s;
+  margin-right: 45px;
+}
+
+.span {
+  transform: skewX(15deg);
+}
+
+.second {
+  width: 20px;
+  margin-left: 30px;
+  position: relative;
+  top: 12%;
+}
+
+.one {
+  transition: 0.4s;
+  transform: translateX(-60%);
+}
+
+.two {
+  transition: 0.5s;
+  transform: translateX(-30%);
+}
+
+.cta:hover .three {
+  animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover .one {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover .two {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.4s;
+}
+
+@keyframes color_anim {
+  0% {
+    fill: white;
+  }
+
+  50% {
+    fill: var(--secondary);
+  }
+
+  100% {
+    fill: white;
+  }
+}
+
+
+/* .cta {
+  transition: all 0.5s;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 1ch 2ch;
+  background-color: var(--secondary);
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid var(--secondary-dark);
+  border-radius: 8px;
+  box-shadow:
+    -2px -2px 0px #5fa30090,
+    4px 4px 0px #5fa30080,
+    -6px -6px 0px #5fa30070,
+    8px 8px 0px #5fa30060,
+    -10px -10px 0px #5fa30050,
+    12px 12px 0px #5fa30040,
+    -14px -14px 0px #5fa30030,
+    16px 16px 0px #5fa30020,
+    -18px -18px 0px #5fa30010;
+}
+
+.cta:hover {
+  background-color: var(--tertiary);
+  color: #000;
+  border: 1px solid var(--tertiary-dark);
+  box-shadow: none;
+} */
