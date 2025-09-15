@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
 
 				{/* Centro: Links de navegação */}
 				<div className="flex-grow flex justify-center">
-					<ul className="flex space-x-6">
+					<ul className="flex space-x-2">
 						<li>
 							<a
 								href="/"
@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
 										!isHomePage
 											? `cursor-pointer text-(--tertiary) before:content-[''] before:block before:h-[1px] before:bg-(--tertiary)
                   before:mr-2 before:w-0 before:transition-all before:duration-300 
-                  hover:before:w-6`
+                  hover:before:w-6 hover:text-(--tertiary-dark)`
 											: `text-(--secondary) cursor-default`
 									}
                 `}>
@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
 								className={` 
                   relative flex items-center px-4 py-2 
                   font-bold uppercase tracking-wide 
-                  bg-transparent border-0 outline-0 ${
+                  bg-transparent border-0 outline-0 transition-all ${
 										!isSobrePage
 											? `cursor-pointer text-(--tertiary) before:content-[''] before:block before:h-[1px] before:bg-(--tertiary)
                   before:mr-2 before:w-0 before:transition-all before:duration-300 
@@ -104,9 +104,9 @@ const Navbar: React.FC = () => {
 					<div className="text-right text-sm">
 						<span>Bem vindo(a), visitante!</span>
 						<small className="block text-xs text-gray-400">
-							<span className="text-(--secondary) hover:text-(--primary-ex-light) transition-all">Cadastre-se</span> 
-              ou
-							<span className="text-(--tertiary) hover:text-(--primary-ex-light) transition-all">Acesse sua conta</span>
+							<span className="text-(--secondary) hover:text-(--primary-ex-light) transition-all">Cadastre-se </span>
+							ou
+							<span className="text-(--tertiary) hover:text-(--primary-ex-light) transition-all"> Acesse sua conta</span>
 						</small>
 					</div>
 					<div
