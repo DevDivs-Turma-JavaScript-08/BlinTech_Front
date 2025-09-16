@@ -1,10 +1,11 @@
+import CategoriaForm2 from "./components/categorias/categoriaForm2/CategoriaForm2";
 import Footer from "./components/footer/Footer";
 
 
 function App() {
 	return (
 		<>
-			<Footer/>
+			<CategoriaForm2/>
 		</>
 	);
 }
