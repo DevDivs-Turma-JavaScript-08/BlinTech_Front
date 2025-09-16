@@ -1,7 +1,8 @@
-import FormularioLogin from "./components/login/FormularioLogin";
+import CadastroUsuario from "./components/cadastrousuario/Cadastrousuario";
+
 
 function App() {
-  return <FormularioLogin />;
+  return <CadastroUsuario />;
 }
 
 export default App;
