@@ -1,104 +1,132 @@
-import { useEffect, useState } from "react"
+import { useState } from "react";
+interface Equipe {
+	foto: string;
+	nome: string;
+	funcao: string;
+	frase: string;
+	pitch: string;
+	formacao: string;
+}
 
 export default function CardEquipe() {
+	const ListEquipe: Equipe[] = [
+		{
+			foto: "https://i.imgur.com/vj5DgbC.jpeg",
+			nome: "Agata",
+			funcao: "Desenvolvedora",
+			frase: "Seja a mudança que você quer ver no mundo.",
+			pitch: "Apaixonada por soluções front-end e experiência do usuário, busco transformar ideias em interfaces intuitivas e funcionais.",
+			formacao: "Rank A",
+		},
+		{
+			foto: "https://i.imgur.com/r9JoYhT.png",
+			nome: "Alex",
+			funcao: "Desenvolvedor",
+			frase: "Acredite no seu potencial, ele é infinito.",
+			pitch: "Especialista em back-end, construo APIs robustas e escaláveis, garantindo a performance e a segurança dos nossos sistemas.",
+			formacao: "Rank E",
+		},
+		{
+			foto: "https://i.imgur.com/Q1Z67IP.png",
+			nome: "Grazielle",
+			funcao: "Desenvolvedora",
+			frase: "O sucesso é a soma de pequenos esforços.",
+			pitch: "Com foco em arquitetura de software, crio soluções otimizadas e de alta qualidade que impulsionam o crescimento do projeto.",
+			formacao: "Rank A",
+		},
+		{
+			foto: "https://i.imgur.com/U6lUbHW.png",
+			nome: "Leticia",
+			funcao: "Desenvolvedora",
+			frase: "A persistência é o caminho do êxito.",
+			pitch: "Minha especialidade é a prototipagem e o design de interfaces, traduzindo conceitos complexos em designs simples e elegantes.",
+			formacao: "Rank A",
+		},
+		{
+			foto: "https://i.imgur.com/EuTNqNp.png",
+			nome: "Lucas",
+			funcao: "PO",
+			frase: "Lidere com paixão e inspire a equipe.",
+			pitch:
+				"Como Product Owner, meu objetivo é alinhar a visão do produto com as necessidades do mercado, garantindo que entreguemos o máximo de valor.",
+			formacao: "Rank S",
+		},
+		{
+			foto: "https://i.imgur.com/0kpfncl.png",
+			nome: "Pedro",
+			funcao: "Tester",
+			frase: "Qualidade não é um ato, é um hábito.",
+			pitch: "Responsável por garantir a integridade do produto, realizo testes rigorosos para assegurar que cada funcionalidade seja impecável.",
+			formacao: "Rank A",
+		},
+	];
 
-  const ListEquipe = [
-    {
-      foto: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOcAAACUCAMAAABfnM59AAAAA1BMVEUAAACnej3aAAAAOElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAMhiAAAXG8vLUAAAAASUVORK5CYII=',
-      nome: 'Agata',
-      funcao: 'Desenvolvedora',
-      frase: 'frase bonita da agata',
-      pitch: 'pitch da pessoa 1',
-      formacao: 'Rank A'
-    },
-    {
-      foto: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOcAAACUCAMAAABfnM59AAAAA1BMVEUAAACnej3aAAAAOElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAMhiAAAXG8vLUAAAAASUVORK5CYII=',
-      nome: 'Alex',
-      funcao: 'Desenvolvedor',
-      frase: 'frase bonita do alex',
-      pitch: 'pitch da pessoa 2',
-      formacao: 'Rank E'
-    },
-    {
-      foto: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOcAAACUCAMAAABfnM59AAAAA1BMVEUAAACnej3aAAAAOElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAMhiAAAXG8vLUAAAAASUVORK5CYII=',
-      nome: 'GRAZI',
-      funcao: 'Desenvolvedora',
-      frase: 'frase bonita da grazi',
-      pitch: 'pitch da pessoa 3',
-      formacao: 'Rank A'
-    },
-    {
-      foto: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOcAAACUCAMAAABfnM59AAAAA1BMVEUAAACnej3aAAAAOElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAMhiAAAXG8vLUAAAAASUVORK5CYII=',
-      nome: 'Leticia',
-      funcao: 'Desenvolvedora',
-      frase: 'frase bonita le',
-      pitch: 'pitch da pessoa 4',
-      formacao: 'Rank A'
-    },
-    {
-      foto: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOcAAACUCAMAAABfnM59AAAAA1BMVEUAAACnej3aAAAAOElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAMhiAAAXG8vLUAAAAASUVORK5CYII=',
-      nome: 'Lucas',
-      funcao: 'Po',
-      frase: 'frase bonita lucas',
-      pitch: 'pitch da pessoa 5',
-      formacao: 'Rank S'
+	const [selecionado, setSelecionado] = useState<Equipe | null>(null);
 
-    },
-    {
-      foto: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOcAAACUCAMAAABfnM59AAAAA1BMVEUAAACnej3aAAAAOElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAMhiAAAXG8vLUAAAAASUVORK5CYII=',
-      nome: 'Pedro',
-      funcao: 'Tester',
-      frase: 'frase bonita do pedro',
-      pitch: 'pitch da pessoa 6',
-      formacao: 'Rank A'
-    },
-  ]
-  const [selecionado, setSelecionado] = useState( Object )
-  const [teste, setTeste] = useState(false);
+	function handleSelect(equipe: Equipe) {
+		if (selecionado && selecionado.nome === equipe.nome) {
+			setSelecionado(null);
+		} else {
+			setSelecionado(equipe);
+		}
+	}
 
-  function testeClick(equipe: object) {
-    console.log('click')
-    setSelecionado(equipe)
-    setTeste(true)
-  }
+	return (
+		<div className="flex flex-col w-full items-center p-6 gap-6 text-white">
+			<h1 className="text-4xl font-bold p-3"> Nossa Equipe </h1>
+			<div className="flex">
+				<div className="flex flex-wrap justify-center gap-6">
+					{ListEquipe.map((equipe) => (
+						<div
+							key={equipe.nome}
+							onClick={() => handleSelect(equipe)}
+							className={`
+              w-56 h-auto p-4 flex flex-col items-center justify-center 
+               rounded-lg shadow-lg cursor-pointer
+              transform transition-all duration-300 hover:scale-105
+              ${
+								selecionado?.nome === equipe.nome
+									? " bg-(--primary-ex-dark) border-2 border-(--secondary-dark) scale-105"
+									: "border-2 border-transparent bg-(--primary-dark)"
+							}
+            `}>
+							<div className="w-24 h-24 rounded-full overflow-hidden mb-2">
+								<img src={equipe.foto} alt={`Foto de ${equipe.nome}`} className="w-full h-full object-cover" />
+							</div>
+							<span className="text-lg font-semibold">{equipe.nome}</span>
+							<p className="text-sm text-gray-400">{equipe.funcao}</p>
+						</div>
+					))}
+				</div>
 
-
-  return (
-    <div className="flex flex-col w-[70%] items-center gap-6 ">
-      <h1 className="font-bold p-3">Nossa Equipe</h1>
-      <div className="h-[300px] max-w-6xl  flex gap-6">
-        {ListEquipe.map((equipe, index) => (
-          <div
-            key={index}
-            className="bg-white shadow-md p-4 flex flex-col items-center gap-4 w-[300px] hover:cursor-pointer hover:border"
-            onClick={() => testeClick(equipe)}
-          >
-            <img src={equipe.foto} alt="fotos da equipe" className="w-20 h-20 rounded-full" />
-            <h3>{equipe.nome}</h3>
-            <p>{equipe.funcao}</p>
-          </div>
-        ))}
-      </div >
-
-      {teste ? (
-        <div className="flex justify-between h-[400px] bg-white items-center w-[90%]  p-8">
-          <div className="flex flex-col  p-8">
-            <p>{selecionado.nome}</p>
-            <p>{selecionado.frase}</p>
-            <p>{selecionado.pitch}</p>
-          </div>
-          {/* formacoes */}
-          <div className="p-8">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOcAAACUCAMAAABfnM59AAAAA1BMVEUAAACnej3aAAAAOElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAMhiAAAXG8vLUAAAAASUVORK5CYII=" alt="" className="w-30 h-30 rounded-full" />
-            <p>{selecionado.formacao}</p>
-          </div>
-        </div>
-      ) : (
-        <div className="flex justify-between h-[400px] bg-white items-center w-5xl px-6 py-4 b">
-          <p>seleciona um card</p>
-        </div>
-      )}
-
-    </div>
-  )
+				{selecionado ? (
+					<div className="h-fit w-full p-8 m-4 bg-(--primary-ex-dark) rounded-tl-[250px] rounded-br-[500px] rounded-bl-2xl shadow-xl flex flex-col items-center justify-between transition-all duration-500 content-center">
+						<div className="flex items-center">
+							<div>
+								<h2 className="text-3xl font-bold mb-2 text-white">{selecionado.nome}</h2>
+								<p className="text-xl italic text-gray-300 mb-4">"{selecionado.frase}"</p>
+								<p className="mt-4 text-lg font-semibold text-white">{selecionado.formacao}</p>
+							</div>
+							<div className="p-2 text-center">
+								<img src={selecionado.foto} alt={`Foto de ${selecionado.nome}`} className="w-50 h-50 rounded-4xl shadow-lg" />
+							</div>
+						</div>
+						<div className="flex flex-col items-center md:items-start text-center md:text-left">
+							<p className="text-md bg-(--primary-ex-light) text-white px-4 py-2 rounded-tl-4xl rounded-br-4xl rounded-bl-2xl">{selecionado.pitch}</p>
+						</div>
+					</div>
+				) : (
+					<div
+						className="
+          w-full max-w-5xl h-64 p-8 mt-6
+          bg-gray-800 rounded-lg shadow-xl
+          flex justify-center items-center
+          text-gray-500 text-xl transition-all duration-500
+        ">
+						<p>Selecione um membro da equipe para ver os detalhes.</p>
+					</div>
+				)}
+			</div>
+		</div>
+	);
 }

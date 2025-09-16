@@ -7,6 +7,7 @@ import CardBeneficios from "../../components/homeComponents/beneficios/CardBenef
 import Duvidas from "../../components/homeComponents/faq/Duvidas";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import ListaCardSegurosHome from "../../components/cards/cardSeguros/ListaCardSegurosHome";
 // import useCarousel from "../../hooks/useCarousel";
 
 function Home() {
@@ -112,7 +113,7 @@ function Home() {
 				</div>
 
 				<div className="pl-12">
-					<Link to={token !== "" ? `/produtos` : `/logar`}>
+					<Link to={token !== "" ? `/produtos` : `/login`}>
 						<button className="cta flex items-center">
 							<span className="span"> Proteja já seu aparelho! </span>
 							<span className="second">
@@ -156,35 +157,7 @@ function Home() {
 			</section>
 
 			{/* Categorias */}
-			<section className="bg-[url(https://i.imgur.com/jh5VGgQ.png)] bg-repeat-x bg-(--tertiary) flex flex-col items-center px-10 gap-8 py-30">
-				<h2 className="text-(--primary-dark) text-4xl font-bold"> Confira nossas categorias de Seguros</h2>
-				<div className="flex gap-6">
-					{cardsData.map((card) => (
-						<CardSegurosHome key={card.id} card={card} />
-					))}
-				</div>
-
-				{/* <div ref={carouselRef} className="f-carouse overflow-clip w-[80vw]">
-					<div className="f-carousel__slide w-[25%]">
-						<CardSegurosHome />
-					</div>
-					<div className="f-carousel__slide w-[25%]">
-						<CardSegurosHome />
-					</div>
-					<div className="f-carousel__slide w-[25%]">
-						<CardSegurosHome />
-					</div>
-					<div className="f-carousel__slide w-[25%]">
-						<CardSegurosHome />
-					</div>
-					<div className="f-carousel__slide w-[25%]">
-						<CardSegurosHome />
-					</div>
-					<div className="f-carousel__slide w-[25%]">
-						<CardSegurosHome />
-					</div>
-				</div> */}
-			</section>
+			<ListaCardSegurosHome />
 
 			{/* FAQ */}
 			<section className="bg-(--primary-ex-dark) bg-[url(https://i.imgur.com/3dP6eJR.png)] bg-repeat-x flex h-fit w-full flex-col justify-center items-center mb-4 p-4 gap-8 py-30">

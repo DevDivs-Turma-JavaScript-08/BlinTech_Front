@@ -4,7 +4,7 @@ export default function Footer() {
 	return (
 		<footer className="w-full bg-(--primary-ex-dark) py-6">
 			<div className="container mx-auto flex flex-col space-y-6 px-4">
-				<div className="flex">
+				<div className="flex justify-between">
 					<div className="flex flex-col w-[20vw] items-center">
 						<img
 							src="https://images-ext-1.discordapp.net/external/v9uTH383FKCC6F29yVEuyjrOmrbS7SN3gJPtEJrsCF8/https/i.imgur.com/diiGCH2.png?format=webp&quality=lossless&width=519&height=483"
@@ -13,100 +13,100 @@ export default function Footer() {
 						/>
 						<p className="text-white font-semibold text-sm">Seu dispositivo, nossa segurança!</p>
 					</div>
-					<div className="w-[70vw] grid grid-cols-2 md:grid-cols-4 gap-8 mt-6 ml-8 items-start">
-						<div>
-							<Link to="/" className="text-(--secondary) font-semibold mb-4">
-								Home
-							</Link>
-							<ul className="space-y-2 text-gray-400 text-sm">
-								<li>
-									<a href="#" className="hover:text-(--tertiary)">
-										Benefício
-									</a>
-								</li>
-								<li>
-									<a href="#" className="hover:text-(--tertiary)">
-										Categorias
-									</a>
-								</li>
-								<li>
-									<a href="#" className="hover:text-(--tertiary)">
-										Dúvidas Frequentes
-									</a>
-								</li>
-							</ul>
-						</div>
+						<div className="w-fit grid grid-cols-2 md:grid-cols-4 gap-15 ml-8">
+							<div>
+								<Link to="/" className="text-(--secondary) font-semibold mb-4">
+									Home
+								</Link>
+								<ul className="space-y-2 text-gray-400 text-sm">
+									<li>
+										<a href="#" className="hover:text-(--tertiary)">
+											Benefício
+										</a>
+									</li>
+									<li>
+										<a href="#" className="hover:text-(--tertiary)">
+											Categorias
+										</a>
+									</li>
+									<li>
+										<a href="#" className="hover:text-(--tertiary)">
+											Dúvidas Frequentes
+										</a>
+									</li>
+								</ul>
+							</div>
 
-						<div>
-							<Link to="/sobre" className="text-(--secondary) font-semibold mb-4">
-								Sobre
-							</Link>
-							<ul className="space-y-2 text-gray-400 text-sm">
-								<li>
-									<a href="#" className="hover:text-(--tertiary)">
-										Nossa Hístoria
-									</a>
-								</li>
-								<li>
-									<a href="#" className="hover:text-(--tertiary)">
-										Inovação
-									</a>
-								</li>
-								<li>
-									<a href="#" className="hover:text-(--tertiary)">
-										Missão
-									</a>
-								</li>
-								<li>
-									<a href="#" className="hover:text-(--tertiary)">
-										Visão
-									</a>
-								</li>
-								<li>
-									<a href="#" className="hover:text-(--tertiary)">
-										Valores
-									</a>
-								</li>
-								<li>
-									<a href="#" className="hover:text-(--tertiary)">
-										DevDivs
-									</a>
-								</li>
-							</ul>
-						</div>
+							<div>
+								<Link to="/sobre" className="text-(--secondary) font-semibold mb-4">
+									Sobre
+								</Link>
+								<ul className="space-y-2 text-gray-400 text-sm">
+									<li>
+										<a href="#" className="hover:text-(--tertiary)">
+											Nossa Hístoria
+										</a>
+									</li>
+									<li>
+										<a href="#" className="hover:text-(--tertiary)">
+											Inovação
+										</a>
+									</li>
+									<li>
+										<a href="#" className="hover:text-(--tertiary)">
+											Missão
+										</a>
+									</li>
+									<li>
+										<a href="#" className="hover:text-(--tertiary)">
+											Visão
+										</a>
+									</li>
+									<li>
+										<a href="#" className="hover:text-(--tertiary)">
+											Valores
+										</a>
+									</li>
+									<li>
+										<a href="#" className="hover:text-(--tertiary)">
+											DevDivs
+										</a>
+									</li>
+								</ul>
+							</div>
 
-						<div>
-							<Link to="/servicos" className="text-(--secondary) font-semibold mb-4">
-								Serviços
-							</Link>
-							<ul className="space-y-2 text-gray-400 text-sm">
-								<li>
-									<a href="#" className="hover:text-(--tertiary)">
-										Seguros
-									</a>
-								</li>
-								<li>
-									<a href="#" className="hover:text-(--tertiary)">
-										Produtos
-									</a>
-								</li>
-							</ul>
-						</div>
+							<div>
+								<Link to="/servicos" className="text-(--secondary) font-semibold mb-4">
+									Serviços
+								</Link>
+								<ul className="space-y-2 text-gray-400 text-sm">
+									<li>
+										<a href="#" className="hover:text-(--tertiary)">
+											Seguros
+										</a>
+									</li>
+									<li>
+										<a href="#" className="hover:text-(--tertiary)">
+											Produtos
+										</a>
+									</li>
+								</ul>
+							</div>
 
-						<div>
-							<Link to="/contato" className="text-(--secondary) font-semibold mb-4">
-								{" "}
-								Contato{" "}
-							</Link>
-							<ul className="space-y-2 text-gray-400 text-sm">
-								<li>
-									<a href="#" className="hover:text-(--tertiary)">
-										Nosso Time
-									</a>
-								</li>
-							</ul>
+							<div>
+								<Link to="/contato" className="text-(--secondary) font-semibold mb-4">
+									{" "}
+									Contato{" "}
+								</Link>
+								<ul className="space-y-2 text-gray-400 text-sm">
+									<li>
+										<a href="#" className="hover:text-(--tertiary)">
+											Nosso Time
+										</a>
+									</li>
+								</ul>
+							</div>
 						</div>
-					</div>
 				</div>
 
 				<div className="w-full flex justify-between items-center border-t border-gray-400 pt-4">

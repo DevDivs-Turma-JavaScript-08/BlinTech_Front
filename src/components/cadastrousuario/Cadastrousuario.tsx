@@ -27,7 +27,7 @@ const CadastroUsuario: React.FC = () => {
 	}, [usuario]);
 
 	function retornar() {
-		navigate("/logar");
+		navigate("/login");
 	}
 
 	function atualizarEstado(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {

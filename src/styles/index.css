@@ -87,9 +87,77 @@
 	}
 }
 
-.f-carousel {
-  --f-carousel-gap: 16px;
-  --f-carousel-slide-width: calc((100% - 16px) / 3);
+.card {
+  width: 12em;
+  height: fit-content;
+  background: #171717;
+  transition: 1s ease-in-out;
+  clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card span {
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  display: block;
+  font-size: 1em;
+}
+
+.card .info {
+  font-weight: 400;
+  color: white;
+  display: block;
+  text-align: center;
+  font-size: 0.72em;
+  margin: 0.5em;
+}
+
+.card .img {
+  margin-top: 1rem;
+  align-self: center;
+  width: 4.8em;
+  height: 4.8em;
+  background: white;
+  border-radius: 15px;
+}
+
+.card .share {
+  margin: 0.5em 0;
+  display: flex;
+  justify-content: center;
+}
+
+.card a {
+  color: white;
+  transition: .4s ease-in-out;
+}
+
+.card a:hover {
+  color: red;
+}
+
+.card button {
+  padding: 0.5em 1.5em;
+  align-self: center;
+  width: fit-content;
+  margin-bottom: 1rem;
+  margin-top: 0.25rem;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  transition: .4s ease-in-out;
+}
+
+.card button:hover {
+  background: red;
+  color: white;
+  cursor: pointer;
 }
 
 /* .cta {

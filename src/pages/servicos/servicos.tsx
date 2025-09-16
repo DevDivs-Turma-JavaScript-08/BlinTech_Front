@@ -16,7 +16,7 @@ export default function Servicos() {
 	}, [usuario.token]);
 
 	return (
-		<main className="flex flex-col w-full min-h-screen  gap-3">
+		<main className="flex flex-col w-full min-h-screen gap-3 text-white">
 			{/* orcamento */}
 			<section className="w-full">
 				<div className="bg-violet-500 p-7 h-[350px] flex items-center justify-center flex-col gap-5 text-white text-center">
@@ -25,14 +25,7 @@ export default function Servicos() {
 					<p className="text-[19px]">Diversos tipos de cobertura, escolha aquele que entre no seu bolso</p>
 
 					<div className="flex gap-5 text-black mt-9">
-						<Link to={token !== "" ? `/seguros` : `/logar`}>
-							<button
-								className="hover: cursor-pointer border-white p-3 hover:bg-violet-300
-                radius-full rounded-2xl w-[130px] bg-white ">
-								Ver planos
-							</button>
-						</Link>
-						<Link to={token !== "" ? `/produtos` : `/logar`}>
+						<Link to={token !== "" ? `/produtos` : `/login`}>
 							<button
 								className="hover: cursor-pointer border-white p-3 bg-white hover:bg-violet-300
                 radius-full rounded-2xl w-[130px]">
@@ -44,7 +37,7 @@ export default function Servicos() {
 			</section>
 
 			{/* seccao produtos */}
-			<section className="text-center">
+			<section className="text-center py-10">
 				<h1 className="text-3xl font-semibold">Nossos Produtos</h1>
 				<p className="">Escolha o plano ideal para seus dispositivos</p>
 				<div>
@@ -53,7 +46,7 @@ export default function Servicos() {
 			</section>
 
 			{/* por que nos escolher? */}
-			<section className="text-center text-3xl">
+			<section className="text-center text-3xl pb-10">
 				<h1 className="font-semibold">Por que escolher a BlinTech?</h1>
 				<CardEscolha />
 			</section>

@@ -2,19 +2,20 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import Home from "./pages/home/Home";
 import Navbar from "./components/navbar/Navbar";
-import Sobre from "./pages/sobre/sobre";
+import Sobre from "./pages/sobre/Sobre";
 import Footer from "./components/footer/Footer";
 import Contatos from "./pages/Contato.tsx/Contato";
 // import SegurosForm from "./components/seguros/segurosForm/SegurosForm";
 // import Login from "./pages/login/Login";
 // import LoginPage from "./components/login/LoginPage";
 // import ProdutosForm from "./components/produtos/produtosForm/ProdutosForm";
-import Servicos from "./pages/servicos/servicos";
+import Servicos from "./pages/servicos/Servicos";
 // import CadastroUsuario from "./components/cadastrousuario/Cadastrousuario";
 import LoginAndRegisterPage from "./components/login/LoginAndRegisterPage";
 // import MeusSeguros from "./pages/produtos/MeusSeguros";
 import SegurosForm from "./components/seguros/segurosForm/SegurosForm";
 import CategoriaForm from "./components/categorias/categoriaForm/CategoriaForm";
+import Perfil from "./pages/perfil/Perfil";
 // import Cadastro from "./pages/cadastro/Cadastro";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
 						{/* <Route path="/produtos" element={<MeusSeguros />} /> */}
 						<Route path="/produtos" element={<SegurosForm />} />
 						<Route path="/categorias" element={<CategoriaForm />} />
+						<Route path="/perfil" element={<Perfil />} />
 						{/* <Route path="/segurosform" element={<SegurosForm />} /> */}
 						{/* <Route path="/cadastro" element={<Cadastro />} /> */}
 					</Routes>
