@@ -8,7 +8,7 @@ export default function Footer() {
                         <img
                             src="https://images-ext-1.discordapp.net/external/v9uTH383FKCC6F29yVEuyjrOmrbS7SN3gJPtEJrsCF8/https/i.imgur.com/diiGCH2.png?format=webp&quality=lossless&width=519&height=483"
                             alt="Logo BlinTech"
-                            className="w-15"
+                            className="w-30"
                         />
                         <p className="text-white font-semibold text-sm">
                             Seu dispositivo, nossa segurança!
@@ -78,7 +78,7 @@ export default function Footer() {
                             <img
                                 src="https://www.svgrepo.com/show/361183/github-alt.svg"
                                 alt="GitHub"
-                                className="w-6 h-6 invert"
+                                className="w-6 h-6 invert mr-20"
                             />
                         </a>
                     </div>
