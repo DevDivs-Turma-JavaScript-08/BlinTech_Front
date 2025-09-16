@@ -9,7 +9,7 @@ function CategoriaForm() {
 
 	const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
 
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	// const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const { usuario, handleLogout } = useContext(AuthContext);
 
@@ -48,12 +48,12 @@ function CategoriaForm() {
 	}
 
 	function retornar() {
-		navigate("/home");
+		navigate("/categorias");
 	}
 
 	async function gerarNovaCategoria(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		setIsLoading(true);
+		// setIsLoading(true);
 		console.log(categoria);
 
 		if (id !== undefined) {
@@ -80,45 +80,83 @@ function CategoriaForm() {
 			}
 		}
 
-		setIsLoading(false);
+		// setIsLoading(false);
 		retornar();
 	}
 
 	return (
-		<div>
-			CategoriaForm
-			<form onSubmit={gerarNovaCategoria}>
-				<div>
-					<label htmlFor="nome"> Nome da Categoria </label>
-					<input
-						type="text"
-						name="nome"
-						placeholder="Nome da Categoria"
-						value={categoria.nome}
-						onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-					/>
+		<div className="min-h-[70vh] w-full bg-gradient-to-b from-violet-600 to-purple-700 py-10">
+			<div className="max-w-4xl mx-auto bg-violet-500/30 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-2xl border border-white/10">
+				<div className="text-center mb-6">
+					<h1 className="text-3xl md:text-4xl font-extrabold text-(--tertiary) drop-shadow">Cadastrar Categoria</h1>
+					<p className="text-violet-100/90 mt-1">Preencha os dados da cetegoria</p>
 				</div>
-				<div>
-					<label htmlFor="descricao"> Descrição do Seguro </label>
-					<textarea
-						name="descricao"
-						placeholder="Descreva o seguro"
-						value={categoria.descricao}
-						onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarEstado(e)}
-					/>
-				</div>
-				<div>
-					<label htmlFor="carencia"> Período de Carência (em dias) </label>
-					<input
-						type="number"
-						name="carencia"
-						placeholder="Período de carência"
-						value={categoria.carencia}
-						onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-					/>
-				</div>
-				<button type="submit"> Cadastrar </button>
-			</form>
+				<form onSubmit={gerarNovaCategoria} className="space-y-5">
+					<fieldset>
+						<legend className="text-(--secondary) font-semibold text-center mb-4">Informações da Categoria</legend>
+
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+							<div className="relative" id="input">
+								<input
+									type="text"
+									name="nome"
+									placeholder="Nome da Categoria"
+									className="block w-full text-sm h-10 px-4 text-(--tertiary-ex-dark) bg-white rounded-2xl border border-(--primary-ex-light) appearance-none focus:outline  focus:outline-(--primary-ex-dark) focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px] transition-all ease-in-out hover:border-(--primary)"
+									value={categoria.nome}
+									onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+								/>
+								<label
+									className="rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary-dark) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white"
+									htmlFor="nome">
+									Nome da Categoria *
+								</label>
+							</div>
+
+							<div className="relative" id="input">
+								<input
+									type="number"
+									name="carencia"
+									min={0}
+									placeholder="Carência (em dias)"
+									className="block w-full text-sm h-10 px-4 text-(--tertiary-ex-dark) bg-white rounded-2xl border border-(--primary-ex-light) appearance-none focus:outline  focus:outline-(--primary-ex-dark) focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px] transition-all ease-in-out hover:border-(--primary)"
+									value={categoria.carencia}
+									onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+								/>
+								<label
+									className="rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary-dark) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white"
+									htmlFor="carencia">
+									Dias de Carência *
+								</label>
+							</div>
+						</div>
+
+						<div className="relative" id="input">
+							<textarea
+								rows={4}
+								name="descricao"
+								placeholder="Descreva a categoria do seguro"
+								className="my-4 block w-full text-sm px-4 py-1 text-(--tertiary-ex-dark) bg-white rounded-2xl border border-(--primary-ex-light) appearance-none focus:outline  focus:outline-(--primary-ex-dark) focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px] transition-all ease-in-out hover:border-(--primary)"
+								value={categoria.descricao}
+								onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarEstado(e)}
+							/>
+							<label
+								className="rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary-dark) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white"
+								htmlFor="descricao">
+								Descrição da Categoria *
+							</label>
+						</div>
+
+						<div className="flex justify-end gap-3 pt-2">
+							<button type="button" className="px-5 py-2.5 rounded-lg bg-black/50 text-white hover:bg-black/60 border border-white/10">
+								Cancelar
+							</button>
+							<button type="submit" className="px-5 py-2.5 rounded-lg bg-purple-300 text-purple-900 font-semibold hover:bg-purple-200">
+								Cadastrar Categoria
+							</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
 		</div>
 	);
 }

@@ -12,6 +12,9 @@ import Contatos from "./pages/Contato.tsx/Contato";
 import Servicos from "./pages/servicos/servicos";
 // import CadastroUsuario from "./components/cadastrousuario/Cadastrousuario";
 import LoginAndRegisterPage from "./components/login/LoginAndRegisterPage";
+// import MeusSeguros from "./pages/produtos/MeusSeguros";
+import SegurosForm from "./components/seguros/segurosForm/SegurosForm";
+import CategoriaForm from "./components/categorias/categoriaForm/CategoriaForm";
 // import Cadastro from "./pages/cadastro/Cadastro";
 
 function App() {
@@ -28,6 +31,9 @@ function App() {
 						<Route path="/sobre" element={<Sobre />} />
 						<Route path="/contato" element={<Contatos />} />
 						<Route path="/servicos" element={<Servicos />} />
+						{/* <Route path="/produtos" element={<MeusSeguros />} /> */}
+						<Route path="/produtos" element={<SegurosForm />} />
+						<Route path="/categorias" element={<CategoriaForm />} />
 						{/* <Route path="/segurosform" element={<SegurosForm />} /> */}
 						{/* <Route path="/cadastro" element={<Cadastro />} /> */}
 					</Routes>

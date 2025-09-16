@@ -34,7 +34,7 @@ const LoginAndRegisterPage: React.FC = () => {
 		}
 	}, [usuario, navigate]);
 
-  useEffect(() => {
+	useEffect(() => {
 		setShowLogin(location.pathname === "/login");
 	}, [location.pathname]);
 
@@ -90,24 +90,38 @@ const LoginAndRegisterPage: React.FC = () => {
 					</h2>
 					<p className="text-gray-300 mb-6">Entre na sua conta abaixo.</p>
 					<form onSubmit={login} className="flex flex-col gap-4">
-						<input
-							type="email"
-							id="email"
-							name="email"
-							placeholder="Email"
-							value={usuarioLogin.email}
-							onChange={atualizarEstadoLogin}
-							className="w-full px-4 py-3 rounded-lg bg-black/40 text-white placeholder-gray-400 border border-gray-500 focus:border-(--secondary) outline-none"
-						/>
-						<input
-							type="password"
-							id="senha"
-							name="senha"
-							placeholder="Senha"
-							className="w-full px-4 py-3 rounded-lg bg-black/40 text-white placeholder-gray-400 border border-gray-500 focus:border-(--secondary) outline-none"
-							value={usuarioLogin.senha}
-							onChange={atualizarEstadoLogin}
-						/>
+						<div className="relative" id="input">
+							<input
+								id="floating_outlined_email"
+								type="email"
+								name="email"
+								placeholder="Email"
+								value={usuarioLogin.email}
+								onChange={atualizarEstadoLogin}
+								className="block w-full text-sm h-10 px-4 text-(--tertiary-ex-dark) bg-white rounded-2xl border border-(--primary-ex-light) appearance-none focus:outline  focus:outline-(--primary-ex-dark) focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px] transition-all ease-in-out hover:border-(--primary)"
+							/>
+							<label
+								className="rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary-dark) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white"
+								htmlFor="floating_outlined_email">
+								Email
+							</label>
+						</div>
+						<div className="relative" id="input">
+							<input
+								type="password"
+								id="senha"
+								name="senha"
+								placeholder="Senha"
+								className="block w-full text-sm h-10 px-4 text-(--tertiary-ex-dark) bg-white rounded-2xl border border-(--primary-ex-light) appearance-none focus:outline  focus:outline-(--primary-ex-dark) focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px] transition-all ease-in-out hover:border-(--primary)"
+								value={usuarioLogin.senha}
+								onChange={atualizarEstadoLogin}
+							/>
+							<label
+								className="rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary-dark) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white"
+								htmlFor="floating_outlined_email">
+								Senha
+							</label>
+						</div>
 						<button type="submit" className="w-full py-3 rounded-lg bg-(--tertiary) text-white font-bold hover:bg-(--tertiary) transition">
 							{isLoginLoading ? (
 								<img src="https://cdn.pixabay.com/animation/2023/10/08/03/19/03-19-26-213_512.gif" width={35} className="mx-auto" />
@@ -130,66 +144,71 @@ const LoginAndRegisterPage: React.FC = () => {
 						<p className="text-center text-gray-300 mb-8">Preencha os dados para criar sua conta</p>
 						<h3 className="text-lg font-semibold mb-4">Informações Pessoais</h3>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-							<div>
-								<label htmlFor="nome" className="block text-sm mb-1">
-									Nome *
-								</label>
+							<div className="relative" id="input">
 								<input
 									type="text"
 									id="nome"
 									name="nome"
 									placeholder="Nome"
-									className="w-full p-3 rounded-md bg-black/20 text-white placeholder-gray-400 border border-gray-600 focus:border-purple-400 outline-none"
+									className="block w-full text-sm h-10 px-4 text-(--tertiary-ex-dark) bg-white rounded-2xl border border-(--primary-ex-light) appearance-none focus:outline  focus:outline-(--primary-ex-dark) focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px] transition-all ease-in-out hover:border-(--primary)"
 									value={usuarioCadastro.nome}
 									onChange={atualizarEstadoCadastro}
 								/>
-							</div>
-							<div>
-								<label htmlFor="email" className="block text-sm mb-1">
-									Email *
+								<label
+									className="rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary-dark) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white"
+									htmlFor="floating_outlined_email">
+									Nome *
 								</label>
+							</div>
+							<div className="relative" id="input">
 								<input
 									type="email"
 									id="email"
 									name="email"
 									placeholder="Email"
-									className="w-full p-3 rounded-md bg-black/20 text-white placeholder-gray-400 border border-gray-600 focus:border-purple-400 outline-none"
+									className="block w-full text-sm h-10 px-4 text-(--tertiary-ex-dark) bg-white rounded-2xl border border-(--primary-ex-light) appearance-none focus:outline  focus:outline-(--primary-ex-dark) focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px] transition-all ease-in-out hover:border-(--primary)"
 									value={usuarioCadastro.email}
 									onChange={atualizarEstadoCadastro}
 								/>
-							</div>
-							<div>
-								<label htmlFor="senha" className="block text-sm mb-1">
-									Senha *
+								<label
+									className="rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary-dark) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white"
+									htmlFor="floating_outlined_email">
+									E-mail *
 								</label>
+							</div>
+							<div className="relative" id="input">
 								<input
 									type="password"
 									id="senha"
 									name="senha"
 									placeholder="Senha"
 									onChange={atualizarEstadoCadastro}
-									className="w-full p-3 rounded-md bg-black/20 text-white placeholder-gray-400 border border-gray-600 focus:border-purple-400 outline-none"
+									className="block w-full text-sm h-10 px-4 text-(--tertiary-ex-dark) bg-white rounded-2xl border border-(--primary-ex-light) appearance-none focus:outline  focus:outline-(--primary-ex-dark) focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px] transition-all ease-in-out hover:border-(--primary)"
 									value={usuarioCadastro.senha}
 								/>
-							</div>
-							<div>
-								<label htmlFor="confirmarSenha" className="block text-sm mb-1">
-									Confirmar Senha *
+								<label
+									className="rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary-dark) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white"
+									htmlFor="floating_outlined_email">
+									Senha
 								</label>
+							</div>
+							<div className="relative" id="input">
 								<input
 									type="password"
 									id="confirmarSenha"
 									name="confirmarSenha"
 									placeholder="confirmarSenha"
 									onChange={handleConfirmarSenha}
-									className="w-full p-3 rounded-md bg-black/20 text-white placeholder-gray-400 border border-gray-600 focus:border-purple-400 outline-none"
+									className="block w-full text-sm h-10 px-4 text-(--tertiary-ex-dark) bg-white rounded-2xl border border-(--primary-ex-light) appearance-none focus:outline  focus:outline-(--primary-ex-dark) focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px] transition-all ease-in-out hover:border-(--primary)"
 									value={confirmarSenha}
 								/>
-							</div>
-							<div>
-								<label htmlFor="cpf" className="block text-sm mb-1">
-									CPF *
+								<label
+									className="rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary-dark) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white"
+									htmlFor="floating_outlined_email">
+									Confirmar Senha
 								</label>
+							</div>
+							<div className="relative" id="input">
 								<input
 									type="text"
 									id="cpf"
@@ -197,11 +216,16 @@ const LoginAndRegisterPage: React.FC = () => {
 									placeholder="CPF"
 									value={usuarioCadastro.cpf}
 									onChange={atualizarEstadoCadastro}
-									className="w-full p-3 rounded-md bg-black/20 text-white border border-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-(--tertiary) file:text-white"
+									className="block w-full text-sm h-10 px-4 text-(--tertiary-ex-dark) bg-white rounded-2xl border border-(--primary-ex-light) appearance-none focus:outline  focus:outline-(--primary-ex-dark) focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px] transition-all ease-in-out hover:border-(--primary)"
 								/>
+								<label
+									className="rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary-dark) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white"
+									htmlFor="floating_outlined_email">
+									CPF *
+								</label>
 							</div>
 						</div>
-						<div className="mt-6">
+						<div className="my-6">
 							<label htmlFor="tipoDeUsuario" className="block text-sm mb-1">
 								Tipo de Usuário *
 							</label>
@@ -216,19 +240,21 @@ const LoginAndRegisterPage: React.FC = () => {
 								<option value="segurador">Segurador</option>
 							</select>
 						</div>
-						<div className="mt-6">
-							<label htmlFor="foto" className="block text-sm mb-1">
-								Foto de Perfil
-							</label>
+						<div className="relative" id="input">
 							<input
 								type="text"
 								id="foto"
 								name="foto"
 								placeholder="Link da sua foto"
-								className="w-full p-3 rounded-md bg-black/20 text-white border border-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-(--tertiary) file:text-white hover:file:bg-(--tertiary-light)"
+								className="block w-full text-sm h-10 px-4 text-(--tertiary-ex-dark) bg-white rounded-2xl border border-(--primary-ex-light) appearance-none focus:outline  focus:outline-(--primary-ex-dark) focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px] transition-all ease-in-out hover:border-(--primary)"
 								value={usuarioCadastro.foto}
 								onChange={atualizarEstadoCadastro}
 							/>
+							<label
+								className="rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary-dark) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white"
+								htmlFor="floating_outlined_email">
+								Link da foto de Perfil
+							</label>
 						</div>
 						<div className="mt-8 flex justify-between">
 							<button type="button" onClick={() => setShowLogin(true)} className="px-6 py-2 rounded-md bg-gray-700 hover:bg-gray-600 text-white">
