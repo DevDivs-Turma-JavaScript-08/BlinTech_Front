@@ -88,7 +88,6 @@ const LoginPage: React.FC = () => {
 						<Link to="/cadastro" className="px-6 py-2 border border-gray-400 rounded-lg hover:bg-gray-100">
 							Registre-se
 						</Link>
-						<button className="px-6 py-2 bg-(--tertiary) text-white rounded-lg hover:bg-(--tertiary)">Try for Free</button>
 					</div>
 				</div>
 			</div>

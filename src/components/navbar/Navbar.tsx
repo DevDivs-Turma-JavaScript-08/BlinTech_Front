@@ -65,11 +65,7 @@ const Navbar: React.FC = () => {
 				{/* Lado esquerdo: Logo */}
 				<div className="flex-shrink-0">
 					<Link to="/">
-						<img
-							src="https://i.imgur.com/diiGCH2.png"
-							alt="Logo da Empresa"
-							className="h-15 w-auto"
-						/>
+						<img src="https://i.imgur.com/diiGCH2.png" alt="Logo da Empresa" className="h-15 w-auto" />
 					</Link>
 				</div>
 
@@ -170,9 +166,11 @@ const Navbar: React.FC = () => {
 						<div className="text-right text-sm">
 							<span>Bem vindo(a), visitante!</span>
 							<small className="block text-xs text-gray-400">
-								<span className="text-(--secondary) hover:text-(--primary-ex-light) transition-all">Cadastre-se </span>
+								<Link to="/cadastro">
+									<span className="text-(--secondary) hover:text-(--primary-ex-light) transition-all">Cadastre-se </span>
+								</Link>
 								ou
-								<Link to="/logar">
+								<Link to="/login">
 									<span className="text-(--tertiary) hover:text-(--primary-ex-light) transition-all"> Acesse sua conta</span>
 								</Link>
 							</small>
@@ -188,12 +186,12 @@ const Navbar: React.FC = () => {
 				{token !== "" && isModalOpen && (
 					<div ref={modalRef} className="absolute top-24 right-4 w-50 bg-(--primary-ex-dark) text-white rounded-[30px] shadow-lg p-4 z-50">
 						<div className="flex items-center mb-4">
-							<div className="w-12 h-12 rounded-full overflow-hidden mr-4 ">
+							<div className="w-18 h-18 rounded-full overflow-hidden mr-4 ">
 								<img src={usuario.foto} alt="Perfil do Usuário" className="w-full h-full object-cover" />
 							</div>
 							<div>
 								<p className="font-bold">{usuario.nome}</p>
-								<p className="text-sm">Meus seguros:</p>
+								<p className="text-sm">{usuario.tipoDeUsuario}</p>
 							</div>
 						</div>
 						<ul className="flex flex-col">
@@ -222,12 +220,12 @@ const Navbar: React.FC = () => {
 						<div className="flex items-center mb-4">
 							<div className="py-3">
 								<p className="text-sm">Ainda não tem cadastro?</p>
-								<p className="text-sm">Não perga tempo. Proteja seus eletrônicos agora!</p>
+								<p className="text-sm">Não perca tempo. Proteja seus eletrônicos agora!</p>
 							</div>
 						</div>
 						<ul className="flex flex-col justify-center items-center pb-3">
 							<li>
-								<Link to="/logar" className="block  hover:text-(--tertiary) px-2 rounded-md">
+								<Link to="/login" className="block  hover:text-(--tertiary) px-2 rounded-md">
 									Faça login
 								</Link>
 							</li>
