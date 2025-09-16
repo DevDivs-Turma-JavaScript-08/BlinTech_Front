@@ -1,26 +1,54 @@
-function CardSegurosHome() {
+import React from "react";
+
+type CardData = {
+	id: number;
+	nome: string;
+	carenciaDias: number;
+	descricao: string;
+	marcas: string[];
+	iconUrl?: string;
+};
+
+const CardSegurosHome: React.FC<{ card: CardData }> = ({ card }) => {
 	return (
-		<div className="flex flex-col justify-center items-center bg-gray-500 w-[250px] p-4 rounded-4xl gap-2">
+		<div className="w-64 p-5 rounded-2xl bg-gray-600 text-white flex flex-col items-start gap-4 shadow-lg">
+			<div className="w-full flex justify-between items-start">
+				<div>
+					<h4 className="font-semibold text-lg">{card.nome}</h4>
+				</div>
 
-			<div className="flex justify-between w-full">
-				<h3 className="font-bold"> Nome </h3>
-				<p className="text-end">
-					<span className="font-bold">Carência:</span> 5 dias
-				</p>
+				<div className="text-right">
+					<p className="text-xs text-gray-300">Carência:</p>
+					<span className="font-bold text-sm">{card.carenciaDias} dias</span>
+				</div>
 			</div>
 
-			<svg className="w-36 stroke-6 stroke-(--tertiary) fill-(--tertiary-dark)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700">
-				<path d="M208 112C199.2 112 192 119.2 192 128L192 512C192 520.8 199.2 528 208 528L432 528C440.8 528 448 520.8 448 512L448 128C448 119.2 440.8 112 432 112L208 112zM144 128C144 92.7 172.7 64 208 64L432 64C467.3 64 496 92.7 496 128L496 512C496 547.3 467.3 576 432 576L208 576C172.7 576 144 547.3 144 512L144 128zM280 432L360 432C373.3 432 384 442.7 384 456C384 469.3 373.3 480 360 480L280 480C266.7 480 256 469.3 256 456C256 442.7 266.7 432 280 432z" />
-			</svg>
-
-			<div>
-				<p className="">
-					Lorem ipsum, dolor sit amet consectetur 
-				</p>
+			{/* Ícone central */}
+			<div className="w-full flex justify-center">
+				{/* Se quiser usar uma imagem: */}
+				{card.iconUrl ? (
+					<img src={card.iconUrl} alt={`${card.nome} icon`} className="w-20 h-20 object-contain opacity-90" />
+				) : (
+					/* Ou um ícone simples em SVG */
+					<svg width="72" height="72" viewBox="0 0 24 24" fill="none" className="opacity-80">
+						<rect x="7" y="3" width="10" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
+						<circle cx="12" cy="18.2" r="0.8" fill="currentColor" />
+					</svg>
+				)}
 			</div>
 
+			<p className="text-sm text-gray-200">{card.descricao}</p>
+
+			{/* Marcas como "pills" */}
+			<div className="mt-2 flex flex-wrap gap-2">
+				{card.marcas.map((m) => (
+					<span key={m} className="text-xs px-2 py-1 rounded-full bg-white/10 border border-white/20" title={`Marca: ${m}`}>
+						{m}
+					</span>
+				))}
+			</div>
 		</div>
 	);
-}
+};
 
 export default CardSegurosHome;

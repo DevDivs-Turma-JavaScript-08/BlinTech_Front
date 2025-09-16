@@ -16,7 +16,6 @@ const Navbar: React.FC = () => {
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	// 1. Crie as referências para o modal e o botão de toggle
 	const modalRef = useRef<HTMLDivElement>(null);
 	const toggleRef = useRef<HTMLDivElement>(null);
 
@@ -30,8 +29,6 @@ const Navbar: React.FC = () => {
 	function logout() {
 		handleLogout();
 		console.log("O Usuário foi desconectado com sucesso!");
-		// Remova a recarga de página para não resetar o estado.
-		// O redirecionamento será tratado pelo seu contexto ou rotas privadas.
 	}
 
 	useEffect(() => {
@@ -40,11 +37,9 @@ const Navbar: React.FC = () => {
 		}
 	}, [usuario.token]);
 
-	// 2. Adicione o useEffect para o evento de clique
+
 	useEffect(() => {
-		// 3. Implemente a função que verifica o clique
 		const handleClickOutside = (event: MouseEvent) => {
-			// Verifica se o clique foi fora do modal e do botão de toggle
 			if (
 				modalRef.current &&
 				!modalRef.current.contains(event.target as Node) &&
@@ -55,16 +50,14 @@ const Navbar: React.FC = () => {
 			}
 		};
 
-		// Adiciona o event listener somente se o modal estiver aberto
 		if (isModalOpen) {
 			document.addEventListener("mousedown", handleClickOutside);
 		}
 
-		// 4. Cleanup: remove o event listener
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
-	}, [isModalOpen]); // O efeito depende do estado do modal
+	}, [isModalOpen]);
 
 	return (
 		<header className="bg-(--primary-ex-dark) text-white py-4">
@@ -75,7 +68,7 @@ const Navbar: React.FC = () => {
 						<img
 							src="https://i.imgur.com/diiGCH2.png"
 							alt="Logo da Empresa"
-							className="h-15 w-auto" // Ajuste o tamanho do logo
+							className="h-15 w-auto"
 						/>
 					</Link>
 				</div>

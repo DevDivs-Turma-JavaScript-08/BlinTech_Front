@@ -8,6 +8,8 @@ import Contatos from "./pages/Contato.tsx/Contato";
 // import SegurosForm from "./components/seguros/segurosForm/SegurosForm";
 // import Login from "./pages/login/Login";
 import LoginPage from "./components/login/LoginPage";
+// import ProdutosForm from "./components/produtos/produtosForm/ProdutosForm";
+import Servicos from "./pages/servicos/servicos";
 // import Cadastro from "./pages/cadastro/Cadastro";
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route path="/sobre" element={<Sobre />} />
 						<Route path="/contato" element={<Contatos />} />
+						<Route path="/servicos" element={<Servicos />} />
 						{/* <Route path="/segurosform" element={<SegurosForm />} /> */}
 						{/* <Route path="/cadastro" element={<Cadastro />} /> */}
 					</Routes>
