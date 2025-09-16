@@ -11,6 +11,8 @@ const Navbar: React.FC = () => {
 	const isSobrePage = useMemo(() => location.pathname === "/sobre", [location.pathname]);
 	const isServicosPage = useMemo(() => location.pathname === "/servicos", [location.pathname]);
 	const isContatoPage = useMemo(() => location.pathname === "/contato", [location.pathname]);
+	const isProdutoPage = useMemo(() => location.pathname === "/produtos", [location.pathname]);
+	const isCategoriaPage = useMemo(() => location.pathname === "/categorias", [location.pathname]);
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -125,6 +127,32 @@ const Navbar: React.FC = () => {
 								Contato
 							</Link>
 						</li>
+						{token !== "" && (
+							<>
+								<li>
+									<Link
+										to="/produtos"
+										className={` relative flex items-center px-4 py-2 font-bold uppercase tracking-wide bg-transparent border-0 outline-0 ${
+											!isProdutoPage
+												? `cursor-pointer text-(--tertiary) before:content-[''] before:block before:h-[1px] before:bg-(--tertiary) before:mr-2 before:w-0 before:transition-all before:duration-300 hover:before:w-6`
+												: `text-(--secondary) cursor-default`
+										} `}>
+										Produtos
+									</Link>
+								</li>
+								<li>
+									<Link
+										to="/categorias"
+										className={` relative flex items-center px-4 py-2 font-bold uppercase tracking-wide bg-transparent border-0 outline-0 ${
+											!isCategoriaPage
+												? `cursor-pointer text-(--tertiary) before:content-[''] before:block before:h-[1px] before:bg-(--tertiary) before:mr-2 before:w-0 before:transition-all before:duration-300 hover:before:w-6`
+												: `text-(--secondary) cursor-default`
+										} `}>
+										Categorias
+									</Link>
+								</li>
+							</>
+						)}
 					</ul>
 				</div>
 
