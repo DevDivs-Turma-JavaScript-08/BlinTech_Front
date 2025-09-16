@@ -1,5 +1,20 @@
+import { useContext, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../../contexts/AuthContext"
 
 export default function Perfil() {
+
+    const navigate = useNavigate()
+
+    const {usuario} = useContext(AuthContext)
+
+    useEffect(() => {
+		if (usuario.token === "") {
+			alert("Você precisa estar logado")
+			navigate("/")
+		}
+	}, [usuario.token])
+
   return (
     <main className='relative h-screen w-full flex flex-col items-center'>
 
@@ -9,12 +24,17 @@ export default function Perfil() {
         
         <section className='absolute items-center top-1/6 shadow-2xl'>
             <div className='flex gap-8 p-5 bg-white w-[750px] h-[300px] '>
-                <div className="bg-black rounded-full h-35 w-35"></div>
+                {/* <div className="bg-black rounded-full h-35 w-35"></div> */}
+                <img 
+                className="rounded-full h-35 w-35"
+                src={usuario.foto} 
+                alt="foto" 
+                
+                />
                 <div className="flex flex-col gap-2 w-[300px]">
-                    <h3 className="font-semibold text-2xl">Fulano de Ciclano</h3>
-                    <p>CPF: 123456789</p>
-                    <p>Email: root@root.com</p>
-                    <p>Telefone: 40028922</p>
+                    <h3 className="font-semibold text-2xl">{usuario.nome}</h3>
+                    <p>CPF: {usuario.cpf}</p>
+                    <p>Email: {usuario.email}</p>
 
                     <button className="mt-10 bg-violet-400 p-3 rounded-2xl w-[150px] hover:cursor-pointer hover:bg-violet-500">Editar Perfil</button>
                 </div>
