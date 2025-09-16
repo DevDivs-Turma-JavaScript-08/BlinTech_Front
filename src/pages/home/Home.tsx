@@ -125,7 +125,7 @@ function Home() {
 			</section>
 
 			{/* Beneficios */}
-			<section className="bg-[url(https://i.imgur.com/HPqDoFo.png)] h-fit gap-4 flex flex-col items-center p-8">
+			<section className="bg-[url(https://i.imgur.com/HPqDoFo.png)] h-fit py-30 gap-4 flex flex-col items-center p-8">
 				<div className="text-center">
 					<h2 className="text-6xl font-bold"> Benefícios </h2>
 					<p> Quais os benefícios do meu seguro?</p>
@@ -138,7 +138,7 @@ function Home() {
 			</section>
 
 			{/* Categorias */}
-			<section className="bg-[url(https://i.imgur.com/jh5VGgQ.png)] bg-repeat-x bg-(--tertiary) flex flex-col items-center px-10 pb-5 pt-20 gap-8">
+			<section className="bg-[url(https://i.imgur.com/jh5VGgQ.png)] bg-repeat-x bg-(--tertiary) flex flex-col items-center px-10 gap-8 py-30">
 				<h2 className="text-(--primary-dark) text-4xl font-bold"> Confira nossas categorias de Seguros</h2>
 				<div className="flex gap-6">
 					<CardSegurosHome />
@@ -169,7 +169,7 @@ function Home() {
 			</section>
 
 			{/* FAQ */}
-			<section className="bg-(--primary-ex-dark) bg-[url(https://i.imgur.com/3dP6eJR.png)] bg-repeat-x flex h-fit w-full flex-col justify-center items-center mb-4 pt-20 p-4 gap-8">
+			<section className="bg-(--primary-ex-dark) bg-[url(https://i.imgur.com/3dP6eJR.png)] bg-repeat-x flex h-fit w-full flex-col justify-center items-center mb-4 p-4 gap-8 py-30">
 				<h2 className="text-5xl text-white font-bold"> Dúvidas Frequentes </h2>
 				<div className="w-full flex flex-col gap-2 px-30">
 					{faqs.map((faq) => (

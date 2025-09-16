@@ -5,8 +5,9 @@ import Navbar from "./components/navbar/Navbar";
 import Sobre from "./pages/sobre/sobre";
 import Footer from "./components/footer/Footer";
 import Contatos from "./pages/Contato.tsx/Contato";
-import SegurosForm from "./components/seguros/segurosForm/SegurosForm";
-import Login from "./pages/login/Login";
+// import SegurosForm from "./components/seguros/segurosForm/SegurosForm";
+// import Login from "./pages/login/Login";
+import LoginPage from "./components/login/LoginPage";
 // import Cadastro from "./pages/cadastro/Cadastro";
 
 function App() {
@@ -16,11 +17,11 @@ function App() {
 				<BrowserRouter>
 					<Navbar />
 					<Routes>
-						<Route path="/" element={<Login />} />
-						<Route path="/home" element={<Home />} />
+						<Route path="/logar" element={<LoginPage />} />
+						<Route path="/" element={<Home />} />
 						<Route path="/sobre" element={<Sobre />} />
 						<Route path="/contato" element={<Contatos />} />
-						<Route path="/segurosform" element={<SegurosForm />} />
+						{/* <Route path="/segurosform" element={<SegurosForm />} /> */}
 						{/* <Route path="/cadastro" element={<Cadastro />} /> */}
 					</Routes>
 					<Footer />
