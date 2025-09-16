@@ -1,19 +1,7 @@
-import { BrowserRouter} from "react-router-dom";
-import { AuthProvider } from "./contexts/AuthContext";
-import Navbar from "./components/navbar/Navbar.tsx";
-
+import FormularioLogin from "./components/login/FormularioLogin";
 
 function App() {
-	return (
-		<>
-			<AuthProvider>
-				<BrowserRouter>
-				<Navbar />
-					
-				</BrowserRouter>
-			</AuthProvider>
-		</>
-	);
+  return <FormularioLogin />;
 }
 
 export default App;
