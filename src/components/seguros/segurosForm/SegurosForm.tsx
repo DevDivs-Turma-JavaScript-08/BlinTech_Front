@@ -97,44 +97,30 @@ export default function SegurosForm({ onClose }: SegurosFormProps) {
 
 	async function gerarNovoProduto(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		// setIsLoading(true);
 
-		if (id !== undefined) {
-			try {
-				if (id !== undefined) {
-					await atualizar(`/produtos`, produto, setProduto, { headers: { Authorization: token } });
-				} else {
-					await cadastrar(`/produtos`, produto, setProduto, { headers: { Authorization: token } });
-				}
-
+		try {
+			if (id !== undefined) {
+				// Atualizar produto existente
+				await atualizar(`/produto/${id}`, produto, setProduto, { headers: { Authorization: token } });
 				alert("O produto foi atualizado com sucesso!");
-				if (onClose) {
-					onClose();
-				}
-			} catch (error: any) {
-				if (error.toString().includes("401")) {
-					handleLogout();
-				} else {
-					alert("Erro ao atualizar o produto.");
-				}
-			}
-		} else {
-			try {
+			} else {
+				// Criar novo produto
 				await cadastrar(`/produto`, produto, setProduto, { headers: { Authorization: token } });
 				alert("O produto foi criado com sucesso!");
-				if (onClose) {
-					onClose();
-				}
-			} catch (error: any) {
-				if (error.toString().includes("401")) {
-					handleLogout();
-				} else {
-					alert("Erro ao cadastrar o produto.");
-				}
+			}
+
+			if (onClose) {
+				onClose();
+			}
+		} catch (error: any) {
+			if (error.toString().includes("401")) {
+				handleLogout();
+			} else {
+				alert(id !== undefined ? "Erro ao atualizar o produto." : "Erro ao cadastrar o produto.");
 			}
 		}
-		// setIsLoading(false);
 	}
+
 
 	return (
 		<div className="flex items-center justify-center">

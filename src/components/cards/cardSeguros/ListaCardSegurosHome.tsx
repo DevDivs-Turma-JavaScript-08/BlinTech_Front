@@ -39,7 +39,7 @@ async function buscarPostagens() {
   return (
 		<section className="bg-[url(https://i.imgur.com/jh5VGgQ.png)] bg-repeat-x bg-(--tertiary) flex flex-col items-center px-10 gap-8 py-30">
 			<h2 className="text-(--primary-dark) text-4xl font-bold"> Confira nossas categorias de Seguros</h2>
-			<div className="flex gap-6">
+			<div className="flex flex-wrap justify-center gap-6">
 				{seguros.map((card) => (
 					<CardSegurosHome key={card.id} seguros={card} />
 				))}
