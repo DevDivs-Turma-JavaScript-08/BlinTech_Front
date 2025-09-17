@@ -158,7 +158,10 @@ const Navbar: React.FC = () => {
 						<div
 							ref={toggleRef}
 							onClick={toggleModal}
-							className={`w-12 h-12 overflow-hidden flex justify-center bg-cover rounded-full bg-[url(${usuario.foto})] border-3 border-(--tertiary) shadow-lg hover:shadow-xl hover:border-(--secondary) transition`}></div>
+							className={`w-12 h-12 overflow-hidden flex justify-center bg-cover rounded-full border-3 border-(--tertiary) shadow-lg hover:shadow-xl hover:border-(--secondary) transition`}>
+							{" "}
+							<img src={usuario.foto} alt="Perfil do Usuário" className="w-full h-full object-cover" />{" "}
+						</div>
 					</div>
 				) : (
 					<div className="flex items-center space-x-4 flex-shrink-0">
