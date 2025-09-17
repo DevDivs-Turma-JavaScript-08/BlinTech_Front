@@ -1,99 +1,109 @@
-import { useContext, useEffect, useState} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import type Produto from "../../models/Produto";
 import { AuthContext } from "../../contexts/AuthContext";
-import { buscar } from "../../services/Services";
+import { buscar, deletar } from "../../services/Services";
 import CardMeuSeguro from "./CardMeuSeguro";
-import type Usuario from "../../models/Usuario";
+import SegurosForm from "../../components/seguros/segurosForm/SegurosForm";
 
 function MeusSeguros() {
 	const navigate = useNavigate();
-
-	// const [isLoading, setIsLoading] = useState<boolean>(false);
-
-	const [seguros, setSeguros] = useState<Produto[]>([]);
-  const [usuarioLogado] = useState<Usuario>({} as Usuario);
-
 	const { usuario, handleLogout } = useContext(AuthContext);
 	const token = usuario.token;
+
+	const [seguros, setSeguros] = useState<Produto[]>([]);
+	const [showForm, setShowForm] = useState(location.pathname !== "/produtos");
+	const [currentProductId] = useState<number | undefined>(undefined);
 
 	useEffect(() => {
 		if (token === "") {
 			alert("Você precisa estar logado!");
 			navigate("/");
 		}
-	}, [token]);
-
-	useEffect(() => {
-		buscarProdutos();
-	}, [seguros.length]);
+	}, [token, navigate]);
 
 	async function buscarProdutos() {
 		try {
-			// setIsLoading(true);
-
-			await buscar("/produtos", setSeguros, {
-				headers: { Authorization: token },
-			});
+			if (usuario.tipoDeUsuario === "Segurado") {
+				await buscar("/produto", setSeguros, {
+					headers: { Authorization: token },
+				});
+			} else if (usuario.tipoDeUsuario === "Segurador") {
+				await buscar(`/usuario/${usuario.id}`, setSeguros, {
+					headers: { Authorization: token },
+				});
+			}
 		} catch (error: any) {
+			console.error("Erro na busca: ", error);
 			if (error.toString().includes("401")) {
 				handleLogout();
 			}
-		} finally {
-			// setIsLoading(false);
 		}
 	}
 
-  // let component: ReactNode;
+	useEffect(() => {
+		if (token !== "" && usuario.id !== 0) {
+			buscarProdutos();
+		}
+	}, [token, usuario.id, usuario.tipoDeUsuario]);
 
-  // if (usuario.tipoDeUsuario === "Segurado") {
-	// 	component = (
-			
-	// 	);
-	// } else {
-  //   component = (
-	// 		<div className="flex flex-col items-center justify-center p-8 bg-blin-primary-ex-dark text-white min-h-[90vh]">
-	// 			<h1 className="text-4xl font-bold mb-8">Meus Seguros</h1>
+	useEffect(() => {
+		setShowForm(location.pathname !== "/produtos");
+	}, [location.pathname]);
 
-	// 			{usuarioLogado.produtos?.length === 0 ? (
-	// 				<div className="text-center p-8 border border-blin-tertiary rounded-lg">
-	// 					<p className="text-xl">Você ainda não possui nenhum seguro contratado.</p>
-	// 					<Link to="/seguros">
-	// 						<button className="mt-4 px-6 py-2 bg-blin-tertiary rounded-lg hover:bg-blin-tertiary-light transition-all">Ver Planos de Seguro</button>
-	// 					</Link>
-	// 				</div>
-	// 			) : (
-	// 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl">
-	// 					{usuarioLogado.produtos?.map((produtos) => (
-	// 						<CardMeuSeguro key={produtos.id} seguro={produtos} />
-	// 					))}
-	// 				</div>
-	// 			)}
-	// 		</div>
-	// 	);
-	// }
+	// const handleEdit = (id: number) => {
+	// 	setCurrentProductId(id);
+	// 	setShowForm(true);
+	// };
+
+	const handleDelete = async (id: number) => {
+		try {
+			await deletar(`/produto/${id}`, {
+				headers: { Authorization: token },
+			});
+			alert("Seguro cancelado com sucesso!");
+			setSeguros(seguros.filter((seguro) => seguro.id !== id));
+			// buscarProdutos();
+		} catch (error: any) {
+			console.error("Erro ao excluir produto: ", error);
+			alert("Erro ao excluir o produto.");
+		}
+	};
+
+	const handleClose = () => {
+		setShowForm(false);
+		buscarProdutos();
+	};
 
 	return (
-		<>
-			<div className="flex flex-col items-center justify-center p-8 bg-blin-primary-ex-dark text-white min-h-[90vh]">
-				<h1 className="text-4xl font-bold mb-8">Meus Seguros</h1>
+		<div className="flex flex-col items-center justify-center p-8 bg-blin-primary-ex-dark text-white min-h-[90vh]">
+			<h1 className="text-4xl font-bold mb-2">{usuario.tipoDeUsuario === "Segurador" ? "Todos os Seguros" : "Meus Seguros"}</h1>
+			<NavLink to="/produtos/contratar">
+				<button className="my-6 bg-amber-200 p-3 text-black rounded-4xl cursor-pointer"> Contrate um novo Seguro </button>
+			</NavLink>
+			{showForm && (
+				<div className="fixed inset-0 z-50 flex items-center justify-center bg-(--primary-ex-dark)/75">
+					<SegurosForm key={currentProductId} onClose={handleClose} onSuccess={buscarProdutos} />
+				</div>
+			)}
 
-				{usuarioLogado.produtos?.length === 0 ? (
-					<div className="text-center p-8 border border-blin-tertiary rounded-lg">
-						<p className="text-xl">Você ainda não possui nenhum seguro contratado.</p>
-						<Link to="/">
-							<button className="mt-4 px-6 py-2 bg-blin-tertiary rounded-lg hover:bg-blin-tertiary-light transition-all">Ver Planos de Seguro</button>
-						</Link>
-					</div>
-				) : (
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl">
-						{usuarioLogado.produtos?.map((seguro) => (
-							<CardMeuSeguro key={seguro.id} seguro={seguro} />
-						))}
-					</div>
-				)}
-			</div>
-		</>
+			{seguros.length === 0 ? (
+				<div className="text-center p-8 border border-blin-tertiary rounded-lg">
+					<p className="text-xl">
+						{usuario.tipoDeUsuario === "Segurado" ? "Você ainda não possui nenhum seguro contratado." : "Não há seguros cadastrados na plataforma."}
+					</p>
+					<Link to="/seguros">
+						<button className="mt-4 px-6 py-2 bg-blin-tertiary rounded-lg hover:bg-blin-tertiary-light transition-all">Ver Planos de Seguro</button>
+					</Link>
+				</div>
+			) : (
+				<div className="flex justify-center gap-8 w-full flex-wrap max-w-7xl">
+					{seguros.map((seguro) => (
+						<CardMeuSeguro key={seguro.id} seguro={seguro} onDelete={handleDelete} />
+					))}
+				</div>
+			)}
+		</div>
 	);
 }
 

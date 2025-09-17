@@ -37,7 +37,6 @@ const Navbar: React.FC = () => {
 		}
 	}, [usuario.token]);
 
-
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -166,12 +165,12 @@ const Navbar: React.FC = () => {
 						<div className="text-right text-sm">
 							<span>Bem vindo(a), visitante!</span>
 							<small className="block text-xs text-gray-400">
-								<Link to="/cadastro">
-									<span className="text-(--secondary) hover:text-(--primary-ex-light) transition-all">Cadastre-se </span>
+								<Link to="/login">
+									<span className="text-(--tertiary) hover:text-(--primary-ex-light) transition-all"> Acesse sua conta </span>
 								</Link>
 								ou
-								<Link to="/login">
-									<span className="text-(--tertiary) hover:text-(--primary-ex-light) transition-all"> Acesse sua conta</span>
+								<Link to="/cadastro">
+									<span className="text-(--secondary) hover:text-(--primary-ex-light) transition-all"> Cadastre-se </span>
 								</Link>
 							</small>
 						</div>

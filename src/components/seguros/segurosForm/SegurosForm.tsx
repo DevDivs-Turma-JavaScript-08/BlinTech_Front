@@ -5,7 +5,12 @@ import type Produto from "../../../models/Produto";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../../services/Services";
 
-export default function SegurosForm() {
+interface SegurosFormProps {
+	onClose?: () => void;
+	onSuccess?: () => void;
+}
+
+export default function SegurosForm({ onClose, onSuccess }: SegurosFormProps) {
 	const navigate = useNavigate();
 
 	// const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -33,7 +38,7 @@ export default function SegurosForm() {
 
 	async function buscarProdutoPorId(id: string) {
 		try {
-			await buscar(`/produtos/${id}`, setCategoria, { headers: { Authorization: token } });
+			await buscar(`/produtos/${id}`, setProduto, { headers: { Authorization: token } });
 		} catch (error: any) {
 			if (error.toString().includes("401")) {
 				handleLogout();
@@ -60,11 +65,16 @@ export default function SegurosForm() {
 
 	useEffect(() => {
 		buscarCategorias();
-
 		if (id !== undefined) {
 			buscarProdutoPorId(id);
 		}
-	}, [id]);
+	}, [id, token]);
+
+	// useEffect(() => {
+	// 	if (produto.categoria) {
+	// 		setCategoria(produto.categoria);
+	// 	}
+	// }, [produto]);
 
 	useEffect(() => {
 		setProduto({
@@ -73,7 +83,7 @@ export default function SegurosForm() {
 		});
 	}, [categoria]);
 
-	function atualizarEstado(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+	function atualizarEstado(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
 		setProduto({
 			...produto,
 			[e.target.name]: e.target.value,
@@ -89,12 +99,17 @@ export default function SegurosForm() {
 	async function gerarNovoProduto(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		// setIsLoading(true);
-		console.log(produto);
 
 		if (id !== undefined) {
 			try {
 				await atualizar(`/produto`, produto, setProduto, { headers: { Authorization: token } });
 				alert("O produto foi atualizado com sucesso!");
+				if (onSuccess) {
+					onSuccess();
+				}
+				if (onClose) {
+					onClose();
+				}
 			} catch (error: any) {
 				if (error.toString().includes("401")) {
 					handleLogout();
@@ -104,8 +119,14 @@ export default function SegurosForm() {
 			}
 		} else {
 			try {
-				await cadastrar(`/produto`, produto, setProduto, { headers: { Authorization: token } });
+				await cadastrar(`/produto`, produto, () => {}, { headers: { Authorization: token } });
 				alert("O produto foi criado com sucesso!");
+				if (onSuccess) {
+					onSuccess();
+				}
+				if (onClose) {
+					onClose();
+				}
 			} catch (error: any) {
 				if (error.toString().includes("401")) {
 					handleLogout();
@@ -114,25 +135,23 @@ export default function SegurosForm() {
 				}
 			}
 		}
-
 		// setIsLoading(false);
-		retornar();
 	}
 
 	return (
-		<div className="flex items-center justify-center min-h-screen p-4 bg-gray-200">
-			<div className="bg-violet-700 p-8 rounded-lg shadow-xl w-[80%] max-w-3xl">
-				<div className="text-center mb-8">
-					<h1 className="text-3xl font-bold mb-2 text-white">Cadastrar Eletrônico</h1>
+		<div className="flex items-center justify-center">
+			<div className="bg-violet-700 px-8 py-4 rounded-lg shadow-xl w-[90vw] h-[90vh] max-w-3xl">
+				<div className="text-center">
+					<h1 className="text-3xl font-bold mb-2 text-white">{id !== undefined ? "Atualizar Seguro" : "Contratar Seguro"}</h1>
 
 					<p className="text-gray-200">Preencha os dados do dispositivo eletrônico</p>
 				</div>
 
 				{/* --- Seção: Informações do Dispositivo --- */}
 				<form onSubmit={gerarNovoProduto}>
-					<fieldset className="mb-8">
+					<fieldset className="mb-4">
 						<legend className="text-xl font-bold mb-6 text-gray-200 text-center">Informações do Dispositivo</legend>
-						<div className="grid grid-cols-2 gap-6">
+						<div className="grid grid-cols-2 gap-4">
 							<div className="relative" id="input">
 								<input
 									type="text"
@@ -222,25 +241,25 @@ export default function SegurosForm() {
 					</fieldset>
 
 					<fieldset className="mb-8">
-						<legend className="text-xl font-semibold mb-4 text-white">Plano de Seguro</legend>
+						<legend className="text-xl font-semibold mb-4 text-white text-center">Plano de Seguro</legend>
 						<div>
-							<label htmlFor="cobertura" className="block text-sm font-medium text-gray-400 mb-1">
-								Selecione o Plano de Seguro *
-							</label>
 							<div className="relative">
 								<select
 									id="cobertura"
 									name="cobertura"
-									className="w-full bg-white text-black border  rounded-lg p-3 pr-10 appearance-none"
+									className="block w-full text-sm h-10 px-4 text-(--tertiary-ex-dark) bg-white rounded-2xl border border-(--primary-ex-light) appearance-none focus:outline  focus:outline-(--primary-ex-dark) focus:ring-0 hover:border-brand-500-secondary- peer invalid:border-error-500 invalid:focus:border-error-500 overflow-ellipsis overflow-hidden text-nowrap pr-[48px] transition-all ease-in-out hover:border-(--primary)"
+                  defaultValue="basico"
 									value={produto.cobertura}
 									onChange={(e: ChangeEvent<HTMLSelectElement>) => atualizarEstado(e)}>
-									<option value="" disabled>
-										Selecione um Plano
-									</option>
 									<option value="basico">Básico</option>
 									<option value="intermediario">Intermediário</option>
 									<option value="premium">Premium</option>
 								</select>
+								<label
+									className="rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary-dark) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white"
+									htmlFor="tempoUso">
+									Plano de Seguro
+								</label>
 							</div>
 						</div>
 					</fieldset>
@@ -252,9 +271,6 @@ export default function SegurosForm() {
 							id="categoria"
 							className="border-2 border-(--tertiary-dark) rounded-xl p-2 text-white invalid:border-(--secondary) invalid:text-(--secondary) focus:border-(--primary-ex-light) focus:outline focus:outline-(--primary-ex-light) transition-all ease-in bg-(--primary-dark)"
 							onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}>
-							<option value="" selected disabled>
-								Selecione uma Categoria
-							</option>
 
 							{categorias.map((categoria) => (
 								<option value={categoria.id}>{categoria.nome}</option>
@@ -262,55 +278,17 @@ export default function SegurosForm() {
 						</select>
 					</div>
 
-					{/* --- Seção: Informações --- */}
-					{/* <div className="mb-8">
-						<h2 className="text-xl font-semibold mb-4 text-gray-200">Informações do seguro</h2>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-							<div className="relative" id="input">
-								<label className="block text-sm font-medium text-gray-400 mb-1">Valor do Seguro *</label>
-								<input
-									disabled
-									type="number"
-									id="valorSegurado"
-									placeholder="preencha as informacoes acima"
-									className="w-full bg-white text-black border border-gray-600 rounded-lg p-3"
-								/>
-							</div>
-							<div className="relative" id="input">
-								<label className="block text-sm font-medium text-gray-400 mb-1">Data de cadastro *</label>
-								<div className="relative">
-									<input
-										type="date"
-										id="dataCadastro"
-										disabled
-										placeholder="dd/mm/aaaa"
-										className="w-full bg-white text-black rounded-lg p-3 pr-10 "
-									/>
-								</div>
-							</div>
-							<div>
-								<label className="block text-sm font-medium text-gray-400 mb-1">Premio Mensal *</label>
-								<input
-									disabled
-									type="number"
-									id="valorSegurado"
-									placeholder="preencha as informacoes acima"
-									className="w-full bg-white text-black border  rounded-lg p-3"
-								/>
-							</div>
-						</div>
-					</div> */}
-
 					<div className="flex justify-end space-x-4 pt-4 gap-2">
 						<button
 							type="button"
+							onClick={retornar}
 							className="px-6 py-3 bg-gray-700 text-gray-200 rounded-lg font-semibold hover:bg-red-600 transition-colors hover:cursor-pointer">
 							Cancelar
 						</button>
 						<button
 							type="submit"
 							className="px-6 py-3 bg-violet-500 text-white rounded-lg font-semibold hover:bg-violet-900 transition-colors hover:cursor-pointer">
-							Cadastrar Eletrônico
+							{id !== undefined ? "Atualizar" : "Contratar"}
 						</button>
 					</div>
 				</form>

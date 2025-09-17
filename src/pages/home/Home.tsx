@@ -146,7 +146,7 @@ function Home() {
 			</section>
 
 			{/* Categorias */}
-			<ListaCardSegurosHome />
+			{token !== "" ? <ListaCardSegurosHome /> : <> </>}
 
 			{/* FAQ */}
 			<section className="bg-(--primary-ex-dark) bg-[url(https://i.imgur.com/3dP6eJR.png)] bg-repeat-x flex h-fit w-full flex-col justify-center items-center mb-4 p-4 gap-8 py-30">
