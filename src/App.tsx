@@ -1,8 +1,9 @@
-import CadastroUsuario from "./components/cadastrousuario/Cadastrousuario";
+
+import Listacategoria from "./components/categorias/listacategorias/listacategoria";
 
 
 function App() {
-  return <CadastroUsuario />;
+  return <Listacategoria />;
 }
 
 export default App;
