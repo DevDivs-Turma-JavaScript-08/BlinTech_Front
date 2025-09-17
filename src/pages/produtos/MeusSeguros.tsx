@@ -79,9 +79,14 @@ function MeusSeguros() {
 
 	return (
 		<div className="flex flex-col items-center justify-center p-8 text-white min-h-[90vh]">
-			<h1 className="text-4xl font-bold mb-2 ">{usuario.tipoDeUsuario === "Segurador" ? "Todos os Seguros" : "Meus Seguros"}</h1>
+			<h1 className="text-5xl text-white font-bold text-center mb-6">
+				{usuario.tipoDeUsuario === "Segurador" ? "Todos os Seguros" : "Meus Seguros"}
+			</h1>
 			<NavLink to="/produtos/contratar">
-				<button className="my-6 border-2 border-(--tertiary) p-3 text-white font-bold rounded-4xl cursor-pointer hover:bg-(--tertiary) transition-all"> Contrate um novo Seguro </button>
+				<button className="my-6 border-2 border-(--tertiary) p-3 text-white font-bold rounded-4xl cursor-pointer hover:bg-(--tertiary) transition-all">
+					{" "}
+					Contrate um novo Seguro{" "}
+				</button>
 			</NavLink>
 
 			{showForm && (

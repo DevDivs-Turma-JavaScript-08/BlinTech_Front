@@ -101,7 +101,12 @@ export default function SegurosForm({ onClose }: SegurosFormProps) {
 
 		if (id !== undefined) {
 			try {
-				await atualizar(`/produto`, produto, setProduto, { headers: { Authorization: token } });
+				if (id !== undefined) {
+					await atualizar(`/produtos`, produto, setProduto, { headers: { Authorization: token } });
+				} else {
+					await cadastrar(`/produtos`, produto, setProduto, { headers: { Authorization: token } });
+				}
+
 				alert("O produto foi atualizado com sucesso!");
 				if (onClose) {
 					onClose();
@@ -135,7 +140,7 @@ export default function SegurosForm({ onClose }: SegurosFormProps) {
 		<div className="flex items-center justify-center">
 			<div className="bg-(--primary-dark)/95 px-8 py-4 rounded-lg shadow-xl w-[90vw] h-[90vh] max-w-3xl">
 				<div className="text-center">
-					<h1 className="text-3xl font-bold mb-2 text-white">{id !== undefined ? "Atualizar Seguro" : "Contratar Seguro"}</h1>
+					<h1 className="text-5xl font-bold mb-2 text-white">{id !== undefined ? "Atualizar Seguro" : "Contratar Seguro"}</h1>
 
 					<p className="text-gray-200">Preencha os dados do dispositivo eletrônico</p>
 				</div>

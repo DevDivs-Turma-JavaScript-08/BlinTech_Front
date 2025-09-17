@@ -33,7 +33,9 @@ function ProdutosForm() {
 
 	async function buscarProdutoPorId(id: string) {
 		try {
-			await buscar(`/produtos/${id}`, setCategoria, { headers: { Authorization: token } });
+			await buscar(`/produtos/${id}`, setProduto, {
+				headers: { Authorization: token },
+			});
 		} catch (error: any) {
 			if (error.toString().includes("401")) {
 				handleLogout();
@@ -59,12 +61,17 @@ function ProdutosForm() {
 	}, [token]);
 
 	useEffect(() => {
-    buscarCategorias();
-
+		buscarCategorias();
 		if (id !== undefined) {
 			buscarProdutoPorId(id);
 		}
-	}, [id]);
+	}, [id, token]);
+
+  useEffect(() => {
+		if (produto.categoria) {
+			setCategoria(produto.categoria);
+		}
+	}, [produto]);
 
 	useEffect(() => {
 		setProduto({
@@ -93,7 +100,7 @@ function ProdutosForm() {
 
 		if (id !== undefined) {
 			try {
-				await atualizar(`/produto`, produto, setProduto, { headers: { Authorization: token } });
+				await atualizar(`/produto/${id}`, produto, setProduto, { headers: { Authorization: token } });
 				alert("O produto foi atualizado com sucesso!");
 			} catch (error: any) {
 				if (error.toString().includes("401")) {
@@ -209,10 +216,9 @@ function ProdutosForm() {
 							</option>
 
 							{categorias.map((categoria) => (
-									<option value={categoria.id}>{categoria.nome}</option>
+								<option value={categoria.id}>{categoria.nome}</option>
 							))}
 						</select>
-
 					</div>
 
 					<button type="submit"> Cadastrar </button>
