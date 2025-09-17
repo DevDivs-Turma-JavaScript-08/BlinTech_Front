@@ -28,7 +28,9 @@ function MeusSeguros() {
 				await buscar("/produto", setSeguros, {
 					headers: { Authorization: token },
 				});
-			} else if (usuario.tipoDeUsuario === "Segurador") {
+			}
+
+			if (usuario.tipoDeUsuario === "Segurador") {
 				await buscar(`/usuario/${usuario.id}`, setSeguros, {
 					headers: { Authorization: token },
 				});
@@ -81,9 +83,10 @@ function MeusSeguros() {
 			<NavLink to="/produtos/contratar">
 				<button className="my-6 bg-amber-200 p-3 text-black rounded-4xl cursor-pointer"> Contrate um novo Seguro </button>
 			</NavLink>
+
 			{showForm && (
 				<div className="fixed inset-0 z-50 flex items-center justify-center bg-(--primary-ex-dark)/75">
-					<SegurosForm key={currentProductId} onClose={handleClose} onSuccess={buscarProdutos} />
+					<SegurosForm key={currentProductId} onClose={handleClose} />
 				</div>
 			)}
 

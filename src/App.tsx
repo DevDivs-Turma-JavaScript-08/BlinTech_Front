@@ -8,8 +8,9 @@ import LoginAndRegisterPage from "./components/login/LoginAndRegisterPage";
 import MeusSeguros from "./pages/produtos/MeusSeguros";
 import CategoriaForm from "./components/categorias/categoriaForm/CategoriaForm";
 import Perfil from "./pages/perfil/Perfil";
-import Sobre from "./pages/sobre/sobre";
-import Servicos from "./pages/servicos/servicos";
+import Sobre from "./pages/sobre/Sobre";
+import Servicos from "./pages/servicos/Servicos";
+import ListaCategorias from "./components/categorias/listacategorias/ListaCategorias";
 
 function App() {
 	return (
@@ -26,8 +27,10 @@ function App() {
 						<Route path="/servicos" element={<Servicos />} />
 						<Route path="/produtos" element={<MeusSeguros />} />
 						<Route path="/produtos/contratar" element={<MeusSeguros />} />
-						<Route path="/produtos/:id" element={<MeusSeguros />} />
-						<Route path="/categorias" element={<CategoriaForm />} />
+						<Route path="/produtos/editar/:id" element={<MeusSeguros />} />
+						<Route path="/categorias" element={<ListaCategorias />} />
+						<Route path="/categorias/criar" element={<ListaCategorias />} />
+						<Route path="/categorias/editar/:id" element={<CategoriaForm />} />
 						<Route path="/perfil" element={<Perfil />} />
 					</Routes>
 					<Footer />

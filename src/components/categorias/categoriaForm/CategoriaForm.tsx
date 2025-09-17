@@ -4,7 +4,11 @@ import type Categoria from "../../../models/Categoria";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../../services/Services";
 
-function CategoriaForm() {
+interface CategoriasFormProps {
+	onClose?: () => void;
+}
+
+function CategoriaForm({ onClose }: CategoriasFormProps) {
 	const navigate = useNavigate();
 
 	const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
@@ -60,6 +64,7 @@ function CategoriaForm() {
 			try {
 				await atualizar(`/categorias`, categoria, setCategoria, { headers: { Authorization: token } });
 				alert("A categoria foi atualizada com sucesso!");
+				if (onClose) onClose();
 			} catch (error: any) {
 				if (error.toString().includes("401")) {
 					handleLogout();
@@ -71,6 +76,7 @@ function CategoriaForm() {
 			try {
 				await cadastrar(`/categorias`, categoria, setCategoria, { headers: { Authorization: token } });
 				alert("A categoria foi criada com sucesso!");
+				if (onClose) onClose();
 			} catch (error: any) {
 				if (error.toString().includes("401")) {
 					handleLogout();
@@ -85,8 +91,8 @@ function CategoriaForm() {
 	}
 
 	return (
-		<div className="min-h-[70vh] w-full bg-gradient-to-b from-violet-600 to-purple-700 py-10">
-			<div className="max-w-4xl mx-auto bg-violet-500/30 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-2xl border border-white/10">
+		<div className="min-h-[70vh] w-full py-10">
+			<div className="max-w-4xl mx-auto bg-(--primary-dark)/80 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-2xl border border-white/10">
 				<div className="text-center mb-6">
 					<h1 className="text-3xl md:text-4xl font-extrabold text-(--tertiary) drop-shadow">Cadastrar Categoria</h1>
 					<p className="text-violet-100/90 mt-1">Preencha os dados da cetegoria</p>
@@ -147,7 +153,10 @@ function CategoriaForm() {
 						</div>
 
 						<div className="flex justify-end gap-3 pt-2">
-							<button type="button" className="px-5 py-2.5 rounded-lg bg-black/50 text-white hover:bg-black/60 border border-white/10">
+							<button
+								type="button"
+								onClick={retornar}
+								className="px-6 py-3 bg-gray-700 text-gray-200 rounded-lg font-semibold hover:bg-red-600 transition-colors hover:cursor-pointer">
 								Cancelar
 							</button>
 							<button type="submit" className="px-5 py-2.5 rounded-lg bg-purple-300 text-purple-900 font-semibold hover:bg-purple-200">

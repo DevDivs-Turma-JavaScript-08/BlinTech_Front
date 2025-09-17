@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import type Produto from "../../models/Produto";
 import { useState } from "react";
 
@@ -84,11 +84,11 @@ function CardMeuSeguro({ seguro, onDelete }: CardMeuSeguroProps) {
 
 				{/* Botões */}
 				<div className="flex justify-around items-center gap-4 mt-2">
-					<NavLink
-						to={`/produtos/${seguro.id}`}
+					<Link
+						to={`/produtos/editar/${seguro.id}`}
 						className="flex-1 text-center px-4 py-2 bg-(--primary) rounded-md text-white font-semibold transition-all duration-300 hover:scale-105 hover:bg-(--primary-dark) hover:border-2 border-(--tertiary) hover:shadow-lg hover:shadow-(--primary-light)/50">
 						Editar
-					</NavLink>
+					</Link>
 					<button
 						onClick={handleShowModal}
 						className="flex-1 px-4 py-2 bg-transparent border-2 rounded-md text-(--secondary) font-semibold transition-all duration-300 hover:scale-105 hover:border-none hover:bg-(--secondary-dark) hover:text-white">
