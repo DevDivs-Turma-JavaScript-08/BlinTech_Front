@@ -2,7 +2,7 @@
 // import ProdutosForm from "../../components/produtos/produtosForm/ProdutosForm";
 
 import { Link } from "react-router-dom";
-import CardSegurosHome from "../../components/cards/cardSeguros/CardSegurosHome";
+// import CardSegurosHome from "../../components/cards/cardSeguros/CardSegurosHome";
 import CardBeneficios from "../../components/homeComponents/beneficios/CardBeneficios";
 import Duvidas from "../../components/homeComponents/faq/Duvidas";
 import { useContext } from "react";
@@ -90,17 +90,6 @@ function Home() {
 		},
 	];
 
-	const cardsData = [
-		{
-			id: 1,
-			nome: "Celular",
-			carenciaDias: 10,
-			descricao:
-				"Proteja seu celular com planos completos: assistência técnica especializada, garantia estendida e cobertura rápida contra acidentes, roubo ou furto qualificado.",
-			marcas: ["Samsung", "Apple", "Motorola", "Xiaomi", "LG", "ASUS"]
-		},
-	];
-
 	return (
 		<main className="flex flex-col w-full bg-(--primary-ex-dark) text-white">
 			{/* Hero */}
@@ -138,7 +127,7 @@ function Home() {
 					</Link>
 
 					<p className="mt-4">
-						Não espere o <span className="font-bold"> imprevisto</span>. Segurança completa a um clique!
+						Não espere o <span className="font-bold"> imprevisto </span>. Segurança completa a um clique!
 					</p>
 				</div>
 			</section>

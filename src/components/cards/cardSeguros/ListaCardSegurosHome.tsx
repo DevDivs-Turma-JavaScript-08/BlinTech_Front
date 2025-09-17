@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { buscar } from '../../../services/Services';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthContext';
 import type Categoria from '../../../models/Categoria';
 import CardSegurosHome from './CardSegurosHome';
 
 function ListaCardSegurosHome() {
 
-const navigate = useNavigate();
+// const navigate = useNavigate();
 
 // const [isLoading, setIsLoading] = useState<boolean>(false);
 

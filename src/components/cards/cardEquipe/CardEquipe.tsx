@@ -72,9 +72,9 @@ export default function CardEquipe() {
 	}
 
 	return (
-		<div className="flex flex-col w-full items-center p-6 gap-6 text-white">
-			<h1 className="text-4xl font-bold p-3"> Nossa Equipe </h1>
-			<div className="flex">
+		<div className="flex flex-col w-full items-center px-6 pb-12 gap-6 text-white">
+			<h1 className="text-6xl font-bold p-3"> Nossa Equipe </h1>
+			<div className="flex items-center">
 				<div className="flex flex-wrap justify-center gap-6">
 					{ListEquipe.map((equipe) => (
 						<div
@@ -82,29 +82,29 @@ export default function CardEquipe() {
 							onClick={() => handleSelect(equipe)}
 							className={`
               w-56 h-auto p-4 flex flex-col items-center justify-center 
-               rounded-lg shadow-lg cursor-pointer
+               rounded-lg cursor-pointer
               transform transition-all duration-300 hover:scale-105
               ${
 								selecionado?.nome === equipe.nome
-									? " bg-(--primary-ex-dark) border-2 border-(--secondary-dark) scale-105"
-									: "border-2 border-transparent bg-(--primary-dark)"
+									? " bg-(--primary-dark) shadow-[0_0px_10px_rgb(0_0_0_/_0.9)] border-2 border-(--secondary-dark) scale-105 "
+									: "border-2 border-transparent bg-(--primary-ex-dark) shadow-lg  "
 							}
             `}>
 							<div className="w-24 h-24 rounded-full overflow-hidden mb-2">
 								<img src={equipe.foto} alt={`Foto de ${equipe.nome}`} className="w-full h-full object-cover" />
 							</div>
 							<span className="text-lg font-semibold">{equipe.nome}</span>
-							<p className="text-sm text-gray-400">{equipe.funcao}</p>
+							<p className="text-sm text-(--secondary-dark)">{equipe.funcao}</p>
 						</div>
 					))}
 				</div>
 
 				{selecionado ? (
-					<div className="h-fit w-full p-8 m-4 bg-(--primary-ex-dark) rounded-tl-[250px] rounded-br-[500px] rounded-bl-2xl shadow-xl flex flex-col items-center justify-between transition-all duration-500 content-center">
+					<div className="h-fit w-full p-8 m-4 bg-(--primary-ex-dark) rounded-tl-[250px] rounded-br-[500px] rounded-bl-2xl shadow-[0_0px_10px_rgb(0_0_0_/_0.9)] flex flex-col items-center justify-between transition-all duration-500 content-center">
 						<div className="flex items-center">
 							<div>
 								<h2 className="text-3xl font-bold mb-2 text-white">{selecionado.nome}</h2>
-								<p className="text-xl italic text-gray-300 mb-4">"{selecionado.frase}"</p>
+								<p className="text-xl italic text-(--secondary) mb-4">"{selecionado.frase}"</p>
 								<p className="mt-4 text-lg font-semibold text-white">{selecionado.formacao}</p>
 							</div>
 							<div className="p-2 text-center">
@@ -119,9 +119,9 @@ export default function CardEquipe() {
 					<div
 						className="
           w-full max-w-5xl h-64 p-8 mt-6
-          bg-gray-800 rounded-lg shadow-xl
+          bg-(--primary-ex-dark) rounded-lg shadow-xl
           flex justify-center items-center
-          text-gray-500 text-xl transition-all duration-500
+          text-(--secondary-dark) text-xl transition-all duration-500
         ">
 						<p>Selecione um membro da equipe para ver os detalhes.</p>
 					</div>

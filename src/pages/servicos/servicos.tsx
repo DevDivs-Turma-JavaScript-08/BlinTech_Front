@@ -5,7 +5,6 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 
 export default function Servicos() {
-  
 	const { usuario } = useContext(AuthContext);
 	const token = usuario.token;
 
@@ -19,16 +18,14 @@ export default function Servicos() {
 		<main className="flex flex-col w-full min-h-screen gap-3 text-white">
 			{/* orcamento */}
 			<section className="w-full">
-				<div className="bg-violet-500 p-7 h-[350px] flex items-center justify-center flex-col gap-5 text-white text-center">
+				<div className="bg-[url(https://i.imgur.com/G4pfZ69.png)] bg-contain p-7 h-[350px] flex items-center justify-center flex-col gap-5 text-white text-center">
 					<h1 className="text-5xl ">Proteja seus eletronicos com seguranca</h1>
 
 					<p className="text-[19px]">Diversos tipos de cobertura, escolha aquele que entre no seu bolso</p>
 
 					<div className="flex gap-5 text-black mt-9">
 						<Link to={token !== "" ? `/produtos` : `/login`}>
-							<button
-								className="hover: cursor-pointer border-white p-3 bg-white hover:bg-violet-300
-                radius-full rounded-2xl w-[130px]">
+							<button className="cursor-pointer font-bold text-white p-3 bg-(--secondary) hover:bg-(--secondary-dark) hover:shadow-[0_0px_10px_rgb(95_163_0_/_0.8)] hover:text-lg transition-all radius-full rounded-2xl w-fit ">
 								Fazer Seguro
 							</button>
 						</Link>

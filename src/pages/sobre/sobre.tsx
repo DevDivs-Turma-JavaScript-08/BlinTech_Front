@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 
 function Sobre() {
 	return (
-		<main className="flex flex-col  bg-[url(https://i.imgur.com/RmVWxzg.png)] bg-repeat-x justify-center items-center text-white">
+		<main className="flex flex-col  bg-[url(https://i.imgur.com/x3Gn2Fn.png)] bg-repeat-x justify-center items-center text-white">
 			{/* Nossa História */}
 			<div className=" pt-20 flex flex-col items-center ">
-				<section className="w-[80%] mb-20 fade-in">
+				<section className="bg-[url(https://i.imgur.com/aIkR0SI.png)] shadow-lg px-[10%] mb-20 fade-in">
 					<div className="grid md:grid-cols-2 gap-12 items-center">
-						<div className="bg-(--tertiary-ex-dark) border-2 border-(--tertiary) p-8 rounded-2xl shadow-lg">
+						<div className="p-8 rounded-2xl">
 							<h2 className="text-5xl font-bold mb-6">Nossa História</h2>
 							<p className="text-lg mb-6 leading-relaxed opacity-90">
 								A Blintech nasceu da paixão por tecnologia e inovação. Fundada em 2020, nossa empresa começou como um pequeno time de desenvolvedores
@@ -31,26 +31,85 @@ function Sobre() {
 				<section className=" w-[80%] mb-20">
 					<h2 className="text-5xl font-bold text-center mb-12">Nossos Pilares</h2>
 					<div className="grid md:grid-cols-3 gap-8">
-						<div className="bg-(--tertiary-ex-dark) rounded-2xl p-8 shadow-lg text-center border border-(--tertiary)">
-							<div className="text-4xl mb-4">🎯</div>
-							<h3 className="text-2xl font-bold mb-4">Missão</h3>
-							<p className="opacity-90 leading-relaxed">
-								Desenvolver soluções tecnológicas inovadoras que simplifiquem processos e potencializem o sucesso de nossos clientes.
-							</p>
+						<div className="cardSobre">
+							<div className="content">
+								<div className="back">
+									<div className="back-content">
+										<div className="text-6xl mb-4">🎯</div>
+										<strong>Missão</strong>
+									</div>
+								</div>
+								<div className="front">
+									<div className="img">
+										<div className="circle"></div>
+										<div className="circle" id="right"></div>
+										<div className="circle" id="bottom"></div>
+									</div>
+
+									<div className="front-content">
+										<small className="badge">Missão</small>
+										<div className="description">
+											<p className="opacity-90 leading-relaxed">
+												Desenvolver soluções tecnológicas inovadoras que simplifiquem processos e potencializem o sucesso de nossos clientes.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div className="bg-(--tertiary-ex-dark) rounded-2xl p-8 shadow-lg text-center border border-(--tertiary)">
-							<div className="text-4xl mb-4">👁️</div>
-							<h3 className="text-2xl font-bold mb-4">Visão</h3>
-							<p className="opacity-90 leading-relaxed">
-								Ser reconhecida como a principal referência em inovação tecnológica no mercado brasileiro até 2030.
-							</p>
+
+						<div className="cardSobre">
+							<div className="content">
+								<div className="back">
+									<div className="back-content">
+										<div className="text-6xl mb-4">👁️</div>
+										<strong>Visão</strong>
+									</div>
+								</div>
+								<div className="front">
+									<div className="img">
+										<div className="circle"></div>
+										<div className="circle" id="right"></div>
+										<div className="circle" id="bottom"></div>
+									</div>
+
+									<div className="front-content">
+										<small className="badge">Visão </small>
+										<div className="description">
+											<p className="opacity-90 leading-relaxed">
+												Ser reconhecida como a principal referência em inovação tecnológica no mercado brasileiro até 2030.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div className="bg-(--tertiary-ex-dark) rounded-2xl p-8 shadow-lg text-center border border-(--tertiary)">
-							<div className="text-4xl mb-4">💎</div>
-							<h3 className="text-2xl font-bold mb-4">Valores</h3>
-							<p className="opacity-90 leading-relaxed">
-								Excelência, transparência, inovação e compromisso com a satisfação total de nossos clientes.
-							</p>
+
+						<div className="cardSobre">
+							<div className="content">
+								<div className="back">
+									<div className="back-content">
+										<div className="text-6xl mb-4">💎</div>
+										<strong>Valores</strong>
+									</div>
+								</div>
+								<div className="front">
+									<div className="img">
+										<div className="circle"></div>
+										<div className="circle" id="right"></div>
+										<div className="circle" id="bottom"></div>
+									</div>
+
+									<div className="front-content">
+										<small className="badge">Valores</small>
+										<div className="description">
+											<p className="opacity-90 leading-relaxed">
+												Excelência, transparência, inovação e compromisso com a satisfação total de nossos clientes.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</section>
@@ -68,6 +127,7 @@ function Sobre() {
 					</Link>
 				</div>
 			</section>
+			<div className="bg-[url(https://i.imgur.com/j9uFiYm.png)] w-full h-23 bg-repeat-x"></div>
 		</main>
 	);
 }

@@ -8,7 +8,7 @@ import { atualizar, buscar, cadastrar } from "../../../services/Services";
 function ProdutosForm() {
 	const navigate = useNavigate();
 
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	// const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const [categorias, setCategorias] = useState<Categoria[]>([]);
 
@@ -88,7 +88,7 @@ function ProdutosForm() {
 
 	async function gerarNovoProduto(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		setIsLoading(true);
+		// setIsLoading(true);
 		console.log(produto);
 
 		if (id !== undefined) {
@@ -115,7 +115,7 @@ function ProdutosForm() {
 			}
 		}
 
-		setIsLoading(false);
+		// setIsLoading(false);
 		retornar();
 	}
 

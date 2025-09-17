@@ -71,7 +71,6 @@ const CadastroUsuario: React.FC = () => {
 			<form onSubmit={cadastrarNovoUsuario}>
 				<fieldset className="w-full max-w-2xl bg-black/40 backdrop-blur-lg shadow-lg rounded-3xl p-10 text-white">
 					<legend className="text-2xl font-bold text-center mb-2">Cadastrar Usuário</legend>
-					<p className="text-center text-gray-300 mb-8">Preencha os dados para criar sua conta</p>
 
 					{/* Informações Pessoais */}
 					<h3 className="text-lg font-semibold mb-4">Informações Pessoais</h3>

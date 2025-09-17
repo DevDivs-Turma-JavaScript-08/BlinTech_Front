@@ -35,12 +35,12 @@ export default function CardEscolha() {
         {escolha.map((item, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl p-6 flex flex-col items-center text-black"
+            className="bg-(--primary-light) text-white rounded-xl p-6 flex flex-col items-center"
           >
             <img
               src={item.imagem}
               alt="imagem"
-              className="w-20 h-20 mb-4 object-contain rounded-full"
+              className="w-20 h-20 mb-4 object-contain rounded-full border-2 border-(--tertiary)"
             />
             <h3 className="text-lg font-bold mb-2
 ">{item.titulo}</h3>
