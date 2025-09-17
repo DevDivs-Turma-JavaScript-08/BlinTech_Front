@@ -55,7 +55,7 @@ function CardCategorias({ categoria, onDelete }: CardCategoriasProps) {
 						<div className="bg-(--primary-dark) p-6 rounded-2xl shadow-2xl w-96 animate-fade-in">
 							<h3 className="text-xl font-bold mb-4 text-(--tertiary-light)">Confirmar Exclusão</h3>
 							<p className="mb-6 text-gray-200">
-								Tem certeza que deseja excluir o seguro <span className="font-semibold text-(--secondary)">{categoria.nome}</span>?
+								Tem certeza que deseja excluir a categoria <span className="font-semibold text-(--secondary)">{categoria.nome}</span>?
 							</p>
 
 							<div className="flex justify-end gap-4">
