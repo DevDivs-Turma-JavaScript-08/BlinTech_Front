@@ -39,13 +39,13 @@ function CardCategorias({ categoria, onDelete }: CardCategoriasProps) {
 				<div className="flex flex-col gap-3">
 					<Link
 						to={`/categorias/editar/${categoria.id}`}
-						className="rounded-xl w-full text-white bg-(--tertiary) font-bold hover:bg-(--tertiary-dark) flex items-center justify-center py-2 transition-all ease-in">
+						className="flex-1 text-center px-4 py-2 bg-(--primary) rounded-md text-white font-semibold transition-all duration-300 hover:scale-105 hover:bg-(--primary-dark) hover:border-2 border-(--tertiary) hover:shadow-lg hover:shadow-(--primary-light)/50">
 						<button> Editar </button>
 					</Link>
 
 					<button
 						onClick={handleShowModal}
-						className="cursor-pointer rounded-xl w-full text-white bg-(--secondary) font-bold hover:bg-(--secondary-dark) flex items-center justify-center py-2 transition-all ease-in">
+						className="flex-1 px-4 py-2 bg-transparent border-2 rounded-md text-(--secondary) font-semibold transition-all duration-300 hover:scale-105 hover:border-none hover:bg-(--secondary-dark) hover:text-white">
 						<button> Deletar </button>
 					</button>
 				</div>

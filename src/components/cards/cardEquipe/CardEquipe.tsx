@@ -16,7 +16,7 @@ export default function CardEquipe() {
 			funcao: "Desenvolvedora",
 			frase: "Seja a mudança que você quer ver no mundo.",
 			pitch: "Apaixonada por soluções front-end e experiência do usuário, busco transformar ideias em interfaces intuitivas e funcionais.",
-			formacao: "Rank A",
+			formacao: "Generation Brasil - JavaScript Fullstack",
 		},
 		{
 			foto: "https://i.imgur.com/r9JoYhT.png",
@@ -24,7 +24,7 @@ export default function CardEquipe() {
 			funcao: "Desenvolvedor",
 			frase: "Acredite no seu potencial, ele é infinito.",
 			pitch: "Especialista em back-end, construo APIs robustas e escaláveis, garantindo a performance e a segurança dos nossos sistemas.",
-			formacao: "Rank E",
+			formacao: "Generation Brasil - JavaScript Fullstack",
 		},
 		{
 			foto: "https://i.imgur.com/Q1Z67IP.png",
@@ -32,7 +32,7 @@ export default function CardEquipe() {
 			funcao: "Desenvolvedora",
 			frase: "O sucesso é a soma de pequenos esforços.",
 			pitch: "Com foco em arquitetura de software, crio soluções otimizadas e de alta qualidade que impulsionam o crescimento do projeto.",
-			formacao: "Rank A",
+			formacao: "Generation Brasil - JavaScript Fullstack",
 		},
 		{
 			foto: "https://i.imgur.com/U6lUbHW.png",
@@ -40,7 +40,7 @@ export default function CardEquipe() {
 			funcao: "Desenvolvedora",
 			frase: "A persistência é o caminho do êxito.",
 			pitch: "Minha especialidade é a prototipagem e o design de interfaces, traduzindo conceitos complexos em designs simples e elegantes.",
-			formacao: "Rank A",
+			formacao: "Generation Brasil - JavaScript Fullstack",
 		},
 		{
 			foto: "https://i.imgur.com/EuTNqNp.png",
@@ -49,7 +49,7 @@ export default function CardEquipe() {
 			frase: "Lidere com paixão e inspire a equipe.",
 			pitch:
 				"Como Product Owner, meu objetivo é alinhar a visão do produto com as necessidades do mercado, garantindo que entreguemos o máximo de valor.",
-			formacao: "Rank S",
+			formacao: "Generation Brasil - JavaScript Fullstack",
 		},
 		{
 			foto: "https://i.imgur.com/0kpfncl.png",
@@ -57,7 +57,7 @@ export default function CardEquipe() {
 			funcao: "Tester",
 			frase: "Qualidade não é um ato, é um hábito.",
 			pitch: "Responsável por garantir a integridade do produto, realizo testes rigorosos para assegurar que cada funcionalidade seja impecável.",
-			formacao: "Rank A",
+			formacao: "Generation Brasil - JavaScript Fullstack",
 		},
 	];
 
