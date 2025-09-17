@@ -101,15 +101,22 @@ function CardMeuSeguro({ seguro, onDelete }: CardMeuSeguroProps) {
 			</div>
 
 			{showModal && (
-				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-					<div className="bg-blin-primary-dark p-6 rounded-lg shadow-xl text-white w-96">
-						<h3 className="text-xl font-bold mb-4">Confirmar Exclusão</h3>
-						<p className="mb-6">Tem certeza que deseja excluir o seguro?</p>
+				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+					<div className="bg-(--primary-dark) p-6 rounded-2xl shadow-2xl w-96 animate-fade-in">
+						<h3 className="text-xl font-bold mb-4 text-(--tertiary-light)">Confirmar Exclusão</h3>
+						<p className="mb-6 text-gray-200">
+							Tem certeza que deseja excluir o seguro <span className="font-semibold text-(--secondary)">{seguro.nomeProduto}</span>?
+						</p>
+
 						<div className="flex justify-end gap-4">
-							<button onClick={handleCloseModal} className="px-4 py-2 bg-gray-600 rounded-md hover:bg-gray-700 transition">
+							<button
+								onClick={handleCloseModal}
+								className="px-4 py-2 rounded-md font-semibold border-2 border-(--tertiary) text-(--tertiary-light) transition-all duration-300 hover:bg-(--tertiary) hover:text-white">
 								Cancelar
 							</button>
-							<button onClick={handleConfirmDelete} className="px-4 py-2 bg-red-600 rounded-md hover:bg-red-700 transition">
+							<button
+								onClick={handleConfirmDelete}
+								className="px-4 py-2 rounded-md font-semibold bg-(--primary) text-white transition-all duration-300 hover:scale-105 hover:bg-(--primary-dark) hover:shadow-lg hover:shadow-(--primary-light)/40">
 								Excluir
 							</button>
 						</div>

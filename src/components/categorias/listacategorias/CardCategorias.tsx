@@ -26,7 +26,7 @@ function CardCategorias({ categoria, onDelete }: CardCategoriasProps) {
 
 	return (
 		<>
-			<div className="w-64 bg-(--primary-dark) shadow-[0px_0px_15px_rgba(0,0,0,0.09)] p-9 space-y-3 relative overflow-hidden">
+			<div className="rounded-[36px] w-64 bg-(--primary-dark) shadow-[0px_0px_15px_rgba(0,0,0,0.09)] p-9 space-y-3 relative overflow-hidden">
 				<div className="w-40 h-18 bg-violet-500 rounded-bl-[50px] absolute -right-5 -top-7">
 					<p className="absolute text-nowrap text-white left-8 top-8 align-text-top">
 						Carência: <span className="font-bold text-2xl align-text-top"> {categoria.carencia} </span>
@@ -51,15 +51,22 @@ function CardCategorias({ categoria, onDelete }: CardCategoriasProps) {
 				</div>
 
 				{showModal && (
-					<div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-						<div className="bg-blin-primary-dark p-6 rounded-lg shadow-xl text-white w-96">
-							<h3 className="text-xl font-bold mb-4">Confirmar Exclusão</h3>
-							<p className="mb-6">Tem certeza que deseja excluir o seguro?</p>
+					<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+						<div className="bg-(--primary-dark) p-6 rounded-2xl shadow-2xl w-96 animate-fade-in">
+							<h3 className="text-xl font-bold mb-4 text-(--tertiary-light)">Confirmar Exclusão</h3>
+							<p className="mb-6 text-gray-200">
+								Tem certeza que deseja excluir o seguro <span className="font-semibold text-(--secondary)">{categoria.nome}</span>?
+							</p>
+
 							<div className="flex justify-end gap-4">
-								<button onClick={handleCloseModal} className="px-4 py-2 bg-gray-600 rounded-md hover:bg-gray-700 transition">
+								<button
+									onClick={handleCloseModal}
+									className="px-4 py-2 rounded-md font-semibold border-2 border-(--tertiary) text-(--tertiary-light) transition-all duration-300 hover:bg-(--tertiary) hover:text-white">
 									Cancelar
 								</button>
-								<button onClick={handleConfirmDelete} className="px-4 py-2 bg-red-600 rounded-md hover:bg-red-700 transition">
+								<button
+									onClick={handleConfirmDelete}
+									className="px-4 py-2 rounded-md font-semibold bg-(--primary) text-white transition-all duration-300 hover:scale-105 hover:bg-(--primary-dark) hover:shadow-lg hover:shadow-(--primary-light)/40">
 									Excluir
 								</button>
 							</div>

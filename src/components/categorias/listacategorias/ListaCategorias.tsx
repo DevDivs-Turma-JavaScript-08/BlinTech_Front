@@ -73,7 +73,9 @@ export default function ListaCategorias() {
 			<h2 className="text-5xl text-white font-bold text-center mb-6"> Nossas Categorias de Seguros </h2>
 
 			<div className="flex justify-center mb-10">
-				<NavLink to={"/categorias/criar"} className="bg-orange-500 text-white px-6 py-3 rounded-lg shadow hover:bg-orange-600 transition">
+				<NavLink
+					to={"/categorias/criar"}
+					className="my-6 border-2 border-(--secondary) p-3 text-white font-bold rounded-4xl cursor-pointer hover:bg-(--secondary) transition-all">
 					Adicionar Categoria
 				</NavLink>
 			</div>
