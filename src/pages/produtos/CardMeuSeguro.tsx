@@ -53,8 +53,9 @@ function CardMeuSeguro({ seguro, onDelete }: CardMeuSeguroProps) {
 					</p>
 					<p>
 						<span className="font-semibold text-(--tertiary)">Cobertura: </span>
-						{seguro.cobertura}
+						{seguro.cobertura.charAt(0).toUpperCase() + seguro.cobertura.slice(1)}
 					</p>
+
 					<p>
 						<span className="font-semibold text-(--tertiary)">Tempo de Uso: </span>
 						{seguro.tempoUso}
