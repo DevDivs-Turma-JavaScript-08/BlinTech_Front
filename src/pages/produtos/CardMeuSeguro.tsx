@@ -31,7 +31,10 @@ function CardMeuSeguro({ seguro, onDelete }: CardMeuSeguroProps) {
 			<div className="flex flex-col gap-4">
 				{/* Título e Data de Contratação */}
 				<div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-					<h2 className="text-2xl font-bold text-(--tertiary-light) tracking-wide">{seguro.nomeProduto}</h2>
+					<div>
+						<h2 className="text-2xl font-bold text-(--tertiary-light) tracking-wide">{seguro.nomeProduto}</h2>
+						<h2 className="text-sm font-bold text-(--tertiary-light) tracking-wide">{seguro.usuario?.nome}</h2>
+					</div>
 					<div className="text-right text-gray-300 text-sm">
 						<span className="font-medium text-(--tertiary)">Contratado em:</span>
 						<p>

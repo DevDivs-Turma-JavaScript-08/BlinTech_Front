@@ -36,16 +36,16 @@ function CardCategorias({ categoria, onDelete }: CardCategoriasProps) {
 				<h1 className="font-bold text-xl text-white"> {categoria.nome} </h1>
 				<p className="text-sm text-white leading-6">{categoria.descricao}</p>
 
-				<div>
+				<div className="flex flex-col gap-3">
 					<Link
 						to={`/categorias/editar/${categoria.id}`}
-						className="w-full text-white bg-(--tertiary) font-bold hover:bg-(--tertiary-dark) flex items-center justify-center py-2 transition-all ease-in">
+						className="rounded-xl w-full text-white bg-(--tertiary) font-bold hover:bg-(--tertiary-dark) flex items-center justify-center py-2 transition-all ease-in">
 						<button> Editar </button>
 					</Link>
 
 					<button
 						onClick={handleShowModal}
-						className="text-white bg-(--secondary) font-bold hover:bg-(--secondary-dark) w-full flex items-center justify-center transition-all ease-in">
+						className="cursor-pointer rounded-xl w-full text-white bg-(--secondary) font-bold hover:bg-(--secondary-dark) flex items-center justify-center py-2 transition-all ease-in">
 						<button> Deletar </button>
 					</button>
 				</div>

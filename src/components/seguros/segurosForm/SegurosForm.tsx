@@ -115,7 +115,7 @@ export default function SegurosForm({ onClose }: SegurosFormProps) {
 			}
 		} else {
 			try {
-				await cadastrar(`/produto`, produto, () => {}, { headers: { Authorization: token } });
+				await cadastrar(`/produto`, produto, setProduto, { headers: { Authorization: token } });
 				alert("O produto foi criado com sucesso!");
 				if (onClose) {
 					onClose();
