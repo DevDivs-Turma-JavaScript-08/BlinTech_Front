@@ -4,7 +4,7 @@ import CardEscolha from "../../components/cards/cardescolha/CardEscolha";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 
-export default function Servicos() {
+export default function PaginaServicos() {
 	const { usuario } = useContext(AuthContext);
 	const token = usuario.token;
 

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Sobre() {
+function PaginaSobre() {
 	return (
 		<main className="flex flex-col  bg-[url(https://i.imgur.com/x3Gn2Fn.png)] bg-repeat-x justify-center items-center text-white">
 			{/* Nossa História */}
@@ -132,4 +132,4 @@ function Sobre() {
 	);
 }
 
-export default Sobre;
+export default PaginaSobre;

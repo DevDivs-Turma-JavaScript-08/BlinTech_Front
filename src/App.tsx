@@ -8,9 +8,9 @@ import LoginAndRegisterPage from "./components/login/LoginAndRegisterPage";
 import MeusSeguros from "./pages/produtos/MeusSeguros";
 import CategoriaForm from "./components/categorias/categoriaForm/CategoriaForm";
 import Perfil from "./pages/perfil/Perfil";
-import Sobre from "./pages/sobre/Sobre";
-import Servicos from "./pages/servicos/Servicos";
 import ListaCategorias from "./components/categorias/listacategorias/ListaCategorias";
+import PaginaSobre from "./pages/sobre/PaginaSobre";
+import PaginaServicos from "./pages/servicos/PaginaServicos";
 
 function App() {
 	return (
@@ -22,9 +22,9 @@ function App() {
 						<Route path="/login" element={<LoginAndRegisterPage />} />
 						<Route path="/cadastro" element={<LoginAndRegisterPage />} />
 						<Route path="/" element={<Home />} />
-						<Route path="/sobre" element={<Sobre />} />
+						<Route path="/sobre" element={<PaginaSobre />} />
 						<Route path="/contato" element={<Contatos />} />
-						<Route path="/servicos" element={<Servicos />} />
+						<Route path="/servicos" element={<PaginaServicos />} />
 						<Route path="/produtos" element={<MeusSeguros />} />
 						<Route path="/produtos/contratar" element={<MeusSeguros />} />
 						<Route path="/produtos/editar/:id" element={<MeusSeguros />} />
