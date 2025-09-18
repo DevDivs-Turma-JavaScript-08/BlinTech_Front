@@ -84,8 +84,7 @@ function ProdutosList() {
 			</h1>
 			<NavLink to="/produtos/contratar">
 				<button className="my-6 border-2 border-(--tertiary) p-3 text-white font-bold rounded-4xl cursor-pointer hover:bg-(--tertiary) transition-all">
-					{" "}
-					Contrate um novo Seguro{" "}
+					Contrate um novo Seguro
 				</button>
 			</NavLink>
 

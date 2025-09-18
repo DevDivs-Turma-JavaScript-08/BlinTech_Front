@@ -107,6 +107,7 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 					},
 				});
 				alert("Seguro atualizado com sucesso!");
+        if (onClose) onClose();
 			} catch (error: any) {
 				if (error.toString().includes("401")) {
 					handleLogout();
@@ -122,6 +123,7 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 					},
 				});
 				alert("Seguro contratado com sucesso!");
+        if (onClose) onClose();
 			} catch (error: any) {
 				if (error.toString().includes("401")) {
 					handleLogout();

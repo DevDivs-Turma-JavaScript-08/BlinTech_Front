@@ -8,6 +8,8 @@ import Perfil from "./pages/perfil/Perfil";
 import ListaCategorias from "./components/layout/lists/CategoriasList";
 import PaginaSobre from "./pages/sobre/PaginaSobre";
 import ProdutosList from "./components/layout/lists/ProdutosList";
+import PaginaServicos from "./pages/servicos/PaginaServicos";
+import Contatos from "./pages/contato/Contato";
 
 function App() {
 	return (
@@ -20,6 +22,8 @@ function App() {
 						<Route path="/cadastro" element={<LoginAndRegisterPage />} />
 						<Route path="/" element={<Home />} />
 						<Route path="/sobre" element={<PaginaSobre />} />
+						<Route path="/servicos" element={<PaginaServicos />} />
+						<Route path="/contato" element={<Contatos />} />
 						<Route path="/produtos" element={<ProdutosList />} />
 						<Route path="/produtos/contratar" element={<ProdutosList />} />
 						<Route path="/produtos/editar/:id" element={<ProdutosList />} />

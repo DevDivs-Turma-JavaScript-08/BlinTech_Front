@@ -54,15 +54,14 @@ export default function CategoriasList() {
 
 	const handleDelete = async (id: number) => {
 		try {
-			await deletar(`/produto/${id}`, {
+			await deletar(`/categorias/${id}`, {
 				headers: { Authorization: token },
 			});
-			alert("Seguro cancelado com sucesso!");
+			alert("Categoria excluida com sucesso!");
 			setCategorias(categorias.filter((categoria) => categoria.id !== id));
-			// buscarProdutos();
 		} catch (error: any) {
-			console.error("Erro ao excluir produto: ", error);
-			alert("Erro ao excluir o produto.");
+			console.error("Erro ao excluir categoria: ", error);
+			alert("Erro ao excluir categoria.");
 		}
 	};
 
