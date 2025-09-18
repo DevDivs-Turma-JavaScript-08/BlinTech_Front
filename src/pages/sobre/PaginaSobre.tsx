@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import CtaContato from "../../components/buttons/CtaContato";
 
 function PaginaSobre() {
 	return (
@@ -121,9 +122,7 @@ function PaginaSobre() {
 					<h2 className="text-4xl font-bold mb-6">Pronto para Inovar?</h2>
 					<p className="text-xl mb-8 opacity-90">Entre em contato conosco e descubra como podemos transformar sua ideia em realidade.</p>
 					<Link to="/contatos">
-						<button className="bg-white text-(--primary-dark) px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors shadow-lg">
-							Contato
-						</button>
+						<CtaContato />
 					</Link>
 				</div>
 			</section>

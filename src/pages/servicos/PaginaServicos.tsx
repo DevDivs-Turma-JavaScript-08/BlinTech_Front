@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import BeneficiosSeguro from "../../components/cards/cardBeneficios/CardBeneficios";
-import CardEscolha from "../../components/cards/cardescolha/CardEscolha";
+import CardEscolha from "../../components/cards/cardMotivos/CardMotivos";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 
