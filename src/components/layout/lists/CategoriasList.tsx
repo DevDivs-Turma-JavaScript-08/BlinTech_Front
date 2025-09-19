@@ -5,6 +5,7 @@ import type Categoria from "../../../models/Categoria";
 import { buscar, deletar } from "../../../services/Services";
 import { AuthContext } from "../../../contexts/AuthContext";
 import CategoriaForm from "../../forms/CategoriaForm";
+import CtaCriar from "../../buttons/CtaCriar";
 
 export default function CategoriasList() {
 	const navigate = useNavigate();
@@ -72,11 +73,7 @@ export default function CategoriasList() {
 			<h2 className="text-5xl text-white font-bold text-center mb-6"> Nossas Categorias de Seguros </h2>
 
 			<div className="flex justify-center mb-10">
-				<NavLink
-					to={"/categorias/criar"}
-					className="my-6 border-2 border-(--secondary) p-3 text-white font-bold rounded-4xl cursor-pointer hover:bg-(--secondary) transition-all">
-					Adicionar Categoria
-				</NavLink>
+				<CtaCriar path="/categorias/criar" mainColor="--secondary" content="Adicionar Categoria" />
 			</div>
 
 			{showForm && (

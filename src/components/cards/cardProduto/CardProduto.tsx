@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import type Produto from "../../../models/Produto";
 import { useState } from "react";
+import CtaCard from "../../buttons/CtaCard";
+import { faEdit } from "@fortawesome/free-regular-svg-icons";
 
 interface CardProdutoProps {
 	seguro: Produto;
@@ -34,7 +36,7 @@ function CardProduto({ seguro, onDelete }: CardProdutoProps) {
 					<div className="flex flex-col md:flex-row justify-between items-start md:items-center">
 						<div>
 							<h2 className="text-2xl font-bold text-(--tertiary-light) tracking-wide">{seguro.nomeProduto}</h2>
-							<h2 className="text-sm font-bold text-(--tertiary-light) tracking-wide">{seguro.usuario?.nome}</h2>
+							<h2 className="text-sm font-bold text-(--tertiary-light) tracking-wide">Cliente: {seguro.usuario?.nome}</h2>
 						</div>
 						<div className="text-right text-gray-300 text-sm">
 							<span className="font-medium text-(--tertiary)">Contratado em:</span>
@@ -73,7 +75,7 @@ function CardProduto({ seguro, onDelete }: CardProdutoProps) {
 					</div>
 
 					{/* Descrição */}
-					<p className="text-gray-200 mt-2 text-sm">{seguro.descricao}</p>
+					<p className="text-wrap text-sm text-white leading-6 h-[60px] w-full overflow-x-auto scrollbar-custom">{seguro.descricao}</p>
 
 					{/* Valores */}
 					<div className="flex justify-between items-center my-4 border-t border-gray-700 pt-4">
@@ -89,38 +91,57 @@ function CardProduto({ seguro, onDelete }: CardProdutoProps) {
 
 					{/* Botões */}
 					<div className="flex justify-around items-center gap-4 mt-2">
-						<Link
-							to={`/produtos/editar/${seguro.id}`}
-							className="flex-1 text-center px-4 py-2 bg-(--primary) rounded-md text-white font-semibold transition-all duration-300 hover:scale-105 hover:bg-(--primary-dark) hover:border-2 border-(--tertiary) hover:shadow-lg hover:shadow-(--primary-light)/50">
-							Editar
-						</Link>
-						<button
+						<CtaCard
+							type="link"
+							path={`/produtos/editar/${seguro.id}`}
+							icon={faEdit}
+							textColor="white"
+							bgHover="(--primary-dark)"
+							bgColor="(--primary)"
+							border="(--tertiary)"
+						/>
+
+						<CtaCard
+							type="button"
+							text="Cancelar"
+							textColor="(--secondary)"
+							textHover="white"
+							border="(--secondary)"
+							bgColor="transparent"
+							bgHover="(--primary-ex-dark)"
 							onClick={handleShowModal}
-							className="flex-1 px-4 py-2 bg-transparent border-2 rounded-md text-(--secondary) font-semibold transition-all duration-300 hover:scale-105 hover:border-none hover:bg-(--secondary-dark) hover:text-white">
-							Excluir
-						</button>
+						/>
 					</div>
 				</div>
 			</div>
 			{showModal && (
 				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
 					<div className="bg-(--primary-dark) p-6 rounded-2xl shadow-2xl w-96 animate-fade-in">
-						<h3 className="text-xl font-bold mb-4 text-(--tertiary-light)">Confirmar Exclusão</h3>
+						<h3 className="text-xl font-bold mb-4 text-(--secondary)">Confirmar Cancelamento</h3>
 						<p className="mb-6 text-gray-200">
-							Tem certeza que deseja excluir a categoria <span className="font-semibold text-(--secondary)">{seguro.nomeProduto}</span>?
+							Tem certeza que deseja cancelar o seguro para o seu <span className="font-semibold text-(--tertiary-light)">{seguro.nomeProduto}</span>?
 						</p>
 
 						<div className="flex justify-end gap-4">
-							<button
+							<CtaCard
+								type="button"
+								text="Não"
+								textColor="(--tertiary-light)"
+								textHover="white"
+								bgColor="(--primary)"
+								bgHover="(--primary-dark)"
 								onClick={handleCloseModal}
-								className="px-4 py-2 rounded-md font-semibold border-2 border-(--tertiary) text-(--tertiary-light) transition-all duration-300 hover:bg-(--tertiary) hover:text-white">
-								Cancelar
-							</button>
-							<button
+								border="(--tertiary)"
+							/>
+							<CtaCard
+								type="button"
+								text="Sim"
+								textColor="(--secondary)"
+								textHover="white"
+								bgHover="(--primary-dark)"
 								onClick={handleConfirmDelete}
-								className="px-4 py-2 rounded-md font-semibold bg-(--primary) text-white transition-all duration-300 hover:scale-105 hover:bg-(--primary-dark) hover:shadow-lg hover:shadow-(--primary-light)/40">
-								Excluir
-							</button>
+								border="(--secondary)"
+							/>
 						</div>
 					</div>
 				</div>

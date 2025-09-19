@@ -5,6 +5,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { buscar, deletar } from "../../../services/Services";
 import CardMeuSeguro from "../../cards/cardProduto/CardProduto";
 import SegurosForm from "../../forms/ProdutosForm";
+import CtaCriar from "../../buttons/CtaCriar";
 
 function ProdutosList() {
 	const navigate = useNavigate();
@@ -82,11 +83,8 @@ function ProdutosList() {
 			<h1 className="text-5xl text-white font-bold text-center mb-6">
 				{usuario.tipoDeUsuario === "Segurador" ? "Todos os Seguros" : "Meus Seguros"}
 			</h1>
-			<NavLink to="/produtos/contratar">
-				<button className="my-6 border-2 border-(--tertiary) p-3 text-white font-bold rounded-4xl cursor-pointer hover:bg-(--tertiary) transition-all">
-					Contrate um novo Seguro
-				</button>
-			</NavLink>
+
+			<CtaCriar path="/produtos/contratar" mainColor="--tertiary" content="Contratar Seguro" textColor="(--secondary-dark)"/>
 
 			{showForm && (
 				<div className="fixed inset-0 z-50 flex items-center justify-center bg-(--primary-ex-dark)/75">

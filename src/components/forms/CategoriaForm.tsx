@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import type Categoria from "../../models/Categoria";
 import { AuthContext } from "../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../services/Services";
+import CtaCard from "../buttons/CtaCard";
 
 interface CategoriasFormProps {
 	onClose?: () => void;
@@ -90,16 +91,25 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 		retornar();
 	}
 
+  const handleOutsideClick = (event: React.MouseEvent<HTMLDivElement>) => {
+		if (event.target === event.currentTarget) {
+			retornar();
+		}
+	};
+
+
 	return (
-		<div className="min-h-[70vh] w-full py-10">
-			<div className="max-w-4xl mx-auto bg-(--primary-dark)/80 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-2xl border border-white/10">
+		<div className="fixed inset-0 z-50 flex items-center justify-center bg-(--primary-ex-dark)/40 backdrop-blur-sm" onClick={handleOutsideClick}>
+			<div
+				className="max-w-4xl mx-auto bg-(--primary-dark)/80 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-2xl border border-white/10"
+				onClick={(e) => e.stopPropagation()}>
 				<div className="text-center mb-6">
 					<h1 className="text-5xl font-bold mb-2 text-white">{id !== undefined ? "Atualizar a Categoria" : "Cadastrar a Categoria"}</h1>
 					<p className="text-violet-100/90 mt-1">Preencha os dados da cetegoria</p>
 				</div>
 				<form onSubmit={gerarNovaCategoria} className="space-y-5">
 					<fieldset>
-						<legend className="text-(--secondary) font-semibold text-center mb-4">Informações da Categoria</legend>
+						<legend className="text-white font-semibold text-center mb-4">Informações da Categoria</legend>
 
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 							<div className="relative" id="input">
@@ -152,18 +162,26 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 							</label>
 						</div>
 
-						<div className="flex justify-end gap-3 pt-2">
-							<button
-								type="button"
-								onClick={retornar}
-								className="px-6 py-3 outline-2 outline-(--secondary-dark) text-(--secondary) hover:text-white rounded-lg font-semibold hover:bg-(--secondary) transition-colors hover:cursor-pointer">
-								Cancelar
-							</button>
-							<button
+						<div className="flex justify-end gap-4 pt-4">
+							<CtaCard
 								type="submit"
-								className="px-6 py-3 bg-violet-500 text-white rounded-lg font-semibold hover:bg-violet-900 transition-colors hover:cursor-pointer hover:outline-2 hover:outline-(--tertiary)">
-								{id !== undefined ? "Atualizar" : "Criar"}
-							</button>
+								text={id !== undefined ? "Atualizar" : "Cadastrar"}
+								textColor="(--tertiary-light)"
+								textHover="(--tertiary-ex-light)"
+								bgColor="(--primary)"
+								bgHover="(--primary-dark)"
+								border="(--tertiary)"
+							/>
+
+							<CtaCard
+								type="button"
+								text="Voltar"
+								textColor="(--secondary)"
+								textHover="white"
+								bgHover="(--primary-dark)"
+								onClick={retornar}
+								border="(--secondary)"
+							/>
 						</div>
 					</fieldset>
 				</form>

@@ -4,6 +4,7 @@ import type Categoria from "../../models/Categoria";
 import type Produto from "../../models/Produto";
 import { AuthContext } from "../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../services/Services";
+import CtaCard from "../buttons/CtaCard";
 
 interface ProdutosFormProps {
 	onClose?: () => void;
@@ -107,7 +108,7 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 					},
 				});
 				alert("Seguro atualizado com sucesso!");
-        if (onClose) onClose();
+				if (onClose) onClose();
 			} catch (error: any) {
 				if (error.toString().includes("401")) {
 					handleLogout();
@@ -123,7 +124,7 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 					},
 				});
 				alert("Seguro contratado com sucesso!");
-        if (onClose) onClose();
+				if (onClose) onClose();
 			} catch (error: any) {
 				if (error.toString().includes("401")) {
 					handleLogout();
@@ -137,9 +138,17 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 		retornar();
 	}
 
+	const handleOutsideClick = (event: React.MouseEvent<HTMLDivElement>) => {
+		if (event.target === event.currentTarget) {
+			retornar();
+		}
+	};
+
 	return (
-		<div className="flex items-center justify-center">
-			<div className="bg-(--primary-dark)/95 px-8 py-4 rounded-lg shadow-xl w-[90vw] h-[90vh] max-w-3xl">
+		<div className="fixed inset-0 z-50 flex items-center justify-center bg-(--primary-ex-dark)/40 backdrop-blur-sm" onClick={handleOutsideClick}>
+			<div
+				className="bg-(--primary-dark)/95 px-8 py-4 rounded-lg backdrop-blur-md shadow-xl w-[90vw] h-[90vh] max-w-3xl"
+				onClick={(e) => e.stopPropagation()}>
 				<div className="text-center">
 					<h1 className="text-5xl font-bold mb-2 text-white">{id !== undefined ? "Atualizar Seguro" : "Contratar Seguro"}</h1>
 
@@ -276,18 +285,26 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 						</select>
 					</div>
 
-					<div className="flex justify-end space-x-4 pt-4 gap-2">
-						<button
-							type="button"
-							onClick={retornar}
-							className="px-6 py-3 outline-2 outline-(--secondary-dark) text-(--secondary) hover:text-white rounded-lg font-semibold hover:bg-(--secondary) transition-colors hover:cursor-pointer">
-							Cancelar
-						</button>
-						<button
+					<div className="flex justify-end pt-4 gap-4">
+						<CtaCard
 							type="submit"
-							className="px-6 py-3 bg-violet-500 text-white rounded-lg font-semibold hover:bg-violet-900 transition-colors hover:cursor-pointer hover:outline-2 hover:outline-(--tertiary)">
-							{id !== undefined ? "Atualizar" : "Contratar"}
-						</button>
+							text={id !== undefined ? "Atualizar" : "Contratar"}
+							textColor="(--tertiary-light)"
+							textHover="(--tertiary-ex-light)"
+							bgColor="(--primary)"
+							bgHover="(--primary-dark)"
+							border="(--tertiary)"
+						/>
+
+						<CtaCard
+							type="button"
+							text="Voltar"
+							textColor="(--secondary)"
+							textHover="white"
+							bgHover="(--primary-dark)"
+							onClick={retornar}
+							border="(--secondary)"
+						/>
 					</div>
 				</form>
 			</div>

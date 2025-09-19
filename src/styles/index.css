@@ -337,6 +337,28 @@
   }
 }
 
+/* Para a barra de rolagem inteira */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 8px; /* Largura da barra de rolagem */
+}
+
+/* Para o "track" (a trilha onde a barra desliza) */
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: var(--primary-dark); /* Fundo da trilha */
+}
+
+/* Para o "thumb" (o elemento que desliza) */
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: var(--primary); /* Cor do elemento deslizante */
+  border-radius: 4px; /* Arredondamento das bordas */
+  border: 1px solid var(--primary-dark); /* Borda ao redor do thumb */
+}
+
+/* Para o hover do thumb */
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-light); /* Cor do thumb no hover */
+}
+
 /* .cta {
   transition: all 0.5s;
   font-size: 1.25rem;
