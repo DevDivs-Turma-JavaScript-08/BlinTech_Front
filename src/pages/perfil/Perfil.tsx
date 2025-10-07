@@ -1,43 +1,78 @@
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { buscar, deletar } from "../../services/Services";
+import type Produto from "../../models/Produto";
+import CardProduto from "../../components/cards/cardProduto/CardProduto";
+import ModalPerfil from "../../components/forms/ModalPerfil";
+
 
 export default function Perfil() {
-	const navigate = useNavigate();
 
+	const [seguros, setSeguros] = useState<Produto[]>([]);
 	const { usuario } = useContext(AuthContext);
+	const token = usuario.token;
+
+	//isso atualiza o valor de seguros com o getAll do buscar da service
+	async function buscarProdutos() {
+		await buscar("/produto", setSeguros, {
+			headers: { Authorization: token },
+		});
+	}
 
 	useEffect(() => {
-		if (usuario.token === "") {
+		buscarProdutos();
+	}, []);
+
+	const usuarioSeguros = seguros.filter((seguro) => seguro.usuario.id === usuario.id);
+
+	console.log("teste 2: ", seguros);
+
+	useEffect(() => {
+		if (token === "") {
 			alert("Você precisa estar logado");
-			navigate("/");
 		}
 	}, [usuario.token]);
 
-	return (
-		<main className="relative h-screen w-full flex flex-col items-center">
-			<div className="bg-violet-700 w-[100%] h-[300px]">
-				<button className="p-2 w-[100px] text-white m-4 rounded-2xl hover:cursor-pointer hover:underline ">&larr; Voltar</button>
-			</div>
+	const handleDelete = async (id: number) => {
+		try {
+			await deletar(`/produto/${id}`, {
+				headers: { Authorization: token },
+			});
+			alert("Seguro cancelado com sucesso!");
+			setSeguros(seguros.filter((seguro) => seguro.id !== id));
+			// buscarProdutos();
+		} catch (error) {
+			console.error("Erro ao excluir produto: ", error);
+			alert("Erro ao excluir o produto.");
+		}
+	};
 
-			<section className="absolute items-center top-1/6 shadow-2xl">
-				<div className="flex gap-8 p-5 bg-white w-[750px] h-[300px] ">
-					{/* <div className="bg-black rounded-full h-35 w-35"></div> */}
+	return (
+		<main className="items-center mt-10">
+			<div className="flex flex-col items-center">
+				<div className="flex gap-8 rounded-3xl p-5 bg-white w-[500px] h-[300px] ">
 					<img className="rounded-full h-35 w-35" src={usuario.foto} alt="foto" />
 					<div className="flex flex-col gap-2 w-[300px]">
 						<h3 className="font-semibold text-2xl">{usuario.nome}</h3>
 						<p>CPF: {usuario.cpf}</p>
 						<p>Email: {usuario.email}</p>
+						<p>nome: {usuario.nome}</p>
 
-						<button className="mt-10 bg-violet-400 p-3 rounded-2xl w-[150px] hover:cursor-pointer hover:bg-violet-500">Editar Perfil</button>
+						<div>
+							<ModalPerfil />
+						</div>
 					</div>
 				</div>
-			</section>
 
-			<section className="relative top-1/5 ">
-				<h1>seguros efetuados do fulano ciclano</h1>
-				<div>cardsSeguros</div>
-			</section>
+				<div className="flex flex-col items-center mt-7 gap-7">
+					<h1 className="text-white text-3xl">seguros efetuados</h1>
+					<div className="flex justify-center gap-8 w-full flex-wrap max-w-7xl">
+						{usuarioSeguros.map((seguro) => (
+							<CardProduto key={seguro.id} seguro={seguro} onDelete={handleDelete} />
+						))}
+					</div>
+				</div>
+			</div>
 		</main>
 	);
 }

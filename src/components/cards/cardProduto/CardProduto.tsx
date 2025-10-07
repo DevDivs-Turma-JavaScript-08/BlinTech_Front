@@ -31,7 +31,7 @@ function CardProduto({ seguro, onDelete }: CardProdutoProps) {
 				key={seguro.id}
 				className="overflow-hidden flex flex-col bg-(--primary-dark)/45 w-80 text-white rounded-xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl">
 				{/* Container Principal */}
-				<div className="flex flex-col gap-4">
+				<div className="flex flex-col justify-between gap-4">
 					{/* Título e Data de Contratação */}
 					<div className="flex flex-col md:flex-row justify-between items-start md:items-center">
 						<div>

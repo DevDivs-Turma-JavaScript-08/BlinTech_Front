@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CardCategorias from "../../cards/cardCategorias/CardCategorias";
 import { useContext, useEffect, useState } from "react";
 import type Categoria from "../../../models/Categoria";
@@ -24,11 +24,7 @@ export default function CategoriasList() {
 			alert("Você precisa estar logado!");
 			navigate("/");
 		}
-	}, [token]);
-
-	useEffect(() => {
-		buscarCategorias();
-	}, [categorias.length]);
+	}, [token, navigate]);
 
 	async function buscarCategorias() {
 		try {
@@ -37,12 +33,16 @@ export default function CategoriasList() {
 			await buscar("/categorias", setCategorias, {
 				headers: { Authorization: token },
 			});
-		} catch (error: any) {
+		} catch (error) {
 			if (error.toString().includes("401")) {
 				handleLogout();
 			}
 		}
 	}
+
+  	useEffect(() => {
+			buscarCategorias();
+		}, [categorias.length]);
 
 	useEffect(() => {
 		setShowForm(location.pathname !== "/categorias");
@@ -60,7 +60,7 @@ export default function CategoriasList() {
 			});
 			alert("Categoria excluida com sucesso!");
 			setCategorias(categorias.filter((categoria) => categoria.id !== id));
-		} catch (error: any) {
+		} catch (error) {
 			console.error("Erro ao excluir categoria: ", error);
 			alert("Erro ao excluir categoria.");
 		}

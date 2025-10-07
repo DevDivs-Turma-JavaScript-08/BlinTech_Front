@@ -94,6 +94,7 @@ function Home() {
 	return (
 		<main className="flex flex-col w-full bg-(--primary-ex-dark) text-white">
 			{/* Hero */}
+
 			<section className="h-[600px] flex flex-col justify-center bg-[url(https://i.imgur.com/mU1UVb3.png)] bg-cover bg-center bg-no-repeat gap-30 pl-12">
 				<div>
 					<h1 className="mt-20 text-5xl font-bold text-shadow-[0_0px_5px_rgb(0_0_0_/_0.9)]">
@@ -116,10 +117,10 @@ function Home() {
 			{/* Beneficios */}
 			<section className="bg-[url(https://i.imgur.com/HPqDoFo.png)] h-fit py-30 gap-4 flex flex-col items-center p-8">
 				<div className="text-center">
-					<h2 className="text-6xl font-bold"> Benefícios </h2>
+					<h2 className="text-4xl sm:text-6xl font-bold"> Benefícios </h2>
 					<p> Quais os benefícios do meu seguro?</p>
 				</div>
-				<div className="flex justify-center items-center content-center gap-7 px-4 py-4">
+				<div className="flex flex-col md:flex-row justify-center items-center gap-7 px-4 py-4 w-full max-w-7xl md:w-full">
 					{beneficios.map((beneficio) => (
 						<CardBeneficios key={beneficio.id} beneficios={beneficio} />
 					))}

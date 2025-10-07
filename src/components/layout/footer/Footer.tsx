@@ -11,7 +11,7 @@ export default function Footer() {
 							alt="Logo BlinTech"
 							className="w-30"
 						/>
-						<p className="text-white font-semibold text-sm">Seu dispositivo, nossa segurança!</p>
+						<p className="text-white font-semibold text-sm text-center">Seu dispositivo, nossa segurança!</p>
 					</div>
 						<div className="w-fit grid grid-cols-2 md:grid-cols-4 gap-15 ml-8">
 							<div>
@@ -95,8 +95,7 @@ export default function Footer() {
 
 							<div>
 								<Link to="/contato" className="text-(--secondary) font-semibold mb-4">
-									{" "}
-									Contato{" "}
+									Contato
 								</Link>
 								<ul className="space-y-2 text-gray-400 text-sm">
 									<li>
