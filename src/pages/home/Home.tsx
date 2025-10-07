@@ -95,16 +95,16 @@ function Home() {
 		<main className="flex flex-col w-full bg-(--primary-ex-dark) text-white">
 			{/* Hero */}
 
-			<section className="h-[600px] flex flex-col justify-center bg-[url(https://i.imgur.com/mU1UVb3.png)] bg-cover bg-center bg-no-repeat gap-30 pl-12">
+			<section className="md:h-[600px] h-[450px] w-full flex flex-col justify-center md:bg-[url(https://i.imgur.com/mU1UVb3.png)] bg-[url(https://i.imgur.com/rgMwbtp.png)] bg-cover bg-center bg-no-repeat md:gap-30 gap-15 md:pl-12 pl-4">
 				<div>
-					<h1 className="mt-20 text-5xl font-bold text-shadow-[0_0px_5px_rgb(0_0_0_/_0.9)]">
+					<h1 className="md:mt-20 text-5xl font-bold text-shadow-[0_0px_5px_rgb(0_0_0_/_0.9)]">
 						SEGURO PARA <br /> SEUS ELETRÔNICOS
 					</h1>
 					<p className="mt-4"> Tranquilidade e proteção completa para os seus aparelhos favoritos. </p>
 				</div>
 
-				<div className="pl-12">
-					<Link to={token !== "" ? `/produtos` : `/login`}>
+				<div className="md:pl-12 pl-4 w-full">
+					<Link to={token !== "" ? `/produtos` : `/login`} className="w-fit">
 						<CtaHome />
 					</Link>
 
@@ -115,7 +115,7 @@ function Home() {
 			</section>
 
 			{/* Beneficios */}
-			<section className="bg-[url(https://i.imgur.com/HPqDoFo.png)] h-fit py-30 gap-4 flex flex-col items-center p-8">
+			<section className="bg-[url(https://i.imgur.com/HPqDoFo.png)] h-fit md:py-30 gap-4 flex flex-col items-center md:p-8 py-8">
 				<div className="text-center">
 					<h2 className="text-4xl sm:text-6xl font-bold"> Benefícios </h2>
 					<p> Quais os benefícios do meu seguro?</p>
@@ -132,8 +132,8 @@ function Home() {
 
 			{/* FAQ */}
 			<section className="bg-(--primary-ex-dark) bg-[url(https://i.imgur.com/3dP6eJR.png)] bg-repeat-x flex h-fit w-full flex-col justify-center items-center mb-4 p-4 gap-8 py-30">
-				<h2 className="text-5xl text-white font-bold"> Dúvidas Frequentes </h2>
-				<div className="w-full flex flex-col gap-2 px-30">
+				<h2 className="text-4xl sm:text-6xl font-bold"> Dúvidas Frequentes </h2>
+				<div className="w-full flex flex-col gap-2 md:px-30">
 					{faqs.map((faq) => (
 						<Duvidas key={faq.id} faqs={faq} />
 					))}

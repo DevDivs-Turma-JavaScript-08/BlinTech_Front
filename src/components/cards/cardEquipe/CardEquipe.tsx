@@ -72,17 +72,17 @@ export default function CardEquipe() {
 	}
 
 	return (
-		<div className="flex flex-col w-full items-center px-6 pb-12 gap-6 text-white">
-			<h1 className="text-6xl font-bold p-3"> Nossa Equipe </h1>
-			<div className="flex items-center">
+		<div className="flex flex-col w-full items-center px-6 pb-12 md:gap-6 text-white">
+			<h1 className="text-4xl md:text-6xl font-bold p-3"> Nossa Equipe </h1>
+			<div className="flex flex-col-reverse md:flex-row items-center gap-4 md:gap-0">
 				<div className="flex flex-wrap justify-center gap-6">
 					{ListEquipe.map((equipe) => (
 						<div
 							key={equipe.nome}
 							onClick={() => handleSelect(equipe)}
 							className={`
-              w-56 h-auto p-4 flex flex-col items-center justify-center 
-               rounded-lg cursor-pointer
+              w-30 md:w-56 h-auto p-4 flex flex-col items-center justify-center 
+              rounded-lg cursor-pointer
               transform transition-all duration-300 hover:scale-105
               ${
 								selecionado?.nome === equipe.nome
@@ -90,7 +90,7 @@ export default function CardEquipe() {
 									: "border-2 border-transparent bg-(--primary-ex-dark) shadow-lg  "
 							}
             `}>
-							<div className="w-24 h-24 rounded-full overflow-hidden mb-2">
+							<div className="w-10 md:w-24 md:h-24 rounded-full overflow-hidden mb-2">
 								<img src={equipe.foto} alt={`Foto de ${equipe.nome}`} className="w-full h-full object-cover" />
 							</div>
 							<span className="text-lg font-semibold">{equipe.nome}</span>
@@ -100,15 +100,15 @@ export default function CardEquipe() {
 				</div>
 
 				{selecionado ? (
-					<div className="h-fit w-full p-8 m-4 bg-(--primary-ex-dark) rounded-tl-[250px] rounded-br-[500px] rounded-bl-2xl shadow-[0_0px_10px_rgb(0_0_0_/_0.9)] flex flex-col items-center justify-between transition-all duration-500 content-center">
-						<div className="flex items-center">
+					<div className="h-fit w-full p-4 md:p-8 md:m-4 bg-(--primary-ex-dark) rounded-tl-[250px] rounded-br-[250px] md:rounded-br-[500px] rounded-bl-2xl shadow-[0_0px_10px_rgb(0_0_0_/_0.9)] flex flex-col items-center justify-between transition-all duration-500 content-center">
+						<div className="flex items-center flex-col md:flex-row">
 							<div>
-								<h2 className="text-3xl font-bold mb-2 text-white">{selecionado.nome}</h2>
-								<p className="text-xl italic text-(--secondary) mb-4">"{selecionado.frase}"</p>
-								<p className="mt-4 text-lg font-semibold text-white">{selecionado.formacao}</p>
+								<h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">{selecionado.nome}</h2>
+								<p className="md:text-xl italic text-(--secondary) mb-4">"{selecionado.frase}"</p>
+								<p className="mt-4 md:text-lg font-semibold text-white">{selecionado.formacao}</p>
 							</div>
 							<div className="p-2 text-center">
-								<img src={selecionado.foto} alt={`Foto de ${selecionado.nome}`} className="w-50 h-50 rounded-4xl shadow-lg" />
+								<img src={selecionado.foto} alt={`Foto de ${selecionado.nome}`} className="w-50 md:h-50 rounded-4xl shadow-lg" />
 							</div>
 						</div>
 						<div className="flex flex-col items-center md:items-start text-center md:text-left">

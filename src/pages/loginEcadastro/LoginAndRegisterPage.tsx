@@ -85,13 +85,13 @@ const LoginAndRegisterPage: React.FC = () => {
 		"rounded-xl peer-placeholder-shown:-z-10 peer-focus:z-10 absolute text-[14px] leading-[150%] text-primary peer-focus:text-primary peer-invalid:text-error-500 focus:invalid:text-error-500 duration-300 transform -translate-y-[1.2rem] scale-75 top-2 z-10 origin-[0] bg-(--primary) data-[disabled]:bg-gray-50-background- px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.2rem] rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 text-white h-fit";
 
 	return (
-		<div className="flex h-[90vh] p-9 w-full bg-cover bg-center gap-3 bg-[url(https://i.imgur.com/RpvQcny.png)] relative overflow-hidden">
+		<div className="flex flex-col md:flex-row h-[700px] md:h-[90vh] p-4 md:p-9 w-full bg-cover bg-center gap-4 md:gap-3 bg-[url(https://i.imgur.com/RpvQcny.png)] relative overflow-hidden">
 			{/* Container do formulário de Login */}
 			<div
-				className={`flex flex-col justify-center items-center w-1/2 bg-(--primary-dark)/40 backdrop-blur-lg shadow-lg rounded-3xl transition-transform duration-700 ${
+				className={`flex flex-col justify-center items-center w-full md:w-1/2 bg-(--primary-dark)/40 backdrop-blur-lg shadow-lg rounded-3xl transition-transform duration-700 ${
 					showLogin ? "transform translate-x-0" : "transform -translate-x-[110%]"
 				}`}>
-				<div className="w-3/4 max-w-md bg-(--primary-ex-dark)/60 p-10 rounded-2xl shadow-xl">
+				<div className="w-fit md:w-3/4 max-w-md bg-(--primary-ex-dark)/60 p-10 rounded-2xl shadow-xl">
 					<h2 className="text-2xl font-bold text-white mb-2">
 						Bem vindo <span className="text-(--secondary)">BlinTech</span>
 					</h2>
@@ -144,13 +144,13 @@ const LoginAndRegisterPage: React.FC = () => {
 
 			{/* Container do formulário de Cadastro */}
 			<div
-				className={`flex flex-col justify-center items-center w-1/2 bg-(--primary-ex-dark)/40 backdrop-blur-lg shadow-lg rounded-3xl absolute top-9 left-1/2 h-[calc(100%-4.5rem)] transition-transform duration-700 ${
+				className={`flex flex-col justify-center items-center h-fit w-[90vw] md:w-1/2 bg-(--primary-ex-dark)/40 backdrop-blur-lg shadow-lg rounded-3xl absolute md:top-9 left-8 md:left-1/2 md:h-[calc(100%-4.5rem)] transition-transform duration-700 ${
 					showLogin ? "transform translate-x-full z-10" : "transform translate-x-[-3%] z-20"
 				}`}>
 				<form onSubmit={cadastrarNovoUsuario} className="w-full max-w-2xl p-10 text-white">
 					<fieldset className="w-full">
 						<legend className="text-2xl font-bold text-center mb-2">Cadastrar Usuário</legend>
-						<h3 className="text-lg font-semibold mb-4">Informações Pessoais</h3>
+						<h3 className="text-lg font-semibold text-center mb-4">Informações Pessoais</h3>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 							<div className="relative" id="input">
 								<input
@@ -257,7 +257,19 @@ const LoginAndRegisterPage: React.FC = () => {
 								Link da foto de Perfil
 							</label>
 						</div>
-						<div className="mt-8 flex justify-center">
+						<div className="gap-5 mt-8 flex justify-center">
+							<NavLink to="/login" className="md:hidden">
+								<button
+									onClick={() => setShowLogin(true)}
+									className={`px-6 py-2 rounded-lg ${
+										showLogin
+											? "bg-(--tertiary) text-white"
+											: "text-(--secondary) hover:text-(--secondary-dark) transition-all border-2 font-bold hover:bg-(--secondary-light) border-(--secondary)"
+									}`}>
+									Login
+								</button>
+							</NavLink>
+
 							<button
 								type="submit"
 								className="px-6 py-2 rounded-md bg-(--tertiary-dark) hover:bg-(--tertiary) text-white font-bold transition-all hover:text-(--secondary-dark)">
@@ -270,8 +282,8 @@ const LoginAndRegisterPage: React.FC = () => {
 
 			{/* Coluna direita - Banner e botões de alternância */}
 			<div
-				className={`flex flex-col justify-center items-center w-1/2 bg-(--primary-dark)/90 text-white rounded-3xl relative transition-all duration-700 ${
-					showLogin ? "transform translate-x-0 z-20" : "transform translate-x-[-105%] z-10"
+				className={`flex flex-col justify-center items-center w-full p-3 md:p-0 md:w-1/2 bg-(--primary-dark)/90 text-white rounded-3xl relative transition-all duration-700 ${
+					showLogin ? "md:transform translate-x-0 z-20" : "md:transform translate-x-[-105%] z-10"
 				}`}>
 				<div className="max-w-md text-center">
 					<h3 className="text-3xl font-bold">

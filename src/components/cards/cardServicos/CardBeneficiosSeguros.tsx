@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function BeneficiosSeguro() {
+export default function CardBeneficiosSeguros() {
 	const beneficios = [
 		{
 			id: 1,
@@ -31,7 +31,7 @@ export default function BeneficiosSeguro() {
 				{beneficios.map((item, index) => (
 					<div
 						key={index}
-						className="w-fit h- rounded-[20px] bg-(--primary-ex-dark) py-6 px-8 text-center border border-(--tertiary) hover:border-violet-500 transition-colors duration-300">
+						className="w-fit rounded-[20px] bg-(--primary-ex-dark) py-6 px-8 text-center border border-(--tertiary) hover:border-violet-500 transition-colors duration-300">
 						<img
 							src={item.imagem}
 							alt={item.titulo}
@@ -49,7 +49,9 @@ export default function BeneficiosSeguro() {
 						<p className="text-gray-400 mb-5 text-base leading-relaxed">{item.descricao}</p>
 
 						<div className="flex flex-wrap gap-3">
-							<Link to="/produtos" className="bg-violet-500 border-violet-500 block w-full rounded-lg border p-3 text-center text-base font-medium text-white transition hover:bg-opacity-90">
+							<Link
+								to="/produtos"
+								className="bg-violet-500 border-violet-500 block w-full rounded-lg border p-3 text-center text-base font-medium text-white transition hover:bg-opacity-90">
 								Contratar Agora
 							</Link>
 						</div>

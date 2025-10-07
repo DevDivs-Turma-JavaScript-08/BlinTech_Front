@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
-import BeneficiosSeguro from "../../components/cards/cardBeneficios/CardBeneficios";
 import CardEscolha from "../../components/cards/cardMotivos/CardMotivos";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import CardBeneficiosSeguros from "../../components/cards/cardServicos/CardBeneficiosSeguros";
 
 export default function PaginaServicos() {
 	const { usuario } = useContext(AuthContext);
@@ -18,7 +18,7 @@ export default function PaginaServicos() {
 		<main className="flex flex-col w-full min-h-screen gap-3 text-white">
 			{/* orcamento */}
 			<section className="w-full">
-				<div className="bg-[url(https://i.imgur.com/G4pfZ69.png)] bg-contain p-7 h-[350px] flex items-center justify-center flex-col gap-5 text-white text-center">
+				<div className="bg-[url(https://i.imgur.com/G4pfZ69.png)] bg-repeat-x bg-contain p-7 h-[350px] flex items-center justify-center flex-col gap-5 text-white text-center">
 					<h1 className="text-5xl ">Proteja seus eletronicos com seguranca</h1>
 
 					<p className="text-[19px]">Diversos tipos de cobertura, escolha aquele que entre no seu bolso</p>
@@ -38,7 +38,7 @@ export default function PaginaServicos() {
 				<h1 className="text-3xl font-semibold">Nossos Produtos</h1>
 				<p className="">Escolha o plano ideal para seus dispositivos</p>
 				<div>
-					<BeneficiosSeguro />
+					<CardBeneficiosSeguros />
 				</div>
 			</section>
 

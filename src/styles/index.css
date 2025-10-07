@@ -387,3 +387,63 @@
   border: 1px solid var(--tertiary-dark);
   box-shadow: none;
 } */
+
+@media (max-width: 480px) {
+  /* From Uiverse.io by mobinkakei */
+.cta {
+	padding: 6px 15px;
+	font-size: 20px;
+}
+
+.cta:hover {
+	transition: 0.5s;
+	color: var(--primary-ex-dark);
+	background: var(--tertiary);
+	box-shadow: 10px 10px 0 #e1ffc550;
+}
+
+.cta .second {
+	transition: 0.5s;
+	margin-right: 0px;
+}
+
+.cta:hover .second {
+	transition: 0.5s;
+	margin-right: 5px;
+}
+
+.span {
+	transform: skewX(15deg);
+}
+
+.second {
+	width: 20px;
+	margin-left: 5px;
+	top: 12%;
+}
+
+.one {
+	transition: 0.4s;
+	transform: translateX(-60%);
+}
+
+.two {
+	transition: 0.5s;
+	transform: translateX(-30%);
+}
+
+.cta:hover .three {
+	animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover .one {
+	transform: translateX(0%);
+	animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover .two {
+	transform: translateX(0%);
+	animation: color_anim 1s infinite 0.4s;
+}
+
+}

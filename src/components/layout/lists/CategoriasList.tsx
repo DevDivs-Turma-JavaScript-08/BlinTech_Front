@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import CardCategorias from "../../cards/cardCategorias/CardCategorias";
 import { useContext, useEffect, useState } from "react";
 import type Categoria from "../../../models/Categoria";
 import { buscar, deletar } from "../../../services/Services";
 import { AuthContext } from "../../../contexts/AuthContext";
 import CategoriaForm from "../../forms/CategoriaForm";
 import CtaCriar from "../../buttons/CtaCriar";
+import CardCategorias from "../../cards/cardCategorias/CardCategorias";
 
 export default function CategoriasList() {
 	const navigate = useNavigate();
