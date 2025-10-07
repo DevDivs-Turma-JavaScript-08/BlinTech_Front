@@ -115,7 +115,7 @@ export default function Footer() {
 
 					<div className="flex space-x-3">
 						<a href="https://github.com/DevDivs-Turma-JavaScript-08" target="_blank" rel="noopener noreferrer">
-							<FontAwesomeIcon icon={faGithub} size="2xl" className="text-white" />
+							<img src="https://i.imgur.com/IAxiPUI.png" className="text-white w-[30px]" />
 						</a>
 					</div>
 				</div>
