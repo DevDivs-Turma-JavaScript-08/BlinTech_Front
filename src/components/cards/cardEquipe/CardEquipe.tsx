@@ -15,24 +15,26 @@ export default function CardEquipe() {
 			nome: "Agata",
 			funcao: "Desenvolvedora",
 			frase: "Seja a mudança que você quer ver no mundo.",
-			pitch: "Apaixonada por soluções front-end e experiência do usuário, busco transformar ideias em interfaces intuitivas e funcionais.",
-			formacao: "Generation Brasil - JavaScript Fullstack",
+			pitch: "Desenvolvedora Full Stack especializada em JavaScript, com experiência em backend com NestJS e front-end em React, aplicando boas práticas de arquitetura e desenvolvimento de software.",
+			formacao: "Formada em Análise e Desenvolvimento de Sistemas",
 		},
 		{
 			foto: "https://i.imgur.com/r9JoYhT.png",
 			nome: "Alex",
 			funcao: "Desenvolvedor",
-			frase: "Acredite no seu potencial, ele é infinito.",
-			pitch: "Especialista em back-end, construo APIs robustas e escaláveis, garantindo a performance e a segurança dos nossos sistemas.",
-			formacao: "Generation Brasil - JavaScript Fullstack",
+			frase: "Não seja como você é, mas como deveria ser",
+			pitch:
+				"Técnico em Administração, atualmente cursando Ciência da Computação e participante do bootcamp da Generation Brasil. Estou focado em me tornar desenvolvedor JavaScript Fullstack, enfrentando desafios diários com persistência, adaptabilidade e dedicação.",
+			formacao: "Cursando Ciências da Computação",
 		},
 		{
 			foto: "https://i.imgur.com/Q1Z67IP.png",
 			nome: "Grazielle",
 			funcao: "Desenvolvedora",
-			frase: "O sucesso é a soma de pequenos esforços.",
-			pitch: "Com foco em arquitetura de software, crio soluções otimizadas e de alta qualidade que impulsionam o crescimento do projeto.",
-			formacao: "Generation Brasil - JavaScript Fullstack",
+			frase: "Troquei o medo pelo movimento, e encontrei novas possibilidades.",
+			pitch:
+				"Sou Administradora por Formação e atualmente estou em transição de carreira para área de tecnologia. Estou cursando Ciências da Computação e atuo como Desenvolvedora Full-Stack, unindo minha experiência em gestão e visão estratégica ao desenvolvimento de soluções tecnológicas completas. Acredito no poder da inovação e da aprendizagem continua para transformar ideais em resultados.",
+			formacao: "Formada em ADM e Logística e Cursando Ciência da Computação",
 		},
 		{
 			foto: "https://i.imgur.com/U6lUbHW.png",
@@ -45,11 +47,11 @@ export default function CardEquipe() {
 		{
 			foto: "https://i.imgur.com/EuTNqNp.png",
 			nome: "Lucas",
-			funcao: "PO",
+			funcao: "Product Owner",
 			frase: "Lidere com paixão e inspire a equipe.",
 			pitch:
 				"Como Product Owner, meu objetivo é alinhar a visão do produto com as necessidades do mercado, garantindo que entreguemos o máximo de valor.",
-			formacao: "Generation Brasil - JavaScript Fullstack",
+			formacao: "Formado em Engenharia Civil e Jogos Digitais",
 		},
 		{
 			foto: "https://i.imgur.com/0kpfncl.png",
@@ -100,19 +102,21 @@ export default function CardEquipe() {
 				</div>
 
 				{selecionado ? (
-					<div className="h-fit w-full p-4 md:p-8 md:m-4 bg-(--primary-ex-dark) rounded-tl-[250px] rounded-br-[250px] md:rounded-br-[500px] rounded-bl-2xl shadow-[0_0px_10px_rgb(0_0_0_/_0.9)] flex flex-col items-center justify-between transition-all duration-500 content-center">
+					<div className="h-fit w-full p-4 md:p-8 md:m-4 bg-(--primary-ex-dark) rounded-tl-[250px] rounded-br-[250px] md:rounded-br-[500px] rounded-bl-2xl shadow-[0_0px_10px_rgb(0_0_0_/_0.9)] flex flex-col items-center justify-between transition-all duration-500 content-center md:gap-4">
 						<div className="flex items-center flex-col md:flex-row">
-							<div>
+							<div className="md:w-[60%]">
 								<h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">{selecionado.nome}</h2>
 								<p className="md:text-xl italic text-(--secondary) mb-4">"{selecionado.frase}"</p>
-								<p className="mt-4 md:text-lg font-semibold text-white">{selecionado.formacao}</p>
+								<p className="mt-4 md:text-md font-semibold text-white">{selecionado.formacao}</p>
 							</div>
-							<div className="p-2 text-center">
-								<img src={selecionado.foto} alt={`Foto de ${selecionado.nome}`} className="w-50 md:h-50 rounded-4xl shadow-lg" />
+							<div className="p-2 text-center md:w-[30%]">
+								<img src={selecionado.foto} alt={`Foto de ${selecionado.nome}`} className="w-50 md:w-50 rounded-4xl shadow-lg" />
 							</div>
 						</div>
 						<div className="flex flex-col items-center md:items-start text-center md:text-left">
-							<p className="text-md bg-(--primary-ex-light) text-white px-4 py-2 rounded-tl-4xl rounded-br-4xl rounded-bl-2xl">{selecionado.pitch}</p>
+							<p className="text-md bg-(--primary-light)/70 text-white px-4 py-2 rounded-tl-4xl rounded-tr-2xl rounded-br-4xl rounded-bl-2xl">
+								{selecionado.pitch}
+							</p>
 						</div>
 					</div>
 				) : (

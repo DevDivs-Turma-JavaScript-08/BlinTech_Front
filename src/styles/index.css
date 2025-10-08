@@ -173,7 +173,7 @@
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 300ms;
-  box-shadow: 0px 0px 10px 1px #000000ee;
+  box-shadow: 0px 0px 10px 1px #8ee000ee;
   border-radius: 5px;
 }
 
@@ -203,7 +203,7 @@
   display: block;
   width: 160px;
   height: 160%;
-  background: linear-gradient(90deg, transparent, var(--tertiary), var(--secondary), var(--secondary), var(--tertiary), transparent);
+  background: linear-gradient(90deg, transparent, var(--tertiary-dark), var(--tertiary), var(--tertiary-dark), transparent);
   animation: rotation_481 5000ms infinite linear;
 }
 
@@ -218,7 +218,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
 }
 
 .cardSobre:hover .content {
@@ -251,7 +251,7 @@
 }
 
 .front-content .badge {
-  background-color: #00000055;
+  background-color: #f25c00aa;
   padding: 2px 10px;
   border-radius: 10px;
   backdrop-filter: blur(2px);
@@ -288,21 +288,12 @@
 }
 
 .front .img {
+  background-color: var(--primary-dark);
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-}
-
-.circle {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background-color: var(--tertiary);
-  position: relative;
-  filter: blur(15px);
-  animation: floating 2600ms infinite linear;
 }
 
 #bottom {
@@ -358,6 +349,207 @@
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
   background-color: var(--primary-light); /* Cor do thumb no hover */
 }
+
+/* CTA Contato - Sobre */
+
+/* From Uiverse.io by nikk7007 */ 
+.ctabubbles {
+  --size-letter: 1.5rem;
+  padding: 0.5em 1em;
+  font-size: var(--size-letter);
+
+  background-color: transparent;
+  border: calc(var(--size-letter) / 6) solid var(--tertiary);
+  border-radius: 1.5rem;
+  cursor: pointer;
+
+  overflow: hidden;
+  position: relative;
+  transition: 300ms cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.ctabubbles > .ctabubbles_text {
+  font-weight: 700;
+  color: var(--tertiary);
+  position: relative;
+  z-index: 1;
+  transition: color 700ms cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.ctabubbles::before {
+  top: 0;
+  left: 0;
+}
+
+.ctabubbles::after {
+  top: 100%;
+  left: 100%;
+}
+
+.ctabubbles::before,
+.ctabubbles::after {
+  content: "";
+  width: 150%;
+  aspect-ratio: 1/1;
+  scale: 0;
+  transition: 800ms cubic-bezier(0.76, 0, 0.24, 1);
+
+  background-color: var(--tertiary);
+  border-radius: 50%;
+
+  position: absolute;
+  translate: -50% -50%;
+}
+
+.ctabubbles:hover {
+  & > span {
+    color: var(--primary);
+  }
+  &::before,
+  &::after {
+    scale: 1;
+  }
+}
+
+.ctabubbles:active {
+  scale: 0.98;
+  filter: brightness(0.9);
+}
+
+/* CTA Seguro - Serviços */
+
+/* From Uiverse.io by nikk7007 */ 
+.ctabubbles_orange {
+  --size-letter: 1.25rem;
+  padding: 0.5em 1em;
+  font-size: var(--size-letter);
+
+  background-color: transparent;
+  border: calc(var(--size-letter) / 6) solid var(--secondary);
+  border-radius: 1.5rem;
+  cursor: pointer;
+
+  overflow: hidden;
+  position: relative;
+  transition: 300ms cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.ctabubbles_orange > .ctabubbles_orange_text {
+  font-weight: 700;
+  color: var(--secondary);
+  position: relative;
+  z-index: 1;
+  transition: color 700ms cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.ctabubbles_orange::before {
+  top: 0;
+  left: 0;
+}
+
+.ctabubbles_orange::after {
+  top: 100%;
+  left: 100%;
+}
+
+.ctabubbles_orange::before,
+.ctabubbles_orange::after {
+  content: "";
+  width: 150%;
+  aspect-ratio: 1/1;
+  scale: 0;
+  transition: 800ms cubic-bezier(0.76, 0, 0.24, 1);
+
+  background-color: var(--secondary);
+  border-radius: 50%;
+
+  position: absolute;
+  translate: -50% -50%;
+}
+
+.ctabubbles_orange:hover {
+  & > span {
+    color: white;
+  }
+  &::before,
+  &::after {
+    scale: 1;
+  }
+}
+
+.ctabubbles_orange:active {
+  scale: 0.98;
+  filter: brightness(0.9);
+}
+
+/* Input CSS */
+
+/* From Uiverse.io by alexruix */ 
+.input-group {
+ position: relative;
+}
+
+.input {
+ border: solid 1.5px var(--primary-ex-light);
+ border-radius: 1rem;
+ background: none;
+ padding: 1rem;
+ font-size: 1rem;
+ color: #f5f5f5;
+ transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.user-label {
+ position: absolute;
+ border-radius: 1rem;
+ left: 15px;
+ bottom: 25px;
+ color: #e8e8e8;
+ pointer-events: none;
+ transform: translateY(1rem);
+ transition: 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.input:focus, .input:valid {
+ outline: none;
+ border: 1.5px solid var(--tertiary-light);
+}
+
+.input:focus ~ label, .input:valid ~ label {
+ transform: translateY(-20%) translateX(-20%) scale(0.8);
+ background-color: var(--primary);
+ padding: 0 1rem;
+ color: white;
+}
+
+/* Select - Register */
+
+.button-group{
+  justify-self: center;
+}
+
+.button-group input[type="radio"] {
+  display: none;
+}
+
+.button-group label {
+  cursor: pointer;
+  border: 1px solid var(--primary-ex-light);
+  color: #ffffff80;
+  border-radius: 0.5rem;
+  transition: all ease 300ms;
+  text-align: center;
+  font-size: 1rem;
+  box-shadow: 0px 0px 50px -15px #000000;
+  padding: 0.5rem 1rem;
+}
+
+.button-group input[type="radio"]:checked + label {
+  color: white;
+  font-weight: bold;
+  border: 2px solid var(--tertiary);
+}
+
 
 /* .cta {
   transition: all 0.5s;

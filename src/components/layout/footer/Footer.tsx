@@ -6,7 +6,7 @@ export default function Footer() {
 	return (
 		<footer className="w-full bg-(--primary-ex-dark) py-6">
 			<div className="container mx-auto flex flex-col space-y-6 px-4">
-				<div className="flex items-center md:items-start gap-8 md:gap-0 md:justify-between flex-col md:flex-row">
+				<div className="flex items-center md:items-start gap-20 md:gap-0 md:justify-between flex-col md:flex-row">
 					<div className="flex flex-col w-full md:w-[20vw] items-center">
 						<img
 							src="https://images-ext-1.discordapp.net/external/v9uTH383FKCC6F29yVEuyjrOmrbS7SN3gJPtEJrsCF8/https/i.imgur.com/diiGCH2.png?format=webp&quality=lossless&width=519&height=483"
@@ -15,7 +15,7 @@ export default function Footer() {
 						/>
 						<p className="text-white font-semibold text-sm text-center">Seu dispositivo, nossa segurança!</p>
 					</div>
-					<div className="w-fit grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-15 ml-8">
+					<div className="w-fit grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-15 md:ml-8 text-center md:text-start">
 						<div>
 							<Link to="/" className="text-(--secondary) font-semibold mb-4">
 								Home

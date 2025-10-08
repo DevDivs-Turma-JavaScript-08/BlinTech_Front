@@ -13,6 +13,7 @@ interface InputFieldProps {
 function InputField({ ...props }: InputFieldProps) {
 	return (
 		<div className="relative" id={`input${props.name}`}>
+
 			<input
 				type={props.type}
 				name={props.name}

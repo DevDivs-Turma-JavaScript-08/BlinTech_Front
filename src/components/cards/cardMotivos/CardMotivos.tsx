@@ -1,32 +1,27 @@
 export default function CardMotivos() {
   const escolha = [
-    {
-      titulo: 'Atendimento rapido',
-      descricao:
-        'Solucao em 24h',
-      imagem: 'https://i.imgur.com/SpbW7tb.jpeg',
-    },
-    {
-      titulo: 'Sem Franquia',
-      descricao:
-        'Sem custos extras',
-      imagem: 'https://i.imgur.com/SpbW7tb.jpeg',
-    },
-    {
-      titulo: 'Suporte',
-      descricao:
-        'Atendimento sempre disponivel',
-      imagem: 'https://i.imgur.com/SpbW7tb.jpeg',
-    },
-    
-     {
-      titulo: 'Preco competitivo',
-      descricao:
-        'Servicos completos com os melhores precos',
-      imagem: 'https://i.imgur.com/SpbW7tb.jpeg',
-    },
+		{
+			titulo: "Atendimento rapido",
+			descricao: "Solucao em 24h",
+			imagem: "https://i.imgur.com/hLjfOZK.png",
+		},
+		{
+			titulo: "Sem Franquia",
+			descricao: "Sem custos extras",
+			imagem: "https://i.imgur.com/0TAFLoV.png",
+		},
+		{
+			titulo: "Suporte",
+			descricao: "Atendimento sempre disponivel",
+			imagem: "https://i.imgur.com/7VRKvcz.png",
+		},
 
-  ];
+		{
+			titulo: "Preco competitivo",
+			descricao: "Servicos completos com os melhores precos",
+			imagem: "https://i.imgur.com/vMvJRA1.png",
+		},
+	];
 
   return (
     <div className="py-10 px-4 text-center">
@@ -40,7 +35,7 @@ export default function CardMotivos() {
             <img
               src={item.imagem}
               alt="imagem"
-              className="w-20 h-20 mb-4 object-contain rounded-full border-2 border-(--tertiary)"
+              className="w-20 h-20 mb-4"
             />
             <h3 className="text-lg font-bold mb-2
 ">{item.titulo}</h3>

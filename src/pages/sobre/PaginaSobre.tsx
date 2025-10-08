@@ -20,8 +20,15 @@ function PaginaSobre() {
 							</p>
 						</div>
 
-						<div className="mx-8 md:mx-0 bg-(--primary-ex-light) rounded-2xl p-10 text-center text-(--primary-dark) shadow-lg">
-							<div className="text-6xl mb-4">🚀</div>
+						<div className="mx-8 md:mx-0 bg-(--primary) rounded-2xl p-10 text-center text-white shadow-lg">
+							<div className="text-6xl mb-4 flex justify-center">
+								<svg xmlns="http://www.w3.org/2000/svg" width="70" viewBox="0 0 512 512">
+									<path
+										fill="#ffffff"
+										d="M96 256l32 0 0 256-128 0 0-160 32 0 0-32 32 0 0-32 32 0 0-32zm416 96l0 160-128 0 0-256 32 0 0 32 32 0 0 32 32 0 0 32 32 0zM320 64l32 0 0 384-32 0 0-32-128 0 0 32-32 0 0-384 32 0 0-32 32 0 0-32 64 0 0 32 32 0 0 32zm-32 64l-64 0 0 64 64 0 0-64z"
+									/>
+								</svg>
+							</div>
 							<h3 className="text-2xl font-bold mb-2">Inovação Constante</h3>
 							<p className="opacity-80">Sempre buscando as melhores soluções para nossos clientes</p>
 						</div>
@@ -36,16 +43,12 @@ function PaginaSobre() {
 							<div className="content">
 								<div className="back">
 									<div className="back-content">
-										<div className="text-6xl mb-4">🎯</div>
-										<strong>Missão</strong>
+										<img src="https://i.imgur.com/zmW3fGD.png" alt="Ícone de Missão" className="w-30" />
+										<strong className="text-xl text-shadow-[0px_0px_10px_rgba(184,67,0,0.9)]">Missão</strong>
 									</div>
 								</div>
 								<div className="front">
-									<div className="img">
-										<div className="circle"></div>
-										<div className="circle" id="right"></div>
-										<div className="circle" id="bottom"></div>
-									</div>
+									<div className="img"></div>
 
 									<div className="front-content">
 										<small className="badge">Missão</small>
@@ -63,16 +66,12 @@ function PaginaSobre() {
 							<div className="content">
 								<div className="back">
 									<div className="back-content">
-										<div className="text-6xl mb-4">👁️</div>
-										<strong>Visão</strong>
+										<img src="https://i.imgur.com/skJkplU.png" alt="Ícone de Missão" className="w-30" />
+										<strong className="text-xl text-shadow-[0px_0px_10px_rgba(184,67,0,0.9)]">Visão</strong>
 									</div>
 								</div>
 								<div className="front">
-									<div className="img">
-										<div className="circle"></div>
-										<div className="circle" id="right"></div>
-										<div className="circle" id="bottom"></div>
-									</div>
+									<div className="img"></div>
 
 									<div className="front-content">
 										<small className="badge">Visão </small>
@@ -90,16 +89,12 @@ function PaginaSobre() {
 							<div className="content">
 								<div className="back">
 									<div className="back-content">
-										<div className="text-6xl mb-4">💎</div>
-										<strong>Valores</strong>
+										<img src="https://i.imgur.com/yWiYG1J.png" alt="Ícone de Missão" className="w-30" />
+										<strong className="text-xl text-shadow-[0px_0px_10px_rgba(184,67,0,0.9)]">Valores</strong>
 									</div>
 								</div>
 								<div className="front">
-									<div className="img">
-										<div className="circle"></div>
-										<div className="circle" id="right"></div>
-										<div className="circle" id="bottom"></div>
-									</div>
+									<div className="img"></div>
 
 									<div className="front-content">
 										<small className="badge">Valores</small>
@@ -118,10 +113,10 @@ function PaginaSobre() {
 
 			{/* Call to Action */}
 			<section className="text-center w-full flex justify-center mb-20">
-				<div className="bg-(--primary-ex-light) rounded-3xl p-4 md:p-12 text-(--primary-dark) mx-8 md:mx-0 md:w-[70%] shadow-xl">
+				<div className="bg-(--primary) rounded-3xl p-4 md:p-12 text-white mx-8 md:mx-0 md:w-[70%] shadow-xl">
 					<h2 className="text-4xl font-bold mb-6">Pronto para Inovar?</h2>
 					<p className="text-xl mb-6 md:mb-8 opacity-90">Entre em contato conosco e descubra como podemos transformar sua ideia em realidade.</p>
-					<Link to="/contatos">
+					<Link to="/contato">
 						<CtaContato />
 					</Link>
 				</div>

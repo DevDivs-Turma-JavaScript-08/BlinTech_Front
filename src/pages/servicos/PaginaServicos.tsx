@@ -3,6 +3,7 @@ import CardEscolha from "../../components/cards/cardMotivos/CardMotivos";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import CardBeneficiosSeguros from "../../components/cards/cardServicos/CardBeneficiosSeguros";
+import CtaServicos from "../../components/buttons/CtaServiços";
 
 export default function PaginaServicos() {
 	const { usuario } = useContext(AuthContext);
@@ -25,9 +26,7 @@ export default function PaginaServicos() {
 
 					<div className="flex gap-5 text-black mt-9">
 						<Link to={token !== "" ? `/produtos` : `/login`}>
-							<button className="cursor-pointer font-bold text-white p-3 bg-(--secondary) hover:bg-(--secondary-dark) hover:shadow-[0_0px_10px_rgb(95_163_0_/_0.8)] hover:text-lg transition-all radius-full rounded-2xl w-fit ">
-								Fazer Seguro
-							</button>
+							<CtaServicos />
 						</Link>
 					</div>
 				</div>

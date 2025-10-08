@@ -35,7 +35,7 @@ export default function CardBeneficiosSeguros() {
 						<img
 							src={item.imagem}
 							alt={item.titulo}
-							className={`w-20 h-20 mb-6 mx-auto object-contain rounded-full border-2 ${item.id == 1 && `border-(--secondary-ex-light)`} ${
+							className={`w-20 h-20 mb-6 mx-auto object-contain rounded-full border-3 ${item.id == 1 && `border-(--secondary-ex-light)`} ${
 								item.id == 2 && `border-(--secondary-light)`
 							} ${item.id == 3 && `border-(--secondary)`} `}
 						/>
@@ -51,7 +51,7 @@ export default function CardBeneficiosSeguros() {
 						<div className="flex flex-wrap gap-3">
 							<Link
 								to="/produtos"
-								className="bg-violet-500 border-violet-500 block w-full rounded-lg border p-3 text-center text-base font-medium text-white transition hover:bg-opacity-90">
+								className="bg-(--primary-light) border-(--primary-light) block w-full rounded-lg border p-3 text-center text-base font-medium text-white transition hover:bg-opacity-90 hover:bg-(--primary)">
 								Contratar Agora
 							</Link>
 						</div>
