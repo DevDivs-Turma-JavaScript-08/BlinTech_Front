@@ -106,7 +106,9 @@ const LoginAndRegisterPage: React.FC = () => {
 			setShowLogin(true);
 		} catch (error) {
 			console.error(error);
-			alert(`Erro ao cadastrar usuário!`);
+			 const backendMessage = error.response?.data?.message || error.message || "Erro desconhecido ao cadastrar usuário.";
+
+				alert(backendMessage);
 		}
 
 		setIsLoading(false);
@@ -129,35 +131,7 @@ const LoginAndRegisterPage: React.FC = () => {
 		return `${limitado.slice(0, 3)}.${limitado.slice(3, 6)}.${limitado.slice(6, 9)}-${limitado.slice(9, 11)}`;
 	};
 
-	// --- Função antiga ---
-
-	// function atualizarEstadoCadastro(e: ChangeEvent<HTMLInputElement>) {
-	// 	setUsuarioCadastro({ ...usuarioCadastro, [e.target.name]: e.target.value });
-	// }
-
-	// function handleConfirmarSenha(e: ChangeEvent<HTMLInputElement>) {
-	// 	setConfirmarSenha(e.target.value);
-	// }
-
-	// async function cadastrarNovoUsuario(e: FormEvent<HTMLFormElement>) {
-	// 	e.preventDefault();
-	// 	setIsLoading(true);
-
-	// 	if (confirmarSenha === usuarioCadastro.senha && usuarioCadastro.senha.length >= 6) {
-	// 		try {
-	// 			await cadastrarUsuario(`/usuarios/cadastro`, usuarioCadastro, setUsuarioCadastro);
-	// 			alert("Usuário cadastrado com sucesso!");
-	// 			setShowLogin(true);
-	// 		} catch (error) {
-	// 			alert(`Erro ao cadastrar usuário!: ${error}`);
-	// 		}
-	// 	} else {
-	// 		alert("Dados do usuário inconsistentes! Verifique as informações do cadastro.");
-	// 		setUsuarioCadastro({ ...usuarioCadastro, senha: "" });
-	// 		setConfirmarSenha("");
-	// 	}
-	// 	setIsLoading(false);
-	// }
+  // --- Função de ajuste de tamanho dos formulários e banner --- 
 
 	const bannerRef = useRef<HTMLDivElement>(null);
 

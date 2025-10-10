@@ -34,9 +34,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
 		setIsLoading(true);
 		try {
 			await login(`/usuarios/login`, usuarioLogin, setUsuario);
-			alert("Usuário foi autenticado com sucesso!");
+			alert("Login realizado com sucesso!");
 		} catch (error) {
-			alert("Os dados do Usuário estão inconsistentes!");
+			console.error(error);
+			const backendMessage = error.response?.data?.message || error.message || "Erro desconhecido ao realizar o login.";
+
+			alert(backendMessage);
 		}
 		setIsLoading(false);
 	}

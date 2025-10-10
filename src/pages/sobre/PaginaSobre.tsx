@@ -34,11 +34,11 @@ function PaginaSobre() {
 						</div>
 					</div>
 				</section>
-				{/* Footer Banner */}
+
 				{/* Pilares */}
 				<section className=" w-[80%] mb-20">
 					<h2 className="text-5xl font-bold text-center mb-12">Nossos Pilares</h2>
-					<div className="grid md:grid-cols-3 gap-8 justify-center">
+					<div className="flex flex-col md:flex-row gap-10 md:gap-20 justify-center items-center">
 						<div className="cardSobre">
 							<div className="content">
 								<div className="back">
