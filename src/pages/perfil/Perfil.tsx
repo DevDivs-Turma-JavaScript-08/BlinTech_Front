@@ -4,10 +4,11 @@ import { buscar, deletar } from "../../services/Services";
 import type Produto from "../../models/Produto";
 import CardProduto from "../../components/cards/cardProduto/CardProduto";
 import ModalPerfil from "../../components/forms/ModalPerfil";
-
+import { useNavigate } from "react-router-dom";
 
 export default function Perfil() {
 
+	const navigate = useNavigate();
 	const [seguros, setSeguros] = useState<Produto[]>([]);
 	const { usuario } = useContext(AuthContext);
 	const token = usuario.token;
@@ -25,11 +26,12 @@ export default function Perfil() {
 
 	const usuarioSeguros = seguros.filter((seguro) => seguro.usuario.id === usuario.id);
 
-	console.log("teste 2: ", seguros);
+	// console.log("teste 2: ", seguros);
 
 	useEffect(() => {
 		if (token === "") {
 			alert("Você precisa estar logado");
+			navigate("/");
 		}
 	}, [usuario.token]);
 

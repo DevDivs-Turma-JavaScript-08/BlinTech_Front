@@ -162,7 +162,6 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 					<fieldset className="mb-4">
 						<legend className="text-xl font-bold mb-6 text-gray-200 text-center">Informações do Dispositivo</legend>
 						<div className="grid grid-cols-2 gap-4">
-
 							<InputField
 								name="descricao"
 								type="text"
@@ -198,7 +197,7 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 								type="text"
 								placeholder="Digite o número do IMEI"
 								label="IMEI"
-								value={produto.imei}
+								value={produto.imei || " "}
 								onChange={atualizarEstado}
 							/>
 
@@ -211,7 +210,6 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 								onChange={atualizarEstado}
 								required
 							/>
-
 						</div>
 					</fieldset>
 

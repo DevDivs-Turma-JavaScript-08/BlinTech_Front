@@ -201,7 +201,7 @@ const Navbar: React.FC = () => {
 
 			{/* MENU RESPONSIVO (Dropdown/Vertical) - VISÍVEL APENAS EM MOBILE QUANDO ABERTO */}
 			{isMenuOpen && (
-				<div className="md:hidden w-50 rounded-3xl right-0 bg-(--primary-dark) absolute z-40 shadow-lg">
+				<div className="md:hidden w-50 rounded-3xl right-1 bg-(--primary-ex-dark) border border-(--primary) absolute z-40 shadow-lg">
 					<ul className="flex flex-col items-end py-2 px-4 space-y-1">
 						{/* Links principais */}
 						<li>
@@ -310,7 +310,9 @@ const Navbar: React.FC = () => {
 
 			{/* MODAL DE USUÁRIO (PERFIL) */}
 			{token !== "" && isModalOpen && (
-				<div ref={modalRef} className="absolute top-24 right-4 w-50 bg-(--primary-ex-dark) text-white rounded-[30px] shadow-lg p-4 z-50">
+				<div
+					ref={modalRef}
+					className="absolute top-24 right-4 w-50 bg-(--primary-ex-dark) border border-(--primary) text-white rounded-[30px] shadow-lg p-4 z-50">
 					<div className="flex items-center mb-4">
 						<div className="w-18 h-18 rounded-full overflow-hidden mr-4 ">
 							<img src={usuario.foto} alt="Perfil do Usuário" className="w-full h-full object-cover" />
@@ -342,7 +344,9 @@ const Navbar: React.FC = () => {
 
 			{/* MODAL DE VISITANTE (LOGIN/CADASTRO) */}
 			{token === "" && isModalOpen && (
-				<div ref={modalRef} className="absolute top-24 right-4 w-50 bg-(--primary-ex-dark) text-white rounded-[30px] shadow-lg p-4 z-50">
+				<div
+					ref={modalRef}
+					className="absolute top-24 right-4 w-50 bg-(--primary-ex-dark) border border-(--primary) text-white rounded-[30px] shadow-lg p-4 z-50">
 					<div className="flex items-center mb-4">
 						<div className="py-3">
 							<p className="text-sm">Ainda não tem cadastro?</p>

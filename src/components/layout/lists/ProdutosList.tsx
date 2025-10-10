@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import type Produto from "../../../models/Produto";
 import { AuthContext } from "../../../contexts/AuthContext";
@@ -17,17 +17,9 @@ function ProdutosList() {
 	const [showForm, setShowForm] = useState(location.pathname !== "/produtos");
 	const [currentProductId] = useState<number | undefined>(undefined);
 
-	const buscarProdutos = useCallback(async () => {
-		// let rota: string;
-    
-		// if (usuario.tipoDeUsuario === "segurado") {
-		// 	// Segurador busca TODOS os produtos
-		// 	rota = "/produto";
-		// } else {
-		// 	// Segurado busca APENAS seus produtos
-		// 	rota = `/usuarios/${usuario.id}`;
-		// }
+	const usuarioSeguros = seguros.filter((seguro) => seguro.usuario.id === usuario.id);
 
+	const buscarProdutos = useCallback(async () => {
 		try {
 			await buscar("/produto", setSeguros, {
 				headers: { Authorization: token },
@@ -81,6 +73,25 @@ function ProdutosList() {
 		buscarProdutos();
 	};
 
+	let component: ReactNode;
+	if (usuario.tipoDeUsuario === "segurador") {
+		component = (
+			<div className="flex justify-center gap-8 w-full flex-wrap max-w-7xl">
+				{seguros.map((seguro) => (
+					<CardMeuSeguro key={seguro.id} seguro={seguro} onDelete={handleDelete} />
+				))}
+			</div>
+		);
+	} else {
+		component = (
+			<div className="flex justify-center gap-8 w-full flex-wrap max-w-7xl">
+				{usuarioSeguros.map((seguro) => (
+					<CardMeuSeguro key={seguro.id} seguro={seguro} onDelete={handleDelete} />
+				))}
+			</div>
+		);
+	}
+
 	return (
 		<div className="flex flex-col items-center justify-center p-8 text-white min-h-[90vh]">
 			<h1 className="text-5xl text-white font-bold text-center mb-6">
@@ -105,11 +116,7 @@ function ProdutosList() {
 					</Link>
 				</div>
 			) : (
-				<div className="flex justify-center gap-8 w-full flex-wrap max-w-7xl">
-					{seguros.map((seguro) => (
-						<CardMeuSeguro key={seguro.id} seguro={seguro} onDelete={handleDelete} />
-					))}
-				</div>
+				component
 			)}
 		</div>
 	);

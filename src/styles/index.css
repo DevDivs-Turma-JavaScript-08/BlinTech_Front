@@ -1,6 +1,10 @@
 @import "./variables.css";
 @import "tailwindcss";
 
+.transition-height {
+  transition: height 0.5s ease;
+}
+
 /* From Uiverse.io by mobinkakei */
 .cta {
 	display: flex;
@@ -521,6 +525,15 @@
  padding: 0 1rem;
  color: white;
 }
+
+.input-group input:-webkit-autofill,
+.input-group input:-webkit-autofill:hover,
+.input-group input:-webkit-autofill:focus,
+.input-group input:-webkit-autofill:active {
+	-webkit-box-shadow: 0 0 0 30px var(--primary-ex-dark) inset;
+	-webkit-text-fill-color: white;
+}
+
 
 /* Select - Register */
 
