@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
 
 	useEffect(() => {
 		if (usuario.token !== "") {
-			console.log(usuario);
+			// console.log(usuario);
 		}
 	}, [usuario.token, usuario]);
 

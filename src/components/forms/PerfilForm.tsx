@@ -19,6 +19,7 @@ function FormEditPerfil() {
 		cpf: "",
 		foto: "",
 	});
+
 	//   useEffect(() => {
 	//     if (id) {
 	//       buscarUsuario(id);
@@ -39,6 +40,7 @@ function FormEditPerfil() {
 	//   }
 	//   const teste = buscarUsuario(id)
 	//   console.log('Isso e o que retorna da minha funcao buscar: ', teste)
+
 	function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
 		setUsuarioEditar({
 			...usuarioEditar,
@@ -124,7 +126,7 @@ function FormEditPerfil() {
 						/>
 					</div>
 				</div>
-				<button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onClick={() => navigate("/teste")}>
+				<button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onClick={() => navigate("/perfil")}>
 					Salvar
 				</button>
 			</form>

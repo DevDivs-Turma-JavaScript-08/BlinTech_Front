@@ -56,7 +56,7 @@ function ProdutosList() {
 
 	const handleDelete = async (id: number) => {
 		try {
-			await deletar(`/produtos/${id}`, {
+			await deletar(`/produto/${id}`, {
 				headers: { Authorization: token },
 			});
 			alert("Seguro cancelado com sucesso!");
@@ -106,12 +106,12 @@ function ProdutosList() {
 				</div>
 			)}
 
-			{seguros.length === 0 ? (
+			{seguros.length === 0 || usuarioSeguros.length === 0 ? (
 				<div className="text-center p-8 border border-blin-tertiary rounded-lg">
 					<p className="text-xl">
 						{usuario.tipoDeUsuario === "segurado" ? `Você ainda não possui nenhum seguro contratado.` : `Não há seguros cadastrados na plataforma.`}
 					</p>
-					<Link to="/seguros">
+					<Link to="/servicos">
 						<button className="mt-4 px-6 py-2 bg-blin-tertiary rounded-lg hover:bg-blin-tertiary-light transition-all">Ver Planos de Seguro</button>
 					</Link>
 				</div>

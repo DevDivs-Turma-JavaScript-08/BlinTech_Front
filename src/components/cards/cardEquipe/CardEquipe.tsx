@@ -1,4 +1,10 @@
 import { useState } from "react";
+import githubIcon from "../../../assets/github.svg";
+import whatsappIcon from "../../../assets/whatsapp.svg";
+import linkedinIcon from "../../../assets/linkedin.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithubSquare, faSquareLinkedin, faWhatsappSquare } from "@fortawesome/free-brands-svg-icons";
+
 interface Equipe {
 	foto: string;
 	nome: string;
@@ -6,6 +12,9 @@ interface Equipe {
 	frase: string;
 	pitch: string;
 	formacao: string;
+	linkedin: string;
+	whatsapp: string;
+	github: string;
 }
 
 export default function CardEquipe() {
@@ -15,8 +24,12 @@ export default function CardEquipe() {
 			nome: "Agata",
 			funcao: "Desenvolvedora",
 			frase: "Seja a mudança que você quer ver no mundo.",
-			pitch: "Desenvolvedora Full Stack especializada em JavaScript, com experiência em backend com NestJS e front-end em React, aplicando boas práticas de arquitetura e desenvolvimento de software.",
+			pitch:
+				"Desenvolvedora Full Stack especializada em JavaScript, com experiência em backend com NestJS e front-end em React, aplicando boas práticas de arquitetura e desenvolvimento de software.",
 			formacao: "Formada em Análise e Desenvolvimento de Sistemas",
+			linkedin: "https://www.linkedin.com/in/agata-de-souza-andrade/",
+			whatsapp: "https://wa.me/5511966580284",
+			github: "https://github.com/Agataandrade",
 		},
 		{
 			foto: "https://i.imgur.com/r9JoYhT.png",
@@ -26,6 +39,9 @@ export default function CardEquipe() {
 			pitch:
 				"Técnico em Administração, atualmente cursando Ciência da Computação e participante do bootcamp da Generation Brasil. Estou focado em me tornar desenvolvedor JavaScript Fullstack, enfrentando desafios diários com persistência, adaptabilidade e dedicação.",
 			formacao: "Cursando Ciências da Computação",
+			linkedin: "https://www.linkedin.com/in/alex-sqls/",
+			whatsapp: "https://wa.me/5511967878191",
+			github: "https://github.com/alex-sqls",
 		},
 		{
 			foto: "https://i.imgur.com/Q1Z67IP.png",
@@ -35,6 +51,9 @@ export default function CardEquipe() {
 			pitch:
 				"Sou Administradora por Formação e atualmente estou em transição de carreira para área de tecnologia. Estou cursando Ciências da Computação e atuo como Desenvolvedora Full-Stack, unindo minha experiência em gestão e visão estratégica ao desenvolvimento de soluções tecnológicas completas. Acredito no poder da inovação e da aprendizagem continua para transformar ideais em resultados.",
 			formacao: "Formada em ADM e Logística e Cursando Ciência da Computação",
+			linkedin: "https://www.linkedin.com/in/graziellegualter/",
+			whatsapp: "https://wa.me/5511968275097",
+			github: "https://github.com/graziellegualter",
 		},
 		{
 			foto: "https://i.imgur.com/U6lUbHW.png",
@@ -43,6 +62,9 @@ export default function CardEquipe() {
 			frase: "A persistência é o caminho do êxito.",
 			pitch: "Minha especialidade é a prototipagem e o design de interfaces, traduzindo conceitos complexos em designs simples e elegantes.",
 			formacao: "Generation Brasil - JavaScript Fullstack",
+			linkedin: "https://www.linkedin.com/in/devtissa/",
+			whatsapp: "https://wa.me/5511986251377",
+			github: "https://github.com/Santos-Leticia",
 		},
 		{
 			foto: "https://i.imgur.com/EuTNqNp.png",
@@ -52,6 +74,9 @@ export default function CardEquipe() {
 			pitch:
 				"Como Product Owner, meu objetivo é alinhar a visão do produto com as necessidades do mercado, garantindo que entreguemos o máximo de valor.",
 			formacao: "Formado em Engenharia Civil e Jogos Digitais",
+			linkedin: "https://www.linkedin.com/in/lucasalvespinheiro/",
+			whatsapp: "https://wa.me/5511989157255",
+			github: "https://github.com/RaideriSpace",
 		},
 		{
 			foto: "https://i.imgur.com/0kpfncl.png",
@@ -60,6 +85,9 @@ export default function CardEquipe() {
 			frase: "Qualidade não é um ato, é um hábito.",
 			pitch: "Responsável por garantir a integridade do produto, realizo testes rigorosos para assegurar que cada funcionalidade seja impecável.",
 			formacao: "Generation Brasil - JavaScript Fullstack",
+			linkedin: "https://www.linkedin.com/in/pedro-henrique-o13/",
+			whatsapp: "https://wa.me/5511932383936",
+			github: "https://github.com/KarpaTech",
 		},
 	];
 
@@ -105,8 +133,30 @@ export default function CardEquipe() {
 					<div className="h-fit w-full p-4 md:p-8 md:m-4 bg-(--primary-ex-dark) rounded-tl-[250px] rounded-br-[250px] md:rounded-br-[500px] rounded-bl-2xl shadow-[0_0px_10px_rgb(0_0_0_/_0.9)] flex flex-col items-center justify-between transition-all duration-500 content-center md:gap-4">
 						<div className="flex items-center flex-col md:flex-row">
 							<div className="md:w-[60%]">
-								<h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">{selecionado.nome}</h2>
-								<p className="md:text-xl italic text-(--secondary) mb-4">"{selecionado.frase}"</p>
+								<div className="flex flex-col items-center justify-center gap-2">
+									<h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">{selecionado.nome}</h2>
+									<div className="flex gap-2">
+										<a href={selecionado.github} target="_blank" rel="noopener noreferrer">
+											<FontAwesomeIcon
+												icon={faGithubSquare}
+												className="text-[30px] text-(--tertiary) hover:text-(--secondary) transition-all cursor-pointer"
+											/>
+										</a>
+										<a href={selecionado.whatsapp} target="_blank" rel="noopener noreferrer">
+											<FontAwesomeIcon
+												icon={faWhatsappSquare}
+												className="text-[30px] text-(--tertiary) hover:text-(--secondary) transition-all cursor-pointer"
+											/>
+										</a>
+										<a href={selecionado.linkedin} target="_blank" rel="noopener noreferrer">
+											<FontAwesomeIcon
+												icon={faSquareLinkedin}
+												className="text-[30px] text-(--tertiary) hover:text-(--secondary) transition-all cursor-pointer"
+											/>
+										</a>
+									</div>
+								</div>
+								<p className="md:text-xl italic text-(--secondary) my-4">"{selecionado.frase}"</p>
 								<p className="mt-4 md:text-md font-semibold text-white">{selecionado.formacao}</p>
 							</div>
 							<div className="p-2 text-center md:w-[30%]">

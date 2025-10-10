@@ -5,7 +5,7 @@ import { buscar, deletar } from "../../../services/Services";
 import { AuthContext } from "../../../contexts/AuthContext";
 import CategoriaForm from "../../forms/CategoriaForm";
 import CtaCriar from "../../buttons/CtaCriar";
-import CardCategorias from "../../cards/cardCategorias/CardCategorias";
+import CardCategorias from "../../cards/cardCategorias/cardCategorias";
 
 export default function CategoriasList() {
 	const navigate = useNavigate();
@@ -83,8 +83,8 @@ export default function CategoriasList() {
 			)}
 
 			<div className=" flex justify-center gap-8 flex-wrap">
-				{categorias.map((categoria) => (
-					<CardCategorias categoria={categoria} onDelete={handleDelete} />
+				{categorias.map((categoria, index) => (
+					<CardCategorias key={index} categoria={categoria} onDelete={handleDelete} />
 				))}
 			</div>
 		</div>

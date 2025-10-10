@@ -11,7 +11,7 @@ export default function PaginaServicos() {
 
 	useEffect(() => {
 		if (usuario.token !== "") {
-			console.log(usuario);
+			// console.log(usuario);
 		}
 	}, [usuario.token]);
 
