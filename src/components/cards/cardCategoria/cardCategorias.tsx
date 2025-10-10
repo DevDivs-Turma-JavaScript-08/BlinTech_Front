@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom";
 import type Categoria from "../../../models/Categoria";
 import { useState } from "react";
 import CtaCard from "../../buttons/CtaCard";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 interface CardCategoriasProps {

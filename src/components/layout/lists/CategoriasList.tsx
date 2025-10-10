@@ -5,7 +5,7 @@ import { buscar, deletar } from "../../../services/Services";
 import { AuthContext } from "../../../contexts/AuthContext";
 import CategoriaForm from "../../forms/CategoriaForm";
 import CtaCriar from "../../buttons/CtaCriar";
-import CardCategorias from "../../cards/cardCategorias/cardCategorias";
+import CardCategorias from "../../cards/cardCategoria/cardCategorias";
 
 export default function CategoriasList() {
 	const navigate = useNavigate();
