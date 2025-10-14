@@ -48,19 +48,6 @@ const LoginAndRegisterPage: React.FC = () => {
 	const senha = watch("senha", "");
 	const emptySetter = () => {};
 
-	// --- Estados antigos ---
-
-	// const [confirmarSenha, setConfirmarSenha] = useState<string>("");
-	// const [usuarioCadastro, setUsuarioCadastro] = useState<Usuario>({
-	// 	id: 0,
-	// 	nome: "",
-	// 	email: "",
-	// 	senha: "",
-	// 	cpf: "",
-	// 	tipoDeUsuario: "Segurado",
-	// 	foto: "",
-	// });
-
 	// --- Efeito para redirecionar após o login bem-sucedido ---
 
 	useEffect(() => {
@@ -271,7 +258,7 @@ useEffect(() => {
 									<input
 										required
 										id="email"
-										type="email"
+										type="text"
 										className="input h-10 w-full"
 										{...register("email", {
 											required: "O e-mail é obrigatório",

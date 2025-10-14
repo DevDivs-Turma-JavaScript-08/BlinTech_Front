@@ -133,8 +133,8 @@ export default function CardEquipe() {
 					<div className="h-fit w-full p-4 md:p-8 md:m-4 bg-(--primary-ex-dark) rounded-tl-[250px] rounded-br-[250px] md:rounded-br-[500px] rounded-bl-2xl shadow-[0_0px_10px_rgb(0_0_0_/_0.9)] flex flex-col items-center justify-between transition-all duration-500 content-center md:gap-4">
 						<div className="flex items-center flex-col md:flex-row">
 							<div className="md:w-[60%]">
-								<div className="flex flex-col items-center justify-center gap-2">
-									<h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">{selecionado.nome}</h2>
+								<div className="flex flex-col items-center justify-center gap-3">
+									<h2 className="text-2xl md:text-3xl font-bold text-white">{selecionado.nome}</h2>
 									<div className="flex gap-2">
 										<a href={selecionado.github} target="_blank" rel="noopener noreferrer">
 											<FontAwesomeIcon
@@ -155,9 +155,10 @@ export default function CardEquipe() {
 											/>
 										</a>
 									</div>
+									<p className="md:text-md font-semibold text-white">{selecionado.formacao}</p>
 								</div>
-								<p className="md:text-xl italic text-(--secondary) my-4">"{selecionado.frase}"</p>
-								<p className="mt-4 md:text-md font-semibold text-white">{selecionado.formacao}</p>
+
+								<p className="md:text-xl italic text-(--secondary) mt-2">"{selecionado.frase}"</p>
 							</div>
 							<div className="p-2 text-center md:w-[30%]">
 								<img src={selecionado.foto} alt={`Foto de ${selecionado.nome}`} className="w-50 md:w-50 rounded-4xl shadow-lg" />

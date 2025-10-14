@@ -4,8 +4,6 @@ import type Categoria from "../../models/Categoria";
 import { AuthContext } from "../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../services/Services";
 import CtaCard from "../buttons/CtaCard";
-import InputField from "./inputs/InputField";
-import TextAreaField from "./inputs/TextAreaField";
 
 interface CategoriasFormProps {
 	onClose?: () => void;
@@ -61,7 +59,6 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 	async function gerarNovaCategoria(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		// setIsLoading(true);
-		console.log(categoria);
 
 		if (id !== undefined) {
 			try {
@@ -89,6 +86,7 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 			}
 		}
 
+		console.log(categoria);
 		// setIsLoading(false);
 		retornar();
 	}
@@ -102,47 +100,57 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center bg-(--primary-ex-dark)/40 backdrop-blur-sm" onClick={handleOutsideClick}>
 			<div
-				className="max-w-4xl mx-auto bg-(--primary-dark)/80 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-2xl border border-white/10"
+				className=" w-[80%] md:w-[60%] h-fit max-w-4xl mx-auto bg-(--primary-dark)/80 backdrop-blur-md rounded-2xl p-4 md:p-8 shadow-2xl border border-white/10"
 				onClick={(e) => e.stopPropagation()}>
-				<div className="text-center mb-6">
-					<h1 className="text-5xl font-bold mb-2 text-white">{id !== undefined ? "Atualizar a Categoria" : "Cadastrar a Categoria"}</h1>
-					<p className="text-violet-100/90 mt-1">Preencha os dados da cetegoria</p>
+				<div className="text-center mb-2 md:mb-6">
+					<h1 className="text-4xl md:text-5xl font-bold mb-2 text-white">{id !== undefined ? "Atualizar a Categoria" : "Cadastrar a Categoria"}</h1>
+					<p className="text-violet-100/90 mt-1 md:visible hidden">Preencha os dados da cetegoria</p>
 				</div>
 				<form onSubmit={gerarNovaCategoria} className="space-y-5">
 					<fieldset>
 						<legend className="text-white font-semibold text-center mb-4">Informações da Categoria</legend>
 
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-							<InputField
-								name="nome"
-								type="text"
-								placeholder="Nome da Categoria"
-								label="Nome da Categoria"
-								value={categoria.nome}
-								onChange={atualizarEstado}
-								required
-							/>
+							<div className="input-group">
+								<input name="nome" id="nome" type="text" className="input h-10 w-full" value={categoria.nome} onChange={atualizarEstado} required />
+								<label className="user-label">
+									Nome da Categoria <span className="text-(--secondary-light)"> *</span>
+								</label>
+							</div>
 
-							<InputField
-								name="carencia"
-								type="number"
-								placeholder="Dias de Carência"
-								label="Carência (dias)"
-								value={categoria.carencia}
-								onChange={atualizarEstado}
-								required
-							/>
+							<div className="input-group">
+								<input
+									name="carencia"
+									id="carencia"
+									type="number"
+									className="input h-10 w-full pr-12 text-left"
+									value={categoria.carencia}
+									onChange={atualizarEstado}
+									min={0}
+									required
+								/>
+								<label className="user-label">
+									Carência <span className="text-(--secondary-light)"> *</span>
+								</label>
+
+								<span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 text-sm pointer-events-none"> Dias </span>
+							</div>
 						</div>
 
-						<TextAreaField
-							name="descricao"
-							placeholder="Descreva a categoria do seguro"
-							rows={4}
-							value={categoria.descricao}
-							onChange={atualizarEstado}
-							label="Descrição da Categoria"
-							required
-						/>
+						<div className="textarea-group">
+							<textarea
+								name="descricao"
+								id="descricao"
+								className="textarea h-30 w-full mt-6"
+								rows={4}
+								value={categoria.descricao}
+								onChange={atualizarEstado}
+								required
+							/>
+							<label className="textarea_user-label">
+								Descrição <span className="text-(--secondary-light)"> *</span>
+							</label>
+						</div>
 
 						<div className="flex justify-end gap-4 pt-4">
 							<CtaCard

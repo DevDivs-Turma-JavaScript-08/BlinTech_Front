@@ -16,15 +16,18 @@
     "@fortawesome/free-regular-svg-icons": "^7.0.1",
     "@fortawesome/free-solid-svg-icons": "^7.0.1",
     "@fortawesome/react-fontawesome": "^3.1.0",
+    "@hookform/resolvers": "^5.2.2",
     "@tailwindcss/vite": "^4.1.13",
     "axios": "^1.12.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-hook-form": "^7.64.0",
+    "react-hook-form": "^7.65.0",
+    "react-input-mask": "^2.0.4",
     "react-router-dom": "^7.9.1",
     "reactjs-popup": "^2.0.6",
     "smooothy": "^0.0.26",
-    "tailwindcss": "^4.1.13"
+    "tailwindcss": "^4.1.13",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

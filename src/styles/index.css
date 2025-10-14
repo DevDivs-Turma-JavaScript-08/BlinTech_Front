@@ -503,6 +503,10 @@
  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
 }
 
+.input:hover {
+ border: solid 1.5px var(--tertiary);
+}
+
 .user-label {
  position: absolute;
  border-radius: 1rem;
@@ -530,6 +534,65 @@
 .input-group input:-webkit-autofill:hover,
 .input-group input:-webkit-autofill:focus,
 .input-group input:-webkit-autofill:active {
+	-webkit-box-shadow: 0 0 0 30px var(--primary-ex-dark) inset;
+	-webkit-text-fill-color: white;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Para Firefox */
+input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+/* Textarea */
+
+.textarea-group {
+ position: relative;
+}
+
+.textarea {
+ border: solid 1.5px var(--primary-ex-light);
+ border-radius: 1rem;
+ background: none;
+ padding: 1rem;
+ font-size: 1rem;
+ color: #f5f5f5;
+ transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.textarea_user-label {
+ position: absolute;
+ border-radius: 1rem;
+ left: 15px;
+ top: 15px;
+ color: #e8e8e8;
+ pointer-events: none;
+ transform: translateY(1rem);
+ transition: 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.textarea:focus, .textarea:valid {
+ outline: none;
+ border: 1.5px solid var(--tertiary-light);
+}
+
+.textarea:focus ~ label, .textarea:valid ~ label {
+ transform: translateY(-20%) translateX(-20%) scale(0.8);
+ background-color: var(--primary);
+ padding: 0 1rem;
+ color: white;
+}
+
+.textarea-group textarea:-webkit-autofill,
+.textarea-group textarea:-webkit-autofill:hover,
+.textarea-group textarea:-webkit-autofill:focus,
+.textarea-group textarea:-webkit-autofill:active {
 	-webkit-box-shadow: 0 0 0 30px var(--primary-ex-dark) inset;
 	-webkit-text-fill-color: white;
 }
@@ -563,35 +626,36 @@
   border: 2px solid var(--tertiary);
 }
 
+/* Checkbox */
 
-/* .cta {
-  transition: all 0.5s;
-  font-size: 1.25rem;
-  font-weight: bold;
-  padding: 1ch 2ch;
-  background-color: var(--secondary);
-  color: #fff;
+.checkbox_container {
   cursor: pointer;
-  border: 1px solid var(--secondary-dark);
-  border-radius: 8px;
-  box-shadow:
-    -2px -2px 0px #5fa30090,
-    4px 4px 0px #5fa30080,
-    -6px -6px 0px #5fa30070,
-    8px 8px 0px #5fa30060,
-    -10px -10px 0px #5fa30050,
-    12px 12px 0px #5fa30040,
-    -14px -14px 0px #5fa30030,
-    16px 16px 0px #5fa30020,
-    -18px -18px 0px #5fa30010;
 }
 
-.cta:hover {
-  background-color: var(--tertiary);
-  color: #000;
-  border: 1px solid var(--tertiary-dark);
-  box-shadow: none;
-} */
+.checkbox_container input {
+  display: none;
+}
+
+.checkbox_container svg {
+  overflow: visible;
+}
+
+.path {
+  fill: none;
+  stroke: #8ee000;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+  stroke-dasharray: 241 9999999;
+  stroke-dashoffset: 0;
+}
+
+.checkbox_container input:checked ~ svg .path {
+  stroke-dasharray: 70.5096664428711 9999999;
+  stroke-dashoffset: -262.2723388671875;
+}
+
 
 @media (max-width: 480px) {
   /* From Uiverse.io by mobinkakei */

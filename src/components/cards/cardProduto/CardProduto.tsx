@@ -29,9 +29,9 @@ function CardProduto({ seguro, onDelete }: CardProdutoProps) {
 		<>
 			<div
 				key={seguro.id}
-				className="overflow-hidden flex flex-col bg-(--primary-dark)/45 w-80 text-white rounded-xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl">
+				className="overflow-hidden flex flex-col justify-between bg-(--primary-dark)/45 w-80 h-[450px] text-white rounded-xl p-6 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl">
 				{/* Container Principal */}
-				<div className="flex flex-col justify-between gap-4">
+				<div className="flex flex-col gap-4">
 					{/* Título e Data de Contratação */}
 					<div className="flex flex-col md:flex-row justify-between items-start md:items-center">
 						<div>
@@ -51,34 +51,39 @@ function CardProduto({ seguro, onDelete }: CardProdutoProps) {
 					{/* Detalhes do Produto */}
 					<div className="flex flex-col gap-2 text-gray-300 text-sm">
 						<p>
+							<span className="font-semibold text-(--tertiary)">Produto: </span> {seguro.descricao}
+						</p>
+						<p>
+							<span className="font-semibold text-(--tertiary)">Valor do Produto: </span>R$ {seguro.valorProduto}
+						</p>
+						<p>
 							<span className="font-semibold text-(--tertiary)">Categoria: </span>
 							{seguro.categoria?.nome}
+						</p>
+						<p>
+							<span className="font-semibold text-(--tertiary)">Carência: </span>
+							{seguro.categoria?.carencia}
 						</p>
 						<p>
 							<span className="font-semibold text-(--tertiary)">Cobertura: </span>
 							{seguro.cobertura.charAt(0).toUpperCase() + seguro.cobertura.slice(1)}
 						</p>
-
 						<p>
 							<span className="font-semibold text-(--tertiary)">Tempo de Uso: </span>
 							{seguro.tempoUso}
 						</p>
-						<p>
-							<span className="font-semibold text-(--tertiary)">Valor do Produto: </span>R$ {seguro.valorProduto}
-						</p>
-						{seguro.imei && (
+						{seguro.imei !== "WW-XXXXXX-YYYYYY-Z" && (
 							<p>
 								<span className="font-semibold text-(--tertiary)">IMEI: </span>
 								{seguro.imei}
 							</p>
 						)}
 					</div>
+				</div>
 
-					{/* Descrição */}
-					<p className="text-wrap text-sm text-white leading-6 h-[60px] w-full overflow-x-auto scrollbar-custom">{seguro.descricao}</p>
-
+				<div className="justify-self-end">
 					{/* Valores */}
-					<div className="flex justify-between items-center my-4 border-t border-gray-700 pt-4">
+					<div className="flex justify-between items-center my-4 border-t border-(--tertiary-ex-dark) pt-4">
 						<div className="flex flex-col text-center">
 							<span className="font-bold text-lg text-white">R$ {seguro.premioMensal}</span>
 							<p className="font-medium text-(--secondary) text-xs">Prêmio Mensal</p>
