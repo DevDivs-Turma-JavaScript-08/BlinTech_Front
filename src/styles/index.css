@@ -702,8 +702,15 @@ input[type="number"] {
   box-shadow: 2px 2px 0px var(--tertiary-ex-dark);
 }
 
+/* Toastify */
+
+.Toastify__toast--error, .Toastify__toast--warning,.Toastify__toast--success {
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 10px 2px var(--primary);
+}
+
 @media (max-width: 480px) {
-  /* From Uiverse.io by mobinkakei */
+
 .cta {
 	padding: 6px 15px;
 	font-size: 20px;

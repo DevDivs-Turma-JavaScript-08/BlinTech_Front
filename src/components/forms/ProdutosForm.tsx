@@ -7,6 +7,7 @@ import { atualizar, buscar, cadastrar } from "../../services/Services";
 import CtaCard from "../buttons/CtaCard";
 
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { Flip, toast, ToastContainer } from "react-toastify";
 
 interface ProdutosFormProps {
 	onClose?: () => void;
@@ -105,11 +106,10 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 			if (error.toString().includes("401")) {
 				handleLogout();
 			} else {
-				console.error("Erro ao buscar produto:", error);
+				// console.error("Erro ao buscar produto:", error);
 			}
 		}
 	}
-
 
 	async function buscarCategorias() {
 		try {
@@ -125,19 +125,30 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 
 	useEffect(() => {
 		if (token === "") {
-			alert("Você precisa estar logado!");
+			toast.dismiss();
+			toast.warning("Você precisa estar logado!", {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 			navigate("/");
 		}
 	}, [token, navigate]);
 
-useEffect(() => {
-	buscarCategorias();
+	useEffect(() => {
+		buscarCategorias();
 
-	if (id) {
-		buscarProdutoPorId(id);
-	}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [id]);
+		if (id) {
+			buscarProdutoPorId(id);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [id]);
 
 	useEffect(() => {
 		const categoriaId = watch("categoriaId");
@@ -179,19 +190,51 @@ useEffect(() => {
 				await atualizar(`/produto`, produtoComRelacoes, () => {}, {
 					headers: { Authorization: token },
 				});
-				alert("Seguro atualizado com sucesso!");
+				toast.dismiss();
+				toast.success("Seguro atualizado com sucesso!", {
+					position: "top-center",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: false,
+					draggable: false,
+					progress: undefined,
+					theme: "dark",
+					transition: Flip,
+				});
 			} else {
 				await cadastrar(`/produto`, produtoComRelacoes, () => {}, {
 					headers: { Authorization: token },
 				});
-				alert("Seguro contratado com sucesso!");
+				toast.dismiss();
+				toast.success("Seguro contratado com sucesso!", {
+					position: "top-center",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: false,
+					draggable: false,
+					progress: undefined,
+					theme: "dark",
+					transition: Flip,
+				});
 			}
 			if (onClose) onClose();
 		} catch (error: any) {
 			console.error(error);
 			const backendMessage = error.response?.data?.message || error.message || "Erro desconhecido ao processar o seguro.";
 
-			alert(backendMessage);
+			toast.error(backendMessage, {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 		}
 
 		// setIsLoading(false);
@@ -459,6 +502,7 @@ useEffect(() => {
 					</div>
 				</form>
 			</div>
+			<ToastContainer />
 		</div>
 	);
 }

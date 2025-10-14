@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import type Usuario from "../../models/Usuario";
 import { atualizar, buscar } from "../../services/Services";
+import { Flip, toast, ToastContainer } from "react-toastify";
 
 type FormFields = Usuario;
 
@@ -41,9 +42,20 @@ function FormEditPerfil() {
 				headers: { Authorization: token },
 			});
 		} catch (error: any) {
-			console.error("Erro ao buscar usuário:", error);
+			// console.error("Erro ao buscar usuário:", error);
 			if (error.toString().includes("401")) {
-				alert("Sessão expirada. Faça login novamente.");
+				toast.dismiss();
+				toast.warning("Você precisa estar logado!", {
+					position: "top-center",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: false,
+					draggable: false,
+					progress: undefined,
+					theme: "dark",
+					transition: Flip,
+				});
 			}
 		}
 	}
@@ -56,7 +68,7 @@ function FormEditPerfil() {
 
 		const dadosAtualizados = {
 			...usuario,
-			...data
+			...data,
 		};
 
 		try {
@@ -65,16 +77,60 @@ function FormEditPerfil() {
 			});
 
 			handleLogin(dadosAtualizados);
-			alert("Perfil atualizado com sucesso! ✅");
+			toast.dismiss();
+			toast.success("Perfil atualizado com sucesso!", {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 			navigate("/perfil");
 		} catch (error: any) {
-			console.error("Erro ao atualizar:", error.response?.data || error.message);
+			// console.error("Erro ao atualizar:", error.response?.data || error.message);
 			if (error.response?.status === 400) {
-				alert("Erro de validação: verifique os campos.");
+				toast.dismiss();
+				toast.error("Erro de validação: verifique os campos.", {
+					position: "top-center",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: false,
+					draggable: false,
+					progress: undefined,
+					theme: "dark",
+					transition: Flip,
+				});
 			} else if (error.toString().includes("401")) {
-				alert("Sessão expirada. Faça login novamente.");
+				toast.dismiss();
+				toast.warning("Sessão expirada. Faça login novamente.", {
+					position: "top-center",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: false,
+					draggable: false,
+					progress: undefined,
+					theme: "dark",
+					transition: Flip,
+				});
 			} else {
-				alert("Erro ao atualizar o perfil.");
+				toast.dismiss();
+				toast.error("Erro ao atualizar o perfil.", {
+					position: "top-center",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: false,
+					draggable: false,
+					progress: undefined,
+					theme: "dark",
+					transition: Flip,
+				});
 			}
 		} finally {
 			setIsLoading(false);
@@ -151,6 +207,7 @@ function FormEditPerfil() {
 					</svg>
 				</button>
 			</form>
+			<ToastContainer />
 		</div>
 	);
 }

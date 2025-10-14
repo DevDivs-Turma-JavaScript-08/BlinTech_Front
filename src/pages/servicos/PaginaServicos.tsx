@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import CardBeneficiosSeguros from "../../components/cards/cardServicos/CardBeneficiosSeguros";
 import CtaServicos from "../../components/buttons/CtaServiços";
+import { ToastContainer } from "react-toastify";
 
 export default function PaginaServicos() {
 	const { usuario } = useContext(AuthContext);
@@ -46,6 +47,7 @@ export default function PaginaServicos() {
 				<h1 className="font-semibold">Por que escolher a BlinTech?</h1>
 				<CardEscolha />
 			</section>
+			<ToastContainer />
 		</main>
 	);
 }

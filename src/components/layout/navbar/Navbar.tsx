@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { Flip, toast, ToastContainer } from "react-toastify";
 
 const Navbar: React.FC = () => {
 	const location = useLocation();
@@ -37,7 +38,19 @@ const Navbar: React.FC = () => {
 
 	function logout() {
 		handleLogout();
-		console.log("O Usuário foi desconectado com sucesso!");
+		// console.log("O Usuário foi desconectado com sucesso!");
+		toast.dismiss();
+		toast.success("O Usuário desconectado com sucesso!", {
+			position: "top-center",
+			autoClose: 3000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: false,
+			draggable: false,
+			progress: undefined,
+			theme: "dark",
+			transition: Flip,
+		});
 	}
 
 	useEffect(() => {
@@ -359,6 +372,8 @@ const Navbar: React.FC = () => {
 					</ul>
 				</div>
 			)}
+
+			<ToastContainer />
 		</header>
 	);
 };

@@ -1,28 +1,15 @@
-// import CategoriaForm from "../../components/categorias/categoriaForm/CategoriaForm";
-// import ProdutosForm from "../../components/produtos/produtosForm/ProdutosForm";
-
 import { Link } from "react-router-dom";
-// import CardSegurosHome from "../../components/cards/cardSeguros/CardSegurosHome";
 import CardBeneficios from "../../components/homeComponents/beneficios/CardBeneficios";
 import Duvidas from "../../components/homeComponents/faq/Duvidas";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import ListaCardSegurosHome from "../../components/cards/cardSegurosHome/ListaCardSegurosHome";
 import CtaHome from "../../components/buttons/CtaHome";
-// import useCarousel from "../../hooks/useCarousel";
+import { ToastContainer } from "react-toastify";
 
 function Home() {
 	const { usuario } = useContext(AuthContext);
 	const token = usuario.token;
-
-	// // Carrousel
-	// const carouselOptions = {
-	//   slidesPerPage: 4,
-	//   Navigation: true,
-	//   Dots: true,
-	// };
-
-	// const [carouselRef] = useCarousel(carouselOptions);
 
 	// Benefícios
 	const beneficios = [
@@ -139,6 +126,7 @@ function Home() {
 					))}
 				</div>
 			</section>
+			<ToastContainer />
 		</main>
 	);
 }

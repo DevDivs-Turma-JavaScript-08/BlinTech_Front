@@ -1,7 +1,7 @@
 import { createContext, useState, type ReactNode } from "react";
 import type UsuarioLogin from "../models/UsuarioLogin";
 import { login } from "../services/Services";
-
+import { Flip, toast } from "react-toastify";
 
 interface AuthContextProps {
 	usuario: UsuarioLogin;
@@ -19,13 +19,13 @@ export const AuthContext = createContext({} as AuthContextProps);
 export function AuthProvider({ children }: AuthProviderProps) {
 	const [usuario, setUsuario] = useState<UsuarioLogin>({
 		id: 0,
-	  nome: "",
-	  tipoDeUsuario: "",
-	  email: "",
-	  cpf: "",
-	  senha: "",
-	  foto: "",
-	  token: "",
+		nome: "",
+		tipoDeUsuario: "",
+		email: "",
+		cpf: "",
+		senha: "",
+		foto: "",
+		token: "",
 	});
 
 	const [isLoading, setIsLoading] = useState(false);
@@ -34,12 +34,34 @@ export function AuthProvider({ children }: AuthProviderProps) {
 		setIsLoading(true);
 		try {
 			await login(`/usuarios/login`, usuarioLogin, setUsuario);
-			alert("Login realizado com sucesso!");
+			toast.dismiss();
+			toast.success("Login realizado. \nBem vindo(a) a BlinTech!", {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+				className: "whitespace-pre-line",
+			});
 		} catch (error) {
-			console.error(error);
 			const backendMessage = error.response?.data?.message || error.message || "Erro desconhecido ao realizar o login.";
 
-			alert(backendMessage);
+			toast.dismiss();
+			toast.error(backendMessage, {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 		}
 		setIsLoading(false);
 	}

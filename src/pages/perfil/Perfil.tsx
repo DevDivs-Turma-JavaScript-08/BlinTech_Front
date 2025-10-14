@@ -5,6 +5,7 @@ import type Produto from "../../models/Produto";
 import CardProduto from "../../components/cards/cardProduto/CardProduto";
 import ModalPerfil from "../../components/forms/ModalPerfil";
 import { useNavigate } from "react-router-dom";
+import { Flip, toast, ToastContainer } from "react-toastify";
 
 function formatarCpf(cpf: string): string {
 	if (!cpf) return "";
@@ -35,7 +36,18 @@ export default function Perfil() {
 
 	useEffect(() => {
 		if (token === "") {
-			alert("Você precisa estar logado");
+			toast.dismiss();
+			toast.warning("Você precisa estar logado!", {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 			navigate("/");
 		}
 	}, [usuario.token]);
@@ -45,11 +57,33 @@ export default function Perfil() {
 			await deletar(`/produto/${id}`, {
 				headers: { Authorization: token },
 			});
-			alert("Seguro cancelado com sucesso!");
+			toast.dismiss();
+			toast.success("Seguro cancelado com sucesso!", {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 			setSeguros(seguros.filter((seguro) => seguro.id !== id));
 		} catch (error) {
-			console.error("Erro ao excluir produto: ", error);
-			alert("Erro ao excluir o produto.");
+			// console.error("Erro ao excluir produto: ", error);
+			toast.dismiss();
+			toast.error("Erro ao cancelar seguro.", {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 		}
 	};
 
@@ -101,6 +135,7 @@ export default function Perfil() {
 					<p className="text-lg text-gray-300 italic">Você ainda não possui seguros cadastrados.</p>
 				)}
 			</section>
+			<ToastContainer />
 		</main>
 	);
 }

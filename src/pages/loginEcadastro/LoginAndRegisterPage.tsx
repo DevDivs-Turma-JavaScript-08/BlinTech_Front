@@ -6,6 +6,7 @@ import type Usuario from "../../models/Usuario";
 import { cadastrarUsuario } from "../../services/Services";
 import Loader from "../../components/buttons/Loader";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { Flip, ToastContainer, toast } from "react-toastify";
 
 type FormFields = Usuario & { confirmarSenha: string };
 
@@ -88,14 +89,36 @@ const LoginAndRegisterPage: React.FC = () => {
 
 		try {
 			await cadastrarUsuario(`/usuarios/cadastro`, novoUsuario, emptySetter);
-			alert("Usuário cadastrado com sucesso!");
+			toast.dismiss();
+			toast.success("Usuário cadastrado com sucesso!", {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 			reset();
 			setShowLogin(true);
 		} catch (error) {
 			console.error(error);
-			 const backendMessage = error.response?.data?.message || error.message || "Erro desconhecido ao cadastrar usuário.";
+			const backendMessage = error.response?.data?.message || error.message || "Erro desconhecido ao cadastrar usuário.";
 
-				alert(backendMessage);
+			toast.dismiss();
+			toast.error(backendMessage, {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 		}
 
 		setIsLoading(false);
@@ -118,51 +141,49 @@ const LoginAndRegisterPage: React.FC = () => {
 		return `${limitado.slice(0, 3)}.${limitado.slice(3, 6)}.${limitado.slice(6, 9)}-${limitado.slice(9, 11)}`;
 	};
 
-  // --- Função de ajuste de tamanho dos formulários e banner --- 
+	// --- Função de ajuste de tamanho dos formulários e banner ---
 
 	const bannerRef = useRef<HTMLDivElement>(null);
 
-useEffect(() => {
-	const activeRef = showLogin ? loginRef.current : cadastroRef.current;
-	const banner = bannerRef.current;
-	if (!activeRef || !banner) return;
+	useEffect(() => {
+		const activeRef = showLogin ? loginRef.current : cadastroRef.current;
+		const banner = bannerRef.current;
+		if (!activeRef || !banner) return;
 
-	const updateHeight = () => {
-		if (window.innerWidth >= 768) {
-			// DESKTOP → Banner acompanha o formulário
-			const activeHeight = activeRef.scrollHeight;
-			banner.style.height = `${activeHeight}px`;
-			setFormHeight(activeHeight);
-		} else {
-			// MOBILE
-			if (showLogin) {
-				// Login → soma banner abaixo
-				const totalHeight = activeRef.scrollHeight + (banner?.scrollHeight || 0);
-				banner.style.height = "auto";
-				setFormHeight(totalHeight);
+		const updateHeight = () => {
+			if (window.innerWidth >= 768) {
+				// DESKTOP → Banner acompanha o formulário
+				const activeHeight = activeRef.scrollHeight;
+				banner.style.height = `${activeHeight}px`;
+				setFormHeight(activeHeight);
 			} else {
-				// Cadastro → considera só o formulário
-				banner.style.height = "auto";
-				setFormHeight(activeRef.scrollHeight);
+				// MOBILE
+				if (showLogin) {
+					// Login → soma banner abaixo
+					const totalHeight = activeRef.scrollHeight + (banner?.scrollHeight || 0);
+					banner.style.height = "auto";
+					setFormHeight(totalHeight);
+				} else {
+					// Cadastro → considera só o formulário
+					banner.style.height = "auto";
+					setFormHeight(activeRef.scrollHeight);
+				}
 			}
-		}
-	};
+		};
 
-	updateHeight();
+		updateHeight();
 
-	const resizeObserver = new ResizeObserver(updateHeight);
-	resizeObserver.observe(activeRef);
-	resizeObserver.observe(banner);
+		const resizeObserver = new ResizeObserver(updateHeight);
+		resizeObserver.observe(activeRef);
+		resizeObserver.observe(banner);
 
-	window.addEventListener("resize", updateHeight);
+		window.addEventListener("resize", updateHeight);
 
-	return () => {
-		resizeObserver.disconnect();
-		window.removeEventListener("resize", updateHeight);
-	};
-}, [showLogin]);
-
-
+		return () => {
+			resizeObserver.disconnect();
+			window.removeEventListener("resize", updateHeight);
+		};
+	}, [showLogin]);
 
 	return (
 		<main
@@ -469,6 +490,7 @@ useEffect(() => {
 					</div>
 				</div>
 			</div>
+			<ToastContainer />
 		</main>
 	);
 };

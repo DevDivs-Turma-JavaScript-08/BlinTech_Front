@@ -6,6 +6,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import CategoriaForm from "../../forms/CategoriaForm";
 import CtaCriar from "../../buttons/CtaCriar";
 import CardCategorias from "../../cards/cardCategoria/cardCategorias";
+import { Flip, toast, ToastContainer } from "react-toastify";
 
 export default function CategoriasList() {
 	const navigate = useNavigate();
@@ -21,7 +22,18 @@ export default function CategoriasList() {
 
 	useEffect(() => {
 		if (token === "") {
-			alert("Você precisa estar logado!");
+			toast.dismiss();
+			toast.warning("Você precisa estar logado!", {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 			navigate("/");
 		}
 	}, [token, navigate]);
@@ -40,9 +52,9 @@ export default function CategoriasList() {
 		}
 	}
 
-  	useEffect(() => {
-			buscarCategorias();
-		}, [categorias.length]);
+	useEffect(() => {
+		buscarCategorias();
+	}, [categorias.length]);
 
 	useEffect(() => {
 		setShowForm(location.pathname !== "/categorias");
@@ -58,11 +70,33 @@ export default function CategoriasList() {
 			await deletar(`/categorias/${id}`, {
 				headers: { Authorization: token },
 			});
-			alert("Categoria excluida com sucesso!");
+			toast.dismiss();
+			toast.success("Categoria excluida com sucesso!", {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 			setCategorias(categorias.filter((categoria) => categoria.id !== id));
 		} catch (error) {
-			console.error("Erro ao excluir categoria: ", error);
-			alert("Erro ao excluir categoria.");
+			// console.error("Erro ao excluir categoria: ", error);
+			toast.dismiss();
+			toast.error("Erro ao excluir categoria.", {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 		}
 	};
 
@@ -87,6 +121,7 @@ export default function CategoriasList() {
 					<CardCategorias key={index} categoria={categoria} onDelete={handleDelete} />
 				))}
 			</div>
+			<ToastContainer />
 		</div>
 	);
 }

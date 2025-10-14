@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import CtaContato from "../../components/buttons/CtaContato";
+import { ToastContainer } from "react-toastify";
 
 function PaginaSobre() {
 	return (
@@ -122,6 +123,7 @@ function PaginaSobre() {
 				</div>
 			</section>
 			<div className="bg-[url(https://i.imgur.com/j9uFiYm.png)] w-full h-23 bg-repeat-x"></div>
+			<ToastContainer />
 		</main>
 	);
 }

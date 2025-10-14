@@ -4,6 +4,7 @@ import type Categoria from "../../models/Categoria";
 import { AuthContext } from "../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../services/Services";
 import CtaCard from "../buttons/CtaCard";
+import { Flip, toast, ToastContainer } from "react-toastify";
 
 interface CategoriasFormProps {
 	onClose?: () => void;
@@ -34,7 +35,18 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 
 	useEffect(() => {
 		if (token === "") {
-			alert("Você precisa estar logado!");
+			toast.dismiss();
+			toast.warning("Você precisa estar logado!", {
+				position: "top-center",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: false,
+				draggable: false,
+				progress: undefined,
+				theme: "dark",
+				transition: Flip,
+			});
 			navigate("/");
 		}
 	}, [token]);
@@ -63,25 +75,69 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 		if (id !== undefined) {
 			try {
 				await atualizar(`/categorias`, categoria, setCategoria, { headers: { Authorization: token } });
-				alert("A categoria foi atualizada com sucesso!");
+				toast.dismiss();
+				toast.success("Categoria atualizada com sucesso!", {
+					position: "top-center",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: false,
+					draggable: false,
+					progress: undefined,
+					theme: "dark",
+					transition: Flip,
+				});
 				if (onClose) onClose();
 			} catch (error) {
 				if (error.toString().includes("401")) {
 					handleLogout();
 				} else {
-					alert("Erro ao atualizar a categoria.");
+					toast.dismiss();
+					toast.error("Erro ao atualizar a categoria.", {
+						position: "top-center",
+						autoClose: 3000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: false,
+						draggable: false,
+						progress: undefined,
+						theme: "dark",
+						transition: Flip,
+					});
 				}
 			}
 		} else {
 			try {
 				await cadastrar(`/categorias`, categoria, setCategoria, { headers: { Authorization: token } });
-				alert("A categoria foi criada com sucesso!");
+				toast.dismiss();
+				toast.success("A categoria foi criada com sucesso!", {
+					position: "top-center",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: false,
+					draggable: false,
+					progress: undefined,
+					theme: "dark",
+					transition: Flip,
+				});
 				if (onClose) onClose();
 			} catch (error) {
 				if (error.toString().includes("401")) {
 					handleLogout();
 				} else {
-					alert("Erro ao cadastrar a categoria.");
+					toast.dismiss();
+					toast.error("Erro ao cadastrar a categoria.", {
+						position: "top-center",
+						autoClose: 3000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: false,
+						draggable: false,
+						progress: undefined,
+						theme: "dark",
+						transition: Flip,
+					});
 				}
 			}
 		}
@@ -176,6 +232,7 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 					</fieldset>
 				</form>
 			</div>
+			<ToastContainer />
 		</div>
 	);
 }
