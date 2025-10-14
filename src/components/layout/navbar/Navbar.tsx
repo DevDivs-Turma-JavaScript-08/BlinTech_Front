@@ -2,23 +2,21 @@ import React, { useContext, useEffect, useMemo, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-// Ícones para o menu sanduíche
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../../contexts/AuthContext";
 
 const Navbar: React.FC = () => {
 	const location = useLocation();
 
-	// Mapeamento de rotas para estado de ativo
 	const isHomePage = useMemo(() => location.pathname === "/", [location.pathname]);
 	const isSobrePage = useMemo(() => location.pathname === "/sobre", [location.pathname]);
 	const isServicosPage = useMemo(() => location.pathname === "/servicos", [location.pathname]);
 	const isContatoPage = useMemo(() => location.pathname === "/contato", [location.pathname]);
 	const isProdutoPage = useMemo(() => location.pathname === "/produtos", [location.pathname]);
 	const isCategoriaPage = useMemo(() => location.pathname === "/categorias", [location.pathname]);
+	const isPerfilPage = useMemo(() => location.pathname === "/perfil", [location.pathname]);
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	// NOVO: Estado para o menu responsivo (hamburger)
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const modalRef = useRef<HTMLDivElement>(null);
@@ -26,14 +24,11 @@ const Navbar: React.FC = () => {
 
 	const toggleModal = () => {
 		setIsModalOpen(!isModalOpen);
-		// Fecha o menu responsivo se o modal for aberto
 		setIsMenuOpen(false);
 	};
 
-	// NOVO: Função para alternar o menu responsivo
 	const toggleMenu = () => {
 		setIsMenuOpen(!isMenuOpen);
-		// Fecha o modal se o menu responsivo for aberto
 		setIsModalOpen(false);
 	};
 
@@ -47,14 +42,11 @@ const Navbar: React.FC = () => {
 
 	useEffect(() => {
 		if (usuario.token !== "") {
-			// console.log(usuario);
 		}
 	}, [usuario.token, usuario]);
 
-	// Hook para fechar o modal/menu ao clicar fora
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
-			// Lógica para fechar o modal do usuário
 			if (
 				modalRef.current &&
 				!modalRef.current.contains(event.target as Node) &&
@@ -63,9 +55,6 @@ const Navbar: React.FC = () => {
 			) {
 				setIsModalOpen(false);
 			}
-
-			// Lógica para fechar o menu responsivo (Se necessário, adicione uma ref para o menu)
-			// Por enquanto, vamos manter o menu responsivo simples, sendo fechado apenas por clique ou navegação.
 		};
 
 		if (isModalOpen) {
@@ -77,13 +66,14 @@ const Navbar: React.FC = () => {
 		};
 	}, [isModalOpen]);
 
-	// Função auxiliar para aplicar estilos de link
 	const getLinkClasses = (isActive: boolean) =>
 		`relative flex items-center px-4 py-2 font-bold uppercase tracking-wide bg-transparent border-0 outline-0 transition-all ${
 			!isActive
 				? `cursor-pointer text-(--tertiary) before:content-[''] before:block before:h-[1px] before:bg-(--tertiary) before:mr-2 before:w-0 before:transition-all before:duration-300 hover:before:w-6 hover:text-(--tertiary-dark)`
 				: `text-(--secondary) cursor-default`
 		}`;
+
+	const tipoUsuario = usuario.tipoDeUsuario.charAt(0).toUpperCase() + usuario.tipoDeUsuario.slice(1);
 
 	return (
 		<header className="bg-(--primary-ex-dark) text-white py-4 sticky top-0 z-50">
@@ -95,7 +85,7 @@ const Navbar: React.FC = () => {
 					</Link>
 				</div>
 
-				{/* CONTROLES MOBILE: BOTÃO HAMBURGER E ICONE DE USUÁRIO - VISÍVEL APENAS EM TELAS PEQUENAS */}
+				{/* CONTROLES MOBILE: BOTÃO HAMBURGER E ICONE DE USUÁRIO */}
 				<div className="md:hidden flex items-center">
 					<button
 						onClick={toggleMenu}
@@ -110,7 +100,7 @@ const Navbar: React.FC = () => {
 						onClick={toggleModal}
 						className={`w-12 h-12 overflow-hidden flex justify-center items-center rounded-full border-3 border-(--tertiary) shadow-lg hover:shadow-xl hover:border-(--secondary) transition cursor-pointer`}>
 						{token !== "" && usuario.foto ? (
-							<img src={usuario.foto} alt="Perfil do Usuário" className="w-full h-full object-cover" />
+							<img src={usuario.foto} alt={`Foto do Usuário ${usuario.nome}`} className="w-full h-full object-cover" />
 						) : (
 							<FontAwesomeIcon icon={faUser} className="text-3xl" />
 						)}
@@ -171,7 +161,9 @@ const Navbar: React.FC = () => {
 						<div
 							ref={toggleRef}
 							onClick={toggleModal}
-							className={`w-12 h-12 overflow-hidden flex justify-center bg-cover rounded-full border-3 border-(--tertiary) shadow-lg hover:shadow-xl hover:border-(--secondary) transition cursor-pointer`}>
+							className={`w-12 h-12 overflow-hidden flex justify-center bg-cover rounded-full border-3 ${
+								isPerfilPage ? `border-(--secondary)` : `border-(--tertiary)`
+							} shadow-lg hover:shadow-xl hover:border-(--secondary) transition cursor-pointer`}>
 							<img src={usuario.foto} alt="Perfil do Usuário" className="w-full h-full object-cover" />
 						</div>
 					</div>
@@ -319,7 +311,7 @@ const Navbar: React.FC = () => {
 						</div>
 						<div>
 							<p className="font-bold">{usuario.nome}</p>
-							<p className="text-sm">{usuario.tipoDeUsuario}</p>
+							<p className="text-sm text-(--tertiary)">{tipoUsuario}</p>
 						</div>
 					</div>
 					<ul className="flex flex-col">

@@ -656,6 +656,51 @@ input[type="number"] {
   stroke-dashoffset: -262.2723388671875;
 }
 
+/* Botão Perfil */
+
+.Btn_perfil {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100px;
+  height: 30px;
+  border: none;
+  padding: 0px 20px;
+  background-color: var(--primary-light);
+  color: white;
+  font-weight: 500;
+  border-radius: 10px;
+  box-shadow: -5px 5px 0px var(--primary-ex-dark);
+  transition-duration: .3s;
+}
+
+.svg_perfil {
+  width: 13px;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+  fill: white;
+  transition-duration: .3s;
+}
+
+.Btn_perfil:hover {
+  color: transparent;
+}
+
+.Btn_perfil:hover svg {
+  right: 43%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  transition-duration: .3s;
+}
+
+.Btn_perfil:active {
+  transform: translate(3px , 3px);
+  transition-duration: .3s;
+  box-shadow: 2px 2px 0px var(--tertiary-ex-dark);
+}
 
 @media (max-width: 480px) {
   /* From Uiverse.io by mobinkakei */

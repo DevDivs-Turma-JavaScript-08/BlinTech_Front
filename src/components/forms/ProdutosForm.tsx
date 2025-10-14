@@ -198,11 +198,11 @@ useEffect(() => {
 		retornar();
 	};
 
-	const handleOutsideClick = (event: React.MouseEvent<HTMLDivElement>) => {
-		if (event.target === event.currentTarget) {
-			retornar();
-		}
-	};
+	// const handleOutsideClick = (event: React.MouseEvent<HTMLDivElement>) => {
+	// 	if (event.target === event.currentTarget) {
+	// 		retornar();
+	// 	}
+	// };
 
 	const formatarImeiHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		let valor = e.target.value.replace(/[^a-zA-Z0-9]/g, "");
@@ -230,7 +230,7 @@ useEffect(() => {
 	};
 
 	return (
-		<div className="fixed inset-0 z-50 flex items-center justify-center bg-(--primary-ex-dark)/40 backdrop-blur-sm" onClick={handleOutsideClick}>
+		<div className="fixed inset-0 z-50 flex items-center justify-center bg-(--primary-ex-dark)/40 backdrop-blur-sm">
 			<div
 				className="bg-(--primary-dark)/95 px-8 py-4 rounded-lg backdrop-blur-md shadow-xl w-[90vw] h-[90vh] overflow-y-auto md:h-fit max-w-3xl"
 				onClick={(e) => e.stopPropagation()}>

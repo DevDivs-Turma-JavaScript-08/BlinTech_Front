@@ -371,6 +371,7 @@ useEffect(() => {
 							</div>
 						</div>
 
+						{/* Foto */}
 						<div>
 							<div className="input-group">
 								<input
@@ -379,7 +380,6 @@ useEffect(() => {
 									type="text"
 									className="input h-10 w-full"
 									{...register("foto", {
-										// O campo é opcional, mas se preenchido, deve validar o formato
 										pattern: {
 											value: /^(https?:\/\/[^\s$.?#].[^\s]*\.(?:jpg|jpeg|png|gif|webp))$/i,
 											message: "URL de foto inválida. Deve ser uma URL com extensão de imagem (.jpg, .png, etc.)",

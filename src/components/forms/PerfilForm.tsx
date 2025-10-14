@@ -1,136 +1,158 @@
-import { useContext, useState, type ChangeEvent, type FormEvent } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import type Usuario from "../../models/Usuario";
-import { atualizar} from "../../services/Services";
+import { atualizar, buscar } from "../../services/Services";
+
+type FormFields = Usuario;
 
 function FormEditPerfil() {
 	const navigate = useNavigate();
-	const { usuario } = useContext(AuthContext);
+	const { usuario, handleLogin } = useContext(AuthContext);
 	const token = usuario.token;
 	const { id } = useParams<{ id: string }>();
 
-	const [usuarioEditar, setUsuarioEditar] = useState<Usuario>({
-		id: Number(id),
-		nome: "",
-		email: "",
-		senha: "",
-		tipoDeUsuario: "",
-		cpf: "",
-		foto: "",
+	const [isLoading, setIsLoading] = useState(false);
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isValid },
+		reset,
+		watch,
+	} = useForm<FormFields>({
+		mode: "onTouched",
+		defaultValues: usuario,
 	});
 
-	//   useEffect(() => {
-	//     if (id) {
-	//       buscarUsuario(id);
-	//     }
-	//   }, [id]);
-	//resolver erro na busca. Faz a requisicao, entra em estado peding e retorna um bad request - Id undefined - pesquisar
-	//   async function buscarUsuario(id: string) {
-	//     try {
-	//       await buscar(`/usuarios/${id}`, setUsuarioEditar, {
-	//         headers: { Authorization: token },
-	//       });
-	//     } catch (error: any) {
-	//       console.error("Erro ao buscar usuário:", error);
-	//       if (error.toString().includes("401")) {
-	//         alert("Sessão expirada. Faça login novamente.");
-	//       }
-	//     }
-	//   }
-	//   const teste = buscarUsuario(id)
-	//   console.log('Isso e o que retorna da minha funcao buscar: ', teste)
-
-	function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-		setUsuarioEditar({
-			...usuarioEditar,
-			[e.target.name]: e.target.value,
-		});
-	}
-	async function editarPerfil(e: FormEvent<HTMLFormElement>) {
-		e.preventDefault();
-
-		const dadosAtualizados = {
-			...usuario, // traz todos os dados atuais do contexto
-			nome: usuarioEditar.nome || usuario.nome,
-			foto: usuarioEditar.foto || usuario.foto,
-		};
-		if (usuarioEditar.senha && usuarioEditar.senha.length >= 6) {
-			dadosAtualizados.senha = usuarioEditar.senha;
+	// --- Busca usuário se necessário ---
+	useEffect(() => {
+		if (id && Number(id) !== usuario.id) {
+			buscarUsuario(id);
+		} else {
+			reset(usuario);
 		}
+	}, [id]);
 
-		console.log("testando erro - enviando para API:", dadosAtualizados);
+	async function buscarUsuario(id: string) {
 		try {
-			await atualizar("/usuarios/atualizacao", dadosAtualizados, setUsuarioEditar, {
-				headers: {
-					Authorization: token,
-				},
+			await buscar(`/usuarios/${id}`, (data: Usuario) => reset(data), {
+				headers: { Authorization: token },
 			});
-			// Atualiza o contexto global
-			setUsuarioEditar(dadosAtualizados);
-			alert("Perfil atualizado com sucesso! ✅");
-			navigate("/perfil");
-
-		} catch (error) {
-      
-			console.error("Erro ao atualizar:", error.response?.data || error.message);
-			if (error.response?.status === 400) {
-				alert("Erro de validação: Verifique se todos os campos estão preenchidos corretamente.");
-			} else if (error.toString().includes("401")) {
-				alert("Sessão expirada ou não autorizada. Faça login novamente.");
-			} else {
-				alert("Erro ao atualizar o perfil. Verifique os dados e tente novamente.");
+		} catch (error: any) {
+			console.error("Erro ao buscar usuário:", error);
+			if (error.toString().includes("401")) {
+				alert("Sessão expirada. Faça login novamente.");
 			}
 		}
 	}
 
+	const senha = watch("senha", "");
+
+	// --- Submissão ---
+	const onSubmit: SubmitHandler<FormFields> = async (data) => {
+		setIsLoading(true);
+
+		const dadosAtualizados = {
+			...usuario,
+			...data
+		};
+
+		try {
+			await atualizar(`/usuarios/atualizacao`, dadosAtualizados, () => {}, {
+				headers: { Authorization: token },
+			});
+
+			handleLogin(dadosAtualizados);
+			alert("Perfil atualizado com sucesso! ✅");
+			navigate("/perfil");
+		} catch (error: any) {
+			console.error("Erro ao atualizar:", error.response?.data || error.message);
+			if (error.response?.status === 400) {
+				alert("Erro de validação: verifique os campos.");
+			} else if (error.toString().includes("401")) {
+				alert("Sessão expirada. Faça login novamente.");
+			} else {
+				alert("Erro ao atualizar o perfil.");
+			}
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
 	return (
-		<div className="container flex flex-col justify-center h-full mx-auto items-center w-1/2 gap-4 border-s-amber-100">
-			<h1 className="text-center">Editar Perfil</h1>
-			<form className="flex flex-col items-center justify-center gap-4" onSubmit={editarPerfil}>
-				<div className="flex flex-col gap-2 items-center justify-center">
-					<div>
-						<label htmlFor="nome">Nome</label>
-						<input
-							type="text"
-							placeholder="Digite um novo nome"
-							name="nome"
-							required
-							className="border-2 border-slate-700 rounded w-64 p-2"
-							value={usuarioEditar.nome}
-							onChange={atualizarEstado}
-						/>
+		<div className="container flex flex-col justify-center h-full mx-auto items-center md:w-[30vw] gap-8 px-[20px] py-[25px]">
+			<h1 className="text-center text-4xl font-bold text-white">Editar Perfil</h1>
+
+			<form className="flex flex-col w-full items-center justify-center gap-6" onSubmit={handleSubmit(onSubmit)}>
+				{/* Nome */}
+				<div className="w-full">
+					<div className="input-group">
+						<input id="nome" type="text" className="input h-10 w-full" {...register("nome", { required: "O nome é obrigatório" })} />
+						<label className="user-label">
+							Nome<span className="text-(--secondary-light)"> *</span>
+						</label>
 					</div>
-					<div>
-						<label htmlFor="foto">Foto</label>
-						<input
-							type="text"
-							placeholder="Link da nova foto"
-							name="foto"
-							required
-							className="border-2 border-slate-700 rounded w-64 p-2"
-							value={usuarioEditar.foto}
-							onChange={atualizarEstado}
-						/>
-					</div>
-					<div>
-						<label htmlFor="senha">Senha</label>
-						<input
-							type="text"
-							placeholder="Digite sua senha atual ou uma nova"
-							name="senha"
-							required
-							className="border-2 border-slate-700 rounded w-64 p-2"
-							value={usuarioEditar.senha}
-							onChange={atualizarEstado}
-						/>
-					</div>
+					{errors.nome && <span className="text-red-500 text-sm">{errors.nome.message}</span>}
 				</div>
-				<button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onClick={() => navigate("/perfil")}>
+
+				{/* Foto */}
+				<div className="w-full">
+					<div className="input-group">
+						<input
+							id="foto"
+							type="text"
+							className="input h-10 w-full"
+							{...register("foto", {
+								required: "O link da foto é obrigatório",
+								pattern: {
+									value: /^(https?:\/\/[^\s$.?#].[^\s]*\.(?:jpg|jpeg|png|gif|webp))$/i,
+									message: "URL inválida. Deve terminar com .jpg, .png, etc.",
+								},
+							})}
+						/>
+						<label className="user-label">Link da foto de Perfil</label>
+					</div>
+					{errors.foto && <span className="text-red-500 text-sm">{errors.foto.message}</span>}
+				</div>
+
+				{/* Senha */}
+				<div className="w-full">
+					<div className="input-group">
+						<input
+							id="senha"
+							type="password"
+							className="input h-10 w-full"
+							{...register("senha", {
+								minLength: {
+									value: 6,
+									message: "A nova senha deve ter no mínimo 6 caracteres",
+								},
+							})}
+						/>
+						<label className="user-label">Nova Senha</label>
+					</div>
+					{errors.senha && <span className="text-red-500 text-sm">{errors.senha.message}</span>}
+				</div>
+
+				{/* Botão */}
+				<button
+					type="submit"
+					className={`Btn_perfil ${isValid && !isLoading ? "cursor-pointer hover:bg-(--tertiary-light)" : "opacity-50 cursor-not-allowed"}`}>
 					Salvar
+					<svg fill="#000000" version="1.1" id="Capa_1" width="25px" height="25px" viewBox="0 0 407.096 407.096" className="svg_perfil">
+						<g>
+							<g>
+								<path d="M402.115,84.008L323.088,4.981C319.899,1.792,315.574,0,311.063,0H17.005C7.613,0,0,7.614,0,17.005v373.086 c0,9.392,7.613,17.005,17.005,17.005h373.086c9.392,0,17.005-7.613,17.005-17.005V96.032 C407.096,91.523,405.305,87.197,402.115,84.008z M300.664,163.567H67.129V38.862h233.535V163.567z" />
+								<path d="M214.051,148.16h43.08c3.131,0,5.668-2.538,5.668-5.669V59.584c0-3.13-2.537-5.668-5.668-5.668h-43.08 c-3.131,0-5.668,2.538-5.668,5.668v82.907C208.383,145.622,210.92,148.16,214.051,148.16z" />
+							</g>
+						</g>
+					</svg>
 				</button>
 			</form>
 		</div>
 	);
 }
+
 export default FormEditPerfil;

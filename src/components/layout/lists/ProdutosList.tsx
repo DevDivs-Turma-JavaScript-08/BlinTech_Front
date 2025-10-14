@@ -98,7 +98,7 @@ function ProdutosList() {
 				{usuario.tipoDeUsuario === "segurador" ? "Todos os Seguros" : "Meus Seguros"}
 			</h1>
 
-			<CtaCriar path="/produtos/contratar" mainColor="--tertiary" content="Contratar Seguro" textColor="(--primary-dark)" />
+			<CtaCriar path="/produtos/contratar" mainColor="--tertiary" content="Contratar Seguro" textColor="(--primary-ex-dark)" />
 
 			{showForm && (
 				<div className="fixed inset-0 z-50 flex items-center justify-center bg-(--primary-ex-dark)/75">

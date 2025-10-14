@@ -19,7 +19,7 @@ export default function PaginaServicos() {
 		<main className="flex flex-col w-full min-h-screen gap-3 text-white">
 			{/* orcamento */}
 			<section className="w-full">
-				<div className="bg-[url(https://i.imgur.com/G4pfZ69.png)] bg-repeat-x bg-contain p-7 h-[350px] flex items-center justify-center flex-col gap-5 text-white text-center">
+				<div className="bg-[url(https://i.imgur.com/G4pfZ69.png)] bg-repeat-x bg-contain p-4 md:p-7 h-[350px] flex items-center justify-center flex-col gap-5 text-white text-center">
 					<h1 className="text-5xl md:text-6xl font-bold">Proteja seus eletronicos com seguranca</h1>
 
 					<p className="text-[19px]">Diversos tipos de cobertura, escolha aquele que entre no seu bolso</p>

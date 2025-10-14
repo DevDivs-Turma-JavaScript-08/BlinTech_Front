@@ -57,20 +57,20 @@ function CardProduto({ seguro, onDelete }: CardProdutoProps) {
 							<span className="font-semibold text-(--tertiary)">Valor do Produto: </span>R$ {seguro.valorProduto}
 						</p>
 						<p>
+							<span className="font-semibold text-(--tertiary)">Tempo de Uso: </span>
+							{seguro.tempoUso} meses
+						</p>
+						<p>
 							<span className="font-semibold text-(--tertiary)">Categoria: </span>
 							{seguro.categoria?.nome}
 						</p>
 						<p>
 							<span className="font-semibold text-(--tertiary)">Carência: </span>
-							{seguro.categoria?.carencia}
+							{seguro.categoria?.carencia} dias
 						</p>
 						<p>
 							<span className="font-semibold text-(--tertiary)">Cobertura: </span>
 							{seguro.cobertura.charAt(0).toUpperCase() + seguro.cobertura.slice(1)}
-						</p>
-						<p>
-							<span className="font-semibold text-(--tertiary)">Tempo de Uso: </span>
-							{seguro.tempoUso}
 						</p>
 						{seguro.imei !== "WW-XXXXXX-YYYYYY-Z" && (
 							<p>
@@ -82,6 +82,7 @@ function CardProduto({ seguro, onDelete }: CardProdutoProps) {
 				</div>
 
 				<div className="justify-self-end">
+          
 					{/* Valores */}
 					<div className="flex justify-between items-center my-4 border-t border-(--tertiary-ex-dark) pt-4">
 						<div className="flex flex-col text-center">

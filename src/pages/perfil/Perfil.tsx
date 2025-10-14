@@ -6,13 +6,21 @@ import CardProduto from "../../components/cards/cardProduto/CardProduto";
 import ModalPerfil from "../../components/forms/ModalPerfil";
 import { useNavigate } from "react-router-dom";
 
+function formatarCpf(cpf: string): string {
+	if (!cpf) return "";
+	return cpf
+		.replace(/\D/g, "")
+		.replace(/(\d{3})(\d)/, "$1.$2")
+		.replace(/(\d{3})(\d)/, "$1.$2")
+		.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+}
+
 export default function Perfil() {
 	const navigate = useNavigate();
 	const [seguros, setSeguros] = useState<Produto[]>([]);
 	const { usuario } = useContext(AuthContext);
 	const token = usuario.token;
 
-	//isso atualiza o valor de seguros com o getAll do buscar da service
 	async function buscarProdutos() {
 		await buscar("/produto", setSeguros, {
 			headers: { Authorization: token },
@@ -24,8 +32,6 @@ export default function Perfil() {
 	}, []);
 
 	const usuarioSeguros = seguros.filter((seguro) => seguro.usuario.id === usuario.id);
-
-	// console.log("teste 2: ", seguros);
 
 	useEffect(() => {
 		if (token === "") {
@@ -41,7 +47,6 @@ export default function Perfil() {
 			});
 			alert("Seguro cancelado com sucesso!");
 			setSeguros(seguros.filter((seguro) => seguro.id !== id));
-			// buscarProdutos();
 		} catch (error) {
 			console.error("Erro ao excluir produto: ", error);
 			alert("Erro ao excluir o produto.");
@@ -49,10 +54,10 @@ export default function Perfil() {
 	};
 
 	const tipoUsuario = usuario.tipoDeUsuario.charAt(0).toUpperCase() + usuario.tipoDeUsuario.slice(1);
+	const cpfFormatado = formatarCpf(usuario.cpf);
 
 	return (
 		<main className="flex flex-col w-full bg-(--primary-ex-dark) text-white items-center pb-20 min-h-screen">
-      
 			{/* Seção de Perfil */}
 			<section className="flex flex-col items-center mt-5 md:mt-10 gap-10 w-full max-w-6xl">
 				<h1 className="text-5xl font-bold text-center drop-shadow-md">Perfil do Usuário</h1>
@@ -66,10 +71,10 @@ export default function Perfil() {
 
 					<div className="flex flex-col gap-3 text-white w-full md:w-[60%]">
 						<h3 className="text-3xl font-semibold">
-							{usuario.nome} <span className="text-[1rem] text-(--tertiary)">{tipoUsuario}</span>{" "}
+							{usuario.nome} <span className="text-[1rem] text-(--tertiary)">{tipoUsuario}</span>
 						</h3>
 						<p className="text-lg">
-							<span className="font-semibold">CPF:</span> {usuario.cpf}
+							<span className="font-semibold">CPF:</span> {cpfFormatado}
 						</p>
 						<p className="text-lg">
 							<span className="font-semibold">Email:</span> {usuario.email}
@@ -83,7 +88,7 @@ export default function Perfil() {
 			</section>
 
 			{/* Seção de Seguros */}
-			<section className="mt-20 flex flex-col items-center w-full max-w-7xl gap-8">
+			<section className=" mt-10 md:mt-15 flex flex-col items-center w-full max-w-7xl gap-8">
 				<h2 className="text-4xl sm:text-5xl font-bold mb-4 text-center">Meus Seguros</h2>
 
 				{usuarioSeguros.length > 0 ? (
