@@ -66,7 +66,7 @@ O projeto foi desenvolvido com **boas práticas de componentização, hooks pers
 | **Feedbacks visuais** | React Toastify |
 | **Modais e popups** | ReactJS Popup |
 | **Contexto global** | Context API (AuthContext) |
-| **Estilização** | CSS moderno com variáveis customizadas e classes responsivas |
+| **Estilização** | Tailwind + CSS moderno com variáveis customizadas e classes responsivas |
 | **API** | Integração com o backend NestJS usando `fetch` customizado em `/services/Services.ts` |
 
 ---
