@@ -6,7 +6,7 @@ import { buscar, deletar } from "../../../services/Services";
 import CardMeuSeguro from "../../cards/cardProduto/CardProduto";
 import SegurosForm from "../../forms/ProdutosForm";
 import CtaCriar from "../../buttons/CtaCriar";
-import { Flip, toast, ToastContainer } from "react-toastify";
+import { Flip, toast } from "react-toastify";
 
 function ProdutosList() {
 	const navigate = useNavigate();
@@ -35,10 +35,9 @@ function ProdutosList() {
 
 	useEffect(() => {
 		if (token === "") {
-			toast.dismiss();
 			toast.warning("Você precisa estar logado!", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -74,7 +73,7 @@ function ProdutosList() {
 			toast.dismiss();
 			toast.success("Seguro cancelado com sucesso!", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -89,7 +88,7 @@ function ProdutosList() {
 			toast.dismiss();
 			toast.error("Erro ao cancelar seguro.", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -151,7 +150,6 @@ function ProdutosList() {
 			) : (
 				component
 			)}
-			<ToastContainer />
 		</div>
 	);
 }

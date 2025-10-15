@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import type Usuario from "../../models/Usuario";
 import { atualizar, buscar } from "../../services/Services";
-import { Flip, toast, ToastContainer } from "react-toastify";
+import { Flip, toast } from "react-toastify";
 
 type FormFields = Usuario;
 
@@ -44,10 +44,9 @@ function FormEditPerfil() {
 		} catch (error: any) {
 			// console.error("Erro ao buscar usuário:", error);
 			if (error.toString().includes("401")) {
-				toast.dismiss();
 				toast.warning("Você precisa estar logado!", {
 					position: "top-center",
-					autoClose: 3000,
+					autoClose: 5000,
 					hideProgressBar: false,
 					closeOnClick: true,
 					pauseOnHover: false,
@@ -80,7 +79,7 @@ function FormEditPerfil() {
 			toast.dismiss();
 			toast.success("Perfil atualizado com sucesso!", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -96,7 +95,7 @@ function FormEditPerfil() {
 				toast.dismiss();
 				toast.error("Erro de validação: verifique os campos.", {
 					position: "top-center",
-					autoClose: 3000,
+					autoClose: 5000,
 					hideProgressBar: false,
 					closeOnClick: true,
 					pauseOnHover: false,
@@ -106,10 +105,9 @@ function FormEditPerfil() {
 					transition: Flip,
 				});
 			} else if (error.toString().includes("401")) {
-				toast.dismiss();
-				toast.warning("Sessão expirada. Faça login novamente.", {
+				toast.warning("Você precisa estar logado!", {
 					position: "top-center",
-					autoClose: 3000,
+					autoClose: 5000,
 					hideProgressBar: false,
 					closeOnClick: true,
 					pauseOnHover: false,
@@ -122,7 +120,7 @@ function FormEditPerfil() {
 				toast.dismiss();
 				toast.error("Erro ao atualizar o perfil.", {
 					position: "top-center",
-					autoClose: 3000,
+					autoClose: 5000,
 					hideProgressBar: false,
 					closeOnClick: true,
 					pauseOnHover: false,
@@ -207,7 +205,6 @@ function FormEditPerfil() {
 					</svg>
 				</button>
 			</form>
-			<ToastContainer />
 		</div>
 	);
 }

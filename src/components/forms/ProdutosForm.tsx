@@ -7,7 +7,7 @@ import { atualizar, buscar, cadastrar } from "../../services/Services";
 import CtaCard from "../buttons/CtaCard";
 
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { Flip, toast, ToastContainer } from "react-toastify";
+import { Flip, toast } from "react-toastify";
 
 interface ProdutosFormProps {
 	onClose?: () => void;
@@ -125,10 +125,9 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 
 	useEffect(() => {
 		if (token === "") {
-			toast.dismiss();
 			toast.warning("Você precisa estar logado!", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -193,7 +192,7 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 				toast.dismiss();
 				toast.success("Seguro atualizado com sucesso!", {
 					position: "top-center",
-					autoClose: 3000,
+					autoClose: 5000,
 					hideProgressBar: false,
 					closeOnClick: true,
 					pauseOnHover: false,
@@ -209,7 +208,7 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 				toast.dismiss();
 				toast.success("Seguro contratado com sucesso!", {
 					position: "top-center",
-					autoClose: 3000,
+					autoClose: 5000,
 					hideProgressBar: false,
 					closeOnClick: true,
 					pauseOnHover: false,
@@ -226,7 +225,7 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 
 			toast.error(backendMessage, {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -502,7 +501,6 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 					</div>
 				</form>
 			</div>
-			<ToastContainer />
 		</div>
 	);
 }

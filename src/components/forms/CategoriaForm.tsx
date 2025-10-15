@@ -4,7 +4,7 @@ import type Categoria from "../../models/Categoria";
 import { AuthContext } from "../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../services/Services";
 import CtaCard from "../buttons/CtaCard";
-import { Flip, toast, ToastContainer } from "react-toastify";
+import { Flip, toast } from "react-toastify";
 
 interface CategoriasFormProps {
 	onClose?: () => void;
@@ -35,10 +35,9 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 
 	useEffect(() => {
 		if (token === "") {
-			toast.dismiss();
 			toast.warning("Você precisa estar logado!", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -75,10 +74,10 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 		if (id !== undefined) {
 			try {
 				await atualizar(`/categorias`, categoria, setCategoria, { headers: { Authorization: token } });
-				toast.dismiss();
+        toast.dismiss();
 				toast.success("Categoria atualizada com sucesso!", {
 					position: "top-center",
-					autoClose: 3000,
+					autoClose: 5000,
 					hideProgressBar: false,
 					closeOnClick: true,
 					pauseOnHover: false,
@@ -92,10 +91,10 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 				if (error.toString().includes("401")) {
 					handleLogout();
 				} else {
-					toast.dismiss();
+          toast.dismiss();
 					toast.error("Erro ao atualizar a categoria.", {
 						position: "top-center",
-						autoClose: 3000,
+						autoClose: 5000,
 						hideProgressBar: false,
 						closeOnClick: true,
 						pauseOnHover: false,
@@ -109,10 +108,10 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 		} else {
 			try {
 				await cadastrar(`/categorias`, categoria, setCategoria, { headers: { Authorization: token } });
-				toast.dismiss();
+        toast.dismiss();
 				toast.success("A categoria foi criada com sucesso!", {
 					position: "top-center",
-					autoClose: 3000,
+					autoClose: 5000,
 					hideProgressBar: false,
 					closeOnClick: true,
 					pauseOnHover: false,
@@ -126,10 +125,10 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 				if (error.toString().includes("401")) {
 					handleLogout();
 				} else {
-					toast.dismiss();
+          toast.dismiss();
 					toast.error("Erro ao cadastrar a categoria.", {
 						position: "top-center",
-						autoClose: 3000,
+						autoClose: 5000,
 						hideProgressBar: false,
 						closeOnClick: true,
 						pauseOnHover: false,
@@ -232,7 +231,6 @@ function CategoriaForm({ onClose }: CategoriasFormProps) {
 					</fieldset>
 				</form>
 			</div>
-			<ToastContainer />
 		</div>
 	);
 }

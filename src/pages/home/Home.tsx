@@ -126,7 +126,6 @@ function Home() {
 					))}
 				</div>
 			</section>
-			<ToastContainer />
 		</main>
 	);
 }

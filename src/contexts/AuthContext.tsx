@@ -37,7 +37,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			toast.dismiss();
 			toast.success("Login realizado. \nBem vindo(a) a BlinTech!", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -53,7 +53,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			toast.dismiss();
 			toast.error(backendMessage, {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,

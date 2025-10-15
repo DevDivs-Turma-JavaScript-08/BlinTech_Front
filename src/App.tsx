@@ -10,6 +10,7 @@ import PaginaSobre from "./pages/sobre/PaginaSobre";
 import ProdutosList from "./components/layout/lists/ProdutosList";
 import PaginaServicos from "./pages/servicos/PaginaServicos";
 import Contatos from "./pages/contato/Contato";
+import { ToastContainer } from "react-toastify";
 
 function App() {
 	return (
@@ -35,6 +36,7 @@ function App() {
 					<Footer />
 				</BrowserRouter>
 			</AuthProvider>
+      <ToastContainer />
 		</>
 	);
 }

@@ -5,7 +5,7 @@ import type Produto from "../../models/Produto";
 import CardProduto from "../../components/cards/cardProduto/CardProduto";
 import ModalPerfil from "../../components/forms/ModalPerfil";
 import { useNavigate } from "react-router-dom";
-import { Flip, toast, ToastContainer } from "react-toastify";
+import { Flip, toast } from "react-toastify";
 
 function formatarCpf(cpf: string): string {
 	if (!cpf) return "";
@@ -36,10 +36,9 @@ export default function Perfil() {
 
 	useEffect(() => {
 		if (token === "") {
-			toast.dismiss();
 			toast.warning("Você precisa estar logado!", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -60,7 +59,7 @@ export default function Perfil() {
 			toast.dismiss();
 			toast.success("Seguro cancelado com sucesso!", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -75,7 +74,7 @@ export default function Perfil() {
 			toast.dismiss();
 			toast.error("Erro ao cancelar seguro.", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -135,7 +134,6 @@ export default function Perfil() {
 					<p className="text-lg text-gray-300 italic">Você ainda não possui seguros cadastrados.</p>
 				)}
 			</section>
-			<ToastContainer />
 		</main>
 	);
 }

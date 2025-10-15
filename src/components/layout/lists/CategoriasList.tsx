@@ -6,7 +6,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import CategoriaForm from "../../forms/CategoriaForm";
 import CtaCriar from "../../buttons/CtaCriar";
 import CardCategorias from "../../cards/cardCategoria/cardCategorias";
-import { Flip, toast, ToastContainer } from "react-toastify";
+import { Flip, toast } from "react-toastify";
 
 export default function CategoriasList() {
 	const navigate = useNavigate();
@@ -22,10 +22,9 @@ export default function CategoriasList() {
 
 	useEffect(() => {
 		if (token === "") {
-			toast.dismiss();
 			toast.warning("Você precisa estar logado!", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -73,7 +72,7 @@ export default function CategoriasList() {
 			toast.dismiss();
 			toast.success("Categoria excluida com sucesso!", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -88,7 +87,7 @@ export default function CategoriasList() {
 			toast.dismiss();
 			toast.error("Erro ao excluir categoria.", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -121,7 +120,6 @@ export default function CategoriasList() {
 					<CardCategorias key={index} categoria={categoria} onDelete={handleDelete} />
 				))}
 			</div>
-			<ToastContainer />
 		</div>
 	);
 }

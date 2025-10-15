@@ -6,7 +6,7 @@ import type Usuario from "../../models/Usuario";
 import { cadastrarUsuario } from "../../services/Services";
 import Loader from "../../components/buttons/Loader";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { Flip, ToastContainer, toast } from "react-toastify";
+import { Flip, toast } from "react-toastify";
 
 type FormFields = Usuario & { confirmarSenha: string };
 
@@ -70,9 +70,17 @@ const LoginAndRegisterPage: React.FC = () => {
 		setUsuarioLogin({ ...usuarioLogin, [e.target.name]: e.target.value });
 	}
 
-	function login(e: FormEvent<HTMLFormElement>) {
+	async function login(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		handleLogin(usuarioLogin);
+		setIsLoading(true);
+
+		try {
+			await handleLogin(usuarioLogin);
+		} catch (error) {
+			console.error("Erro ao fazer login:", error);
+		} finally {
+			setIsLoading(false);
+		}
 	}
 
 	// --- Funções de Cadastro ---
@@ -92,7 +100,7 @@ const LoginAndRegisterPage: React.FC = () => {
 			toast.dismiss();
 			toast.success("Usuário cadastrado com sucesso!", {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -110,7 +118,7 @@ const LoginAndRegisterPage: React.FC = () => {
 			toast.dismiss();
 			toast.error(backendMessage, {
 				position: "top-center",
-				autoClose: 3000,
+				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
@@ -229,17 +237,16 @@ const LoginAndRegisterPage: React.FC = () => {
 							<label className="user-label">Senha</label>
 						</div>
 
-						<button
-							type="submit"
-							className={`px-6 py-2 rounded-lg text-(--tertiary) hover:text-(--primary-ex-dark) transition-all border-2 font-bold hover:bg-(--tertiary) border-(--tertiary) cursor-pointer`}>
-							{isLoading ? (
-								<span>
-									<Loader />
-								</span>
-							) : (
-								<span> Entrar </span>
-							)}
-						</button>
+						{isLoading ? (
+							<Loader />
+						) : (
+							<button
+								type="submit"
+								disabled={isLoading}
+								className={`px-6 py-2 rounded-lg transition-all border-2 font-bold w-[100%] text-(--tertiary) hover:text-(--primary-ex-dark) hover:bg-(--tertiary) border-(--tertiary) cursor-pointer`}>
+								Entrar
+							</button>
+						)}
 					</form>
 				</div>
 			</div>
@@ -300,6 +307,7 @@ const LoginAndRegisterPage: React.FC = () => {
 							<div>
 								<div className="input-group">
 									<input
+										autoComplete="off"
 										required
 										id="senha"
 										type="password"
@@ -323,6 +331,7 @@ const LoginAndRegisterPage: React.FC = () => {
 							<div>
 								<div className="input-group">
 									<input
+										autoComplete="off"
 										required
 										id="confirmarSenha"
 										type="password"
@@ -396,7 +405,6 @@ const LoginAndRegisterPage: React.FC = () => {
 						<div>
 							<div className="input-group">
 								<input
-									required
 									id="foto"
 									type="text"
 									className="input h-10 w-full"
@@ -422,23 +430,21 @@ const LoginAndRegisterPage: React.FC = () => {
 								</button>
 							</NavLink>
 
-							<button
-								type="submit"
-								disabled={!isValid || isLoading}
-								className={`px-6 py-2 rounded-lg transition-all border-2 font-bold w-[50%] 
+							{isLoading ? (
+								<Loader />
+							) : (
+								<button
+									type="submit"
+									disabled={!isValid || isLoading}
+									className={`px-6 py-2 rounded-lg transition-all border-2 font-bold w-[50%] 
                                   ${
 																		isValid && !isLoading
 																			? "text-(--tertiary) hover:text-(--primary-ex-dark) hover:bg-(--tertiary) border-(--tertiary) cursor-pointer"
 																			: "text-(--secondary-dark) bg-transparent border-(--secondary-ex-dark) cursor-not-allowed"
 																	}`}>
-								{isLoading ? (
-									<span>
-										<Loader />
-									</span>
-								) : (
-									<span> Cadastrar </span>
-								)}
-							</button>
+									Cadastrar
+								</button>
+							)}
 						</div>
 					</fieldset>
 				</form>
@@ -490,7 +496,6 @@ const LoginAndRegisterPage: React.FC = () => {
 					</div>
 				</div>
 			</div>
-			<ToastContainer />
 		</main>
 	);
 };
