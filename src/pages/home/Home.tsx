@@ -5,11 +5,23 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import ListaCardSegurosHome from "../../components/cards/cardSegurosHome/ListaCardSegurosHome";
 import CtaHome from "../../components/buttons/CtaHome";
-import { ToastContainer } from "react-toastify";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 
 function Home() {
 	const { usuario } = useContext(AuthContext);
 	const token = usuario.token;
+
+	// Animações
+
+	const fadeUp: Variants = {
+		hidden: { opacity: 0, y: 30 },
+		visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+	};
+
+	const fadeScale: Variants = {
+		hidden: { opacity: 0, scale: 0.95 },
+		visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
+	};
 
 	// Benefícios
 	const beneficios = [
@@ -80,52 +92,83 @@ function Home() {
 
 	return (
 		<main className="flex flex-col w-full bg-(--primary-ex-dark) text-white">
-			{/* Hero */}
+			<AnimatePresence mode="wait">
+				{/* Hero */}
 
-			<section className="md:h-[600px] h-[450px] w-full flex flex-col justify-center md:bg-[url(https://i.imgur.com/mU1UVb3.png)] bg-[url(https://i.imgur.com/rgMwbtp.png)] bg-cover bg-center bg-no-repeat md:gap-30 gap-15 md:pl-12 pl-4">
-				<div>
-					<h1 className="md:mt-20 text-5xl font-bold text-shadow-[0_0px_5px_rgb(0_0_0_/_0.9)]">
-						SEGURO PARA <br /> SEUS ELETRÔNICOS
-					</h1>
-					<p className="mt-4"> Tranquilidade e proteção completa para os seus aparelhos favoritos. </p>
-				</div>
+				<motion.section
+					key="hero"
+					initial="hidden"
+					animate="visible"
+					exit="hidden"
+					variants={fadeUp}
+					className="md:h-[600px] h-[450px] w-full flex flex-col justify-center md:bg-[url(https://i.imgur.com/mU1UVb3.png)] bg-[url(https://i.imgur.com/rgMwbtp.png)] bg-cover bg-center bg-no-repeat md:gap-30 gap-15 md:pl-12 pl-4">
+					<div>
+						<h1 className="md:mt-20 text-5xl font-bold text-shadow-[0_0px_5px_rgb(0_0_0_/_0.9)]">
+							SEGURO PARA <br /> SEUS ELETRÔNICOS
+						</h1>
+						<p className="mt-4"> Tranquilidade e proteção completa para os seus aparelhos favoritos. </p>
+					</div>
 
-				<div className="md:pl-12 pl-4 w-full">
-					<Link to={token !== "" ? `/produtos` : `/login`} className="w-fit">
-						<CtaHome />
-					</Link>
+					<div className="md:pl-12 pl-4 w-full">
+						<Link to={token !== "" ? `/produtos` : `/login`} className="w-fit">
+							<CtaHome />
+						</Link>
 
-					<p className="mt-4">
-						Não espere o <span className="font-bold"> imprevisto </span>. Segurança completa a um clique!
-					</p>
-				</div>
-			</section>
+						<p className="mt-4">
+							Não espere o <span className="font-bold"> imprevisto </span>. Segurança completa a um clique!
+						</p>
+					</div>
+				</motion.section>
 
-			{/* Beneficios */}
-			<section className="bg-[url(https://i.imgur.com/HPqDoFo.png)] h-fit md:py-30 gap-4 flex flex-col items-center md:p-8 py-8">
-				<div className="text-center">
-					<h2 className="text-4xl sm:text-6xl font-bold"> Benefícios </h2>
-					<p> Quais os benefícios do meu seguro?</p>
-				</div>
-				<div className="flex flex-col md:flex-row justify-center items-center gap-7 px-4 py-4 w-full max-w-7xl md:w-full">
-					{beneficios.map((beneficio) => (
-						<CardBeneficios key={beneficio.id} beneficios={beneficio} />
-					))}
-				</div>
-			</section>
+				{/* Beneficios */}
+				<motion.section
+					key="beneficios"
+					initial="hidden"
+					whileInView="visible"
+					variants={fadeScale}
+					viewport={{ once: true }}
+					className="bg-[url(https://i.imgur.com/HPqDoFo.png)] h-fit md:py-30 gap-4 flex flex-col items-center md:p-8 py-8">
+					<div className="text-center">
+						<h2 className="text-4xl sm:text-6xl font-bold"> Benefícios </h2>
+						<p> Quais os benefícios do meu seguro?</p>
+					</div>
+					<div className="flex flex-col md:flex-row justify-center items-center gap-7 px-4 py-4 w-full max-w-7xl md:w-full">
+						{beneficios.map((beneficio) => (
+								<CardBeneficios key={beneficio.id} beneficios={beneficio} />
+						))}
+					</div>
+				</motion.section>
 
-			{/* Categorias */}
-			{token !== "" ? <ListaCardSegurosHome /> : <> </>}
+				{/* Categorias */}
+				{token !== "" && (
+					<motion.div key="categorias" initial="hidden" whileInView="visible" variants={fadeUp} viewport={{ once: true }}>
+						<ListaCardSegurosHome />{" "}
+					</motion.div>
+				)}
 
-			{/* FAQ */}
-			<section className="bg-(--primary-ex-dark) bg-[url(https://i.imgur.com/3dP6eJR.png)] bg-repeat-x flex h-fit w-full flex-col justify-center items-center mb-4 p-4 gap-8 py-30">
-				<h2 className="text-4xl sm:text-6xl font-bold"> Dúvidas Frequentes </h2>
-				<div className="w-full flex flex-col gap-2 md:px-30">
-					{faqs.map((faq) => (
-						<Duvidas key={faq.id} faqs={faq} />
-					))}
-				</div>
-			</section>
+				{/* FAQ */}
+				<motion.section
+					key="faq"
+					initial="hidden"
+					whileInView="visible"
+					variants={fadeUp}
+					viewport={{ once: true }}
+					className="bg-(--primary-ex-dark) bg-[url(https://i.imgur.com/3dP6eJR.png)] bg-repeat-x flex h-fit w-full flex-col justify-center items-center mb-4 p-4 gap-8 pt-20 md:pt-0 md:py-30">
+					<h2 className="text-4xl sm:text-6xl font-bold text-center"> Dúvidas Frequentes </h2>
+					<div className="w-full flex flex-col gap-2 md:px-30">
+						{faqs.map((faq, i) => (
+							<motion.div
+								key={faq.id}
+								initial={{ opacity: 0, y: 40 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								transition={{ delay: i * 0.1, duration: 0.6 }}
+								viewport={{ once: true }}>
+								<Duvidas key={faq.id} faqs={faq} />
+							</motion.div>
+						))}
+					</div>
+				</motion.section>
+			</AnimatePresence>
 		</main>
 	);
 }

@@ -5,8 +5,8 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { buscar, deletar } from "../../../services/Services";
 import CardMeuSeguro from "../../cards/cardProduto/CardProduto";
 import SegurosForm from "../../forms/ProdutosForm";
-import CtaCriar from "../../buttons/CtaCriar";
 import { Flip, toast, ToastContainer } from "react-toastify";
+import { motion, AnimatePresence } from "framer-motion";
 
 function ProdutosList() {
 	const navigate = useNavigate();
@@ -110,7 +110,14 @@ function ProdutosList() {
 		component = (
 			<div className="flex justify-center gap-8 w-full flex-wrap max-w-7xl">
 				{seguros.map((seguro) => (
-					<CardMeuSeguro key={seguro.id} seguro={seguro} onDelete={handleDelete} />
+					<motion.div
+						key={seguro.id}
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -20 }}
+						transition={{ duration: 0.3 }}>
+						<CardMeuSeguro key={seguro.id} seguro={seguro} onDelete={handleDelete} />
+					</motion.div>
 				))}
 			</div>
 		);
@@ -118,21 +125,50 @@ function ProdutosList() {
 		component = (
 			<div className="flex justify-center gap-8 w-full flex-wrap max-w-7xl">
 				{usuarioSeguros.map((seguro) => (
-					<CardMeuSeguro key={seguro.id} seguro={seguro} onDelete={handleDelete} />
+					<motion.div
+						key={seguro.id}
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -20 }}
+						transition={{ duration: 0.3 }}>
+						<CardMeuSeguro key={seguro.id} seguro={seguro} onDelete={handleDelete} />
+					</motion.div>
 				))}
 			</div>
 		);
 	}
 
+  const fadeUp = {
+		hidden: { opacity: 0, y: 20 },
+		visible: { opacity: 1, y: 0 },
+		exit: { opacity: 0, y: -20 },
+	};
+
+	const modalAnim = {
+		hidden: { opacity: 0, scale: 0.9 },
+		visible: { opacity: 1, scale: 1 },
+		exit: { opacity: 0, scale: 0.9 },
+	};
+
 	return (
 		<div className="flex flex-col items-center justify-start p-8 text-white min-h-[90vh]">
-			<h1 className="text-5xl text-white font-bold text-center mb-6">
+			<motion.h1
+				initial={{ opacity: 0, y: -30 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6, ease: "easeOut" }}
+				className="text-5xl font-bold text-center mb-6">
 				{usuario.tipoDeUsuario === "segurador" ? "Todos os Seguros" : "Meus Seguros"}
-			</h1>
+			</motion.h1>
 
-			<div className="flex items-center justify-center pb-6">
+			<motion.div
+				initial={{ opacity: 0, y: 10 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ delay: 0.2, duration: 0.4 }}
+				className="flex items-center justify-center pb-6">
 				<div className="relative group">
-					<NavLink to={"/produtos/contratar"} className="relative inline-block p-px font-semibold leading-6 text-white hover:text-(--tertiary) bg-(--tertiary-dark) cursor-pointer rounded-xl shadow-(--tertiary) transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95">
+					<NavLink
+						to={"/produtos/contratar"}
+						className="relative inline-block p-px font-semibold leading-6 text-white hover:text-(--tertiary) bg-(--tertiary-dark) cursor-pointer rounded-xl shadow-(--tertiary) transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95">
 						<span className="absolute inset-0 rounded-xl bg-gradient-to-r from-(--tertiary-light) via-(--tertiary-ex-light) to-(--tertiary) p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
 
 						<span className="relative z-10 block px-6 py-3 rounded-xl bg-(--primary-ex-dark)">
@@ -154,27 +190,43 @@ function ProdutosList() {
 						</span>
 					</NavLink>
 				</div>
-			</div>
+			</motion.div>
 
-			{showForm && (
-				<div className="fixed inset-0 z-50 flex items-center justify-center bg-(--primary-ex-dark)/75">
-					<SegurosForm key={currentProductId} onClose={handleClose} />
-				</div>
-			)}
+			<AnimatePresence>
+				{showForm && (
+					<motion.div
+						key="seguro-form"
+						initial={{ opacity: 0, scale: 0.95 }}
+						animate={{ opacity: 1, scale: 1 }}
+						exit={{ opacity: 0, scale: 0.95 }}
+						transition={{ duration: 0.3, ease: "easeInOut" }}
+						className="fixed inset-0 z-50 flex items-center justify-center bg-(--primary-ex-dark)/75">
+						<SegurosForm key={currentProductId} onClose={handleClose} />
+					</motion.div>
+				)}
+			</AnimatePresence>
 
-			{seguros.length === 0 || usuarioSeguros.length === 0 ? (
-				<div className="text-center p-8 border border-blin-tertiary rounded-lg">
-					<p className="text-xl">
-						{usuario.tipoDeUsuario === "segurado" ? `Você ainda não possui nenhum seguro contratado.` : `Não há seguros cadastrados na plataforma.`}
-					</p>
-					<Link to="/servicos">
-						<button className="mt-4 px-6 py-2 bg-blin-tertiary rounded-lg hover:bg-blin-tertiary-light transition-all">Ver Planos de Seguro</button>
-					</Link>
-				</div>
-			) : (
-				component
-			)}
-      <ToastContainer />
+			<AnimatePresence>
+				{seguros.length === 0 || usuarioSeguros.length === 0 ? (
+					<motion.div
+						key="empty-state"
+						initial={{ opacity: 0, y: 10 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -10 }}
+						transition={{ duration: 0.3 }}
+						className="text-center p-8 border border-(--primary)/50 rounded-xl bg-(--primary-ex-dark)/5 backdrop-blur-sm mt-6">
+						<p className="text-xl mb-3">
+							{usuario.tipoDeUsuario === "segurado" ? "Você ainda não possui nenhum seguro contratado." : "Não há seguros cadastrados na plataforma."}
+						</p>
+						<Link to="/servicos">
+							<button className="mt-2 px-6 py-2 bg-(--primary) rounded-lg hover:bg-(--primary-light) transition-all">Ver Planos de Seguro</button>
+						</Link>
+					</motion.div>
+				) : (
+					component
+				)}
+			</AnimatePresence>
+			<ToastContainer />
 		</div>
 	);
 }

@@ -349,6 +349,7 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 									<label className="user-label">
 										Valor Pago <span className="text-(--secondary-light)"> *</span>
 									</label>
+									<span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 text-sm pointer-events-none"> ,00 </span>
 								</div>
 								{errors.valorProduto && <p className="text-red-500 text-sm mt-1">{errors.valorProduto.message}</p>}
 							</div>
@@ -371,6 +372,7 @@ export default function ProdutosForm({ onClose }: ProdutosFormProps) {
 									</label>
 									<span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 text-sm pointer-events-none"> Meses </span>
 								</div>
+								{errors.tempoUso && <p className="text-red-500 text-sm mt-1">{errors.tempoUso.message}</p>}
 							</div>
 
 							{/* IMEI Checkbox */}

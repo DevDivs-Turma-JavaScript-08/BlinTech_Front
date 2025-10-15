@@ -1,7 +1,5 @@
 import { useState } from "react";
-import githubIcon from "../../../assets/github.svg";
-import whatsappIcon from "../../../assets/whatsapp.svg";
-import linkedinIcon from "../../../assets/linkedin.svg";
+import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithubSquare, faSquareLinkedin, faWhatsappSquare } from "@fortawesome/free-brands-svg-icons";
 
@@ -72,7 +70,7 @@ export default function CardEquipe() {
 			funcao: "Product Owner",
 			frase: "Lidere com paixão e inspire a equipe.",
 			pitch:
-				"Como Product Owner, meu objetivo é alinhar a visão do produto com as necessidades do mercado, garantindo que entreguemos o máximo de valor.",
+				"Desenvolvedor Júnior especializado em React e JavaScript, com uma base sólida em UX/UI Design. Minha experiência em Engenharia me deu uma visão sistêmica e foco na resolução de problemas, que aplico na construção de soluções digitais que são não apenas funcionais, mas também intuitivas e centradas no usuário final.",
 			formacao: "Formado em Engenharia Civil e Jogos Digitais",
 			linkedin: "https://www.linkedin.com/in/lucasalvespinheiro/",
 			whatsapp: "https://wa.me/5511989157255",
@@ -103,84 +101,110 @@ export default function CardEquipe() {
 
 	return (
 		<div className="flex flex-col w-full items-center px-6 pb-12 md:gap-6 text-white">
-			<h1 className="text-4xl md:text-6xl font-bold p-3"> Nossa Equipe </h1>
+			<motion.h1
+				className="text-4xl md:text-6xl font-bold p-3"
+				initial={{ opacity: 0, y: -20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.5 }}>
+				Nossa Equipe
+			</motion.h1>
 			<div className="flex flex-col-reverse md:flex-row items-center gap-4 md:gap-0">
-				<div className="flex flex-wrap justify-center gap-6">
+				<motion.div
+					className="flex flex-wrap justify-center gap-6"
+					initial="hidden"
+					animate="visible"
+					variants={{
+						hidden: { opacity: 0 },
+						visible: {
+							opacity: 1,
+							transition: { staggerChildren: 0.1 },
+						},
+					}}>
 					{ListEquipe.map((equipe) => (
-						<div
+						<motion.div
 							key={equipe.nome}
 							onClick={() => handleSelect(equipe)}
-							className={`
-              w-30 md:w-56 h-auto p-4 flex flex-col items-center justify-center 
-              rounded-lg cursor-pointer
-              transform transition-all duration-300 hover:scale-105
-              ${
-								selecionado?.nome === equipe.nome
-									? " bg-(--primary-dark) shadow-[0_0px_10px_rgb(0_0_0_/_0.9)] border-2 border-(--secondary-dark) scale-105 "
-									: "border-2 border-transparent bg-(--primary-ex-dark) shadow-lg  "
-							}
-            `}>
+							className={`w-30 md:w-56 h-auto p-4 flex flex-col items-center justify-center rounded-lg cursor-pointer
+								transform transition-all duration-300 hover:scale-105
+								${
+									selecionado?.nome === equipe.nome
+										? " bg-(--primary-dark) shadow-[0_0px_10px_rgb(0_0_0_/_0.9)] border-2 border-(--secondary-dark) scale-105 "
+										: "border-2 border-transparent bg-(--primary-ex-dark) shadow-lg  "
+								}
+							`}
+							variants={{
+								hidden: { opacity: 0, scale: 0.8 },
+								visible: { opacity: 1, scale: 1 },
+							}}
+							whileHover={{ scale: 1.07 }}
+							whileTap={{ scale: 0.97 }}>
 							<div className="w-10 md:w-24 md:h-24 rounded-full overflow-hidden mb-2">
 								<img src={equipe.foto} alt={`Foto de ${equipe.nome}`} className="w-full h-full object-cover" />
 							</div>
 							<span className="text-lg font-semibold">{equipe.nome}</span>
 							<p className="text-sm text-(--secondary-dark)">{equipe.funcao}</p>
-						</div>
+						</motion.div>
 					))}
-				</div>
-
-				{selecionado ? (
-					<div className="h-fit w-full p-4 md:p-8 md:m-4 bg-(--primary-ex-dark) rounded-tl-[250px] rounded-br-[250px] md:rounded-br-[500px] rounded-bl-2xl shadow-[0_0px_10px_rgb(0_0_0_/_0.9)] flex flex-col items-center justify-between transition-all duration-500 content-center md:gap-4">
-						<div className="flex items-center flex-col md:flex-row">
-							<div className="md:w-[60%]">
-								<div className="flex flex-col items-center justify-center gap-3">
-									<h2 className="text-2xl md:text-3xl font-bold text-white">{selecionado.nome}</h2>
-									<div className="flex gap-2">
-										<a href={selecionado.github} target="_blank" rel="noopener noreferrer">
-											<FontAwesomeIcon
-												icon={faGithubSquare}
-												className="text-[30px] text-(--tertiary) hover:text-(--secondary) transition-all cursor-pointer"
-											/>
-										</a>
-										<a href={selecionado.whatsapp} target="_blank" rel="noopener noreferrer">
-											<FontAwesomeIcon
-												icon={faWhatsappSquare}
-												className="text-[30px] text-(--tertiary) hover:text-(--secondary) transition-all cursor-pointer"
-											/>
-										</a>
-										<a href={selecionado.linkedin} target="_blank" rel="noopener noreferrer">
-											<FontAwesomeIcon
-												icon={faSquareLinkedin}
-												className="text-[30px] text-(--tertiary) hover:text-(--secondary) transition-all cursor-pointer"
-											/>
-										</a>
+				</motion.div>
+				<AnimatePresence mode="wait">
+					{selecionado ? (
+						<motion.div
+							key={selecionado.nome}
+							initial={{ opacity: 0, y: 30, scale: 0.95, filter: "blur(4px)" }}
+							animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+							exit={{ opacity: 0, y: -30, scale: 0.9, filter: "blur(5px)" }}
+							transition={{ duration: 0.5 }}
+							className="h-fit w-full p-4 md:p-8 md:m-4 bg-(--primary-ex-dark) rounded-tl-[250px] rounded-br-[250px] md:rounded-br-[500px] rounded-bl-2xl shadow-[0_0px_10px_rgb(0_0_0_/_0.9)] flex flex-col items-center justify-between content-center md:gap-4">
+							<div className="flex items-center flex-col md:flex-row">
+								<div className="md:w-[60%]">
+									<div className="flex flex-col items-center justify-center gap-3">
+										<h2 className="text-2xl md:text-3xl font-bold text-white">{selecionado.nome}</h2>
+										<div className="flex gap-2">
+											<a href={selecionado.github} target="_blank" rel="noopener noreferrer">
+												<FontAwesomeIcon
+													icon={faGithubSquare}
+													className="text-[30px] text-(--tertiary) hover:text-(--secondary) transition-all cursor-pointer"
+												/>
+											</a>
+											<a href={selecionado.whatsapp} target="_blank" rel="noopener noreferrer">
+												<FontAwesomeIcon
+													icon={faWhatsappSquare}
+													className="text-[30px] text-(--tertiary) hover:text-(--secondary) transition-all cursor-pointer"
+												/>
+											</a>
+											<a href={selecionado.linkedin} target="_blank" rel="noopener noreferrer">
+												<FontAwesomeIcon
+													icon={faSquareLinkedin}
+													className="text-[30px] text-(--tertiary) hover:text-(--secondary) transition-all cursor-pointer"
+												/>
+											</a>
+										</div>
+										<p className="md:text-md font-semibold text-white">{selecionado.formacao}</p>
 									</div>
-									<p className="md:text-md font-semibold text-white">{selecionado.formacao}</p>
-								</div>
 
-								<p className="md:text-xl italic text-(--secondary) mt-2">"{selecionado.frase}"</p>
+									<p className="md:text-xl italic text-(--secondary) mt-2">"{selecionado.frase}"</p>
+								</div>
+								<div className="p-2 text-center md:w-[30%]">
+									<img src={selecionado.foto} alt={`Foto de ${selecionado.nome}`} className="w-50 md:w-50 rounded-4xl shadow-lg" />
+								</div>
 							</div>
-							<div className="p-2 text-center md:w-[30%]">
-								<img src={selecionado.foto} alt={`Foto de ${selecionado.nome}`} className="w-50 md:w-50 rounded-4xl shadow-lg" />
+							<div className="flex flex-col items-center md:items-start text-center md:text-left">
+								<p className="text-md bg-(--primary-light)/70 text-white px-4 py-2 rounded-tl-4xl rounded-tr-2xl rounded-br-4xl rounded-bl-2xl">
+									{selecionado.pitch}
+								</p>
 							</div>
-						</div>
-						<div className="flex flex-col items-center md:items-start text-center md:text-left">
-							<p className="text-md bg-(--primary-light)/70 text-white px-4 py-2 rounded-tl-4xl rounded-tr-2xl rounded-br-4xl rounded-bl-2xl">
-								{selecionado.pitch}
-							</p>
-						</div>
-					</div>
-				) : (
-					<div
-						className="
-          w-full max-w-5xl h-64 p-8 mt-6
-          bg-(--primary-ex-dark) rounded-lg shadow-xl
-          flex justify-center items-center
-          text-(--secondary-dark) text-xl transition-all duration-500
-        ">
-						<p>Selecione um membro da equipe para ver os detalhes.</p>
-					</div>
-				)}
+						</motion.div>
+					) : (
+						<motion.div
+							key="placeholder"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="w-full max-w-5xl h-64 p-8 mt-6 bg-(--primary-ex-dark) rounded-lg shadow-xl flex justify-center items-center text-(--secondary-dark) text-xl">
+							<p>Selecione um membro da equipe para ver os detalhes.</p>
+						</motion.div>
+					)}
+				</AnimatePresence>
 			</div>
 		</div>
 	);

@@ -22,10 +22,7 @@ function ModalPerfil() {
 						color: "white",
 						height: "fit-content",
 					}}
-					overlayStyle={{
-						background: "rgba(0, 0, 0, 0.6)",
-						backdropFilter: "blur(4px)",
-					}}>
+					overlayStyle={{ background: "rgba(0, 0, 0, 0.6)", backdropFilter: "blur(4px)" }}>
 					<FormEditPerfil />
 				</Popup>
 			</div>

@@ -175,6 +175,7 @@ function FormEditPerfil() {
 				<div className="w-full">
 					<div className="input-group">
 						<input
+							autoComplete="off"
 							id="senha"
 							type="password"
 							className="input h-10 w-full"
@@ -194,8 +195,15 @@ function FormEditPerfil() {
 				<button
 					type="submit"
 					className={`Btn_perfil ${isValid && !isLoading ? "cursor-pointer hover:bg-(--tertiary-light)" : "opacity-50 cursor-not-allowed"}`}>
-					Salvar
-					<svg fill="#000000" version="1.1" id="Capa_1" width="25px" height="25px" viewBox="0 0 407.096 407.096" className="svg_perfil">
+					{isLoading ? "Salvando..." : "Salvar"}
+					<svg
+						fill="#000000"
+						version="1.1"
+						id="Capa_1"
+						width="25px"
+						height="25px"
+						viewBox="0 0 407.096 407.096"
+						className={`svg_perfil ${isLoading ? `hidden` : `visible`}`}>
 						<g>
 							<g>
 								<path d="M402.115,84.008L323.088,4.981C319.899,1.792,315.574,0,311.063,0H17.005C7.613,0,0,7.614,0,17.005v373.086 c0,9.392,7.613,17.005,17.005,17.005h373.086c9.392,0,17.005-7.613,17.005-17.005V96.032 C407.096,91.523,405.305,87.197,402.115,84.008z M300.664,163.567H67.129V38.862h233.535V163.567z" />

@@ -6,7 +6,7 @@ import type Usuario from "../../models/Usuario";
 import { cadastrarUsuario } from "../../services/Services";
 import Loader from "../../components/buttons/Loader";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { Flip, toast } from "react-toastify";
+import { Flip, toast, ToastContainer } from "react-toastify";
 
 type FormFields = Usuario & { confirmarSenha: string };
 
@@ -496,6 +496,7 @@ const LoginAndRegisterPage: React.FC = () => {
 					</div>
 				</div>
 			</div>
+      
 		</main>
 	);
 };

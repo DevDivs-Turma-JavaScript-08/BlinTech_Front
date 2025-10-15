@@ -6,6 +6,7 @@ import CardProduto from "../../components/cards/cardProduto/CardProduto";
 import ModalPerfil from "../../components/forms/ModalPerfil";
 import { useNavigate } from "react-router-dom";
 import { Flip, toast } from "react-toastify";
+import { AnimatePresence, motion } from "framer-motion";
 
 function formatarCpf(cpf: string): string {
 	if (!cpf) return "";
@@ -70,7 +71,6 @@ export default function Perfil() {
 			});
 			setSeguros(seguros.filter((seguro) => seguro.id !== id));
 		} catch (error) {
-			// console.error("Erro ao excluir produto: ", error);
 			toast.dismiss();
 			toast.error("Erro ao cancelar seguro.", {
 				position: "top-center",
@@ -92,11 +92,18 @@ export default function Perfil() {
 	return (
 		<main className="flex flex-col w-full bg-(--primary-ex-dark) text-white items-center pb-20 min-h-screen">
 			{/* Seção de Perfil */}
-			<section className="flex flex-col items-center mt-5 md:mt-10 gap-10 w-full max-w-6xl">
+			<motion.section
+				initial={{ opacity: 0, y: 30 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.4, ease: "easeOut" }}
+				className="flex flex-col items-center mt-5 md:mt-10 gap-10 w-full max-w-6xl">
 				<h1 className="text-5xl font-bold text-center drop-shadow-md">Perfil do Usuário</h1>
 
 				<div className="flex flex-col md:flex-row items-center md:items-start gap-10 bg-white/10 backdrop-blur-md rounded-3xl p-10 shadow-2xl w-[90%] md:w-[900px] border border-white/10">
-					<img
+					<motion.img
+						initial={{ opacity: 0, scale: 0.9 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.3 }}
 						className="rounded-full w-40 h-40 object-cover border-4 border-(--tertiary)/50 shadow-lg"
 						src={usuario.foto || "https://i.imgur.com/Qj1qM3I.png"}
 						alt="foto do usuário"
@@ -118,21 +125,36 @@ export default function Perfil() {
 						</div>
 					</div>
 				</div>
-			</section>
+			</motion.section>
 
 			{/* Seção de Seguros */}
-			<section className=" mt-10 md:mt-15 flex flex-col items-center w-full max-w-7xl gap-8">
+			<section className="mt-10 md:mt-15 flex flex-col items-center w-full max-w-7xl gap-8">
 				<h2 className="text-4xl sm:text-5xl font-bold mb-4 text-center">Meus Seguros</h2>
 
-				{usuarioSeguros.length > 0 ? (
-					<div className="flex justify-center flex-wrap gap-8 w-full px-4">
-						{usuarioSeguros.map((seguro) => (
-							<CardProduto key={seguro.id} seguro={seguro} onDelete={handleDelete} />
-						))}
-					</div>
-				) : (
-					<p className="text-lg text-gray-300 italic">Você ainda não possui seguros cadastrados.</p>
-				)}
+				<AnimatePresence>
+					{usuarioSeguros.length > 0 ? (
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="flex justify-center flex-wrap gap-8 w-full px-4">
+							{usuarioSeguros.map((seguro) => (
+								<motion.div
+									key={seguro.id}
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit={{ opacity: 0, y: -20 }}
+									transition={{ duration: 0.3 }}>
+									<CardProduto seguro={seguro} onDelete={handleDelete} />
+								</motion.div>
+							))}
+						</motion.div>
+					) : (
+						<motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-lg text-gray-300 italic">
+							Você ainda não possui seguros cadastrados.
+						</motion.p>
+					)}
+				</AnimatePresence>
 			</section>
 		</main>
 	);
