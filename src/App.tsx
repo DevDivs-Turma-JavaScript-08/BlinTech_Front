@@ -11,12 +11,14 @@ import ProdutosList from "./components/layout/lists/ProdutosList";
 import PaginaServicos from "./pages/servicos/PaginaServicos";
 import Contatos from "./pages/contato/Contato";
 import { ToastContainer } from "react-toastify";
+import ScrollToTop from "./components/utils/ScrollToTop";
 
 function App() {
 	return (
 		<>
 			<AuthProvider>
 				<BrowserRouter>
+          <ScrollToTop />
 					<Navbar />
 					<Routes>
 						<Route path="/login" element={<LoginAndRegisterPage />} />
