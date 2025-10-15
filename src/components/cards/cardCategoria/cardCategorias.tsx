@@ -44,7 +44,7 @@ function CardCategorias({ categoria, onDelete }: CardCategoriasProps) {
 
 					<h1 className="font-bold mt-3 text-xl text-white"> {categoria.nome} </h1>
 
-					<p className="text-wrap text-sm text-white leading-6 h-[100px] w-full overflow-x-auto scrollbar-custom">{categoria.descricao}</p>
+					<p className="text-wrap text-sm text-white leading-6 h-[130px] mt-4 w-full overflow-x-auto scrollbar-custom">{categoria.descricao}</p>
 				</div>
 
 				<div className="flex gap-3">

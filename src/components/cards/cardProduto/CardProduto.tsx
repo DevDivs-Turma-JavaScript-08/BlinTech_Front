@@ -38,7 +38,7 @@ function CardProduto({ seguro, onDelete }: CardProdutoProps) {
 							<h2 className="text-2xl font-bold text-(--tertiary-light) tracking-wide">{seguro.nomeProduto}</h2>
 							<h2 className="text-sm font-bold text-(--tertiary-light) tracking-wide">Cliente: {seguro.usuario?.nome}</h2>
 						</div>
-						<div className="text-right text-gray-300 text-sm">
+						<div className="text-right text-gray-300 text-sm flex gap-1 md:flex-col md:gap-0">
 							<span className="font-medium text-(--tertiary)">Contratado em:</span>
 							<p>
 								{new Intl.DateTimeFormat("pt-BR", {
